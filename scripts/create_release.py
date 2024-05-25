@@ -148,7 +148,7 @@ if __name__ == '__main__':
     # check for releases
     for zip_file in os.listdir(release_folder):
         release_addon = ReleaseAddon(
-            repo_name=os.environ.get('REPO'),
+            repo_name='JoshQuake/BlenderTools',
             zip_file_path=os.path.join(release_folder, zip_file)
         )
 
