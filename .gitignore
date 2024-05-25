@@ -7,4 +7,12 @@
 *~
 *.swp
 /venv/*
+.vscode
 release/*
+venv
+.venv
+.unreal-venv
+scripts/resources
+launch.py
+tests/test_files/data
+tests/test_files/unreal_projects/**/DefaultInput.ini
