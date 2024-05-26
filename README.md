@@ -1,10 +1,10 @@
 <p align="center">
-  <img width="300" src="https://github.com/EpicGamesExt/BlenderTools/blob/main/docs/main/images/1.png?raw=true" alt="icon"/>
+  <img width="300" src="https://github.com/poly-hammer/BlenderTools/blob/main/docs/main/images/1.png?raw=true" alt="icon"/>
 </p>
 <h1 align="center">Blender Tools</h1>
 <br></br>
 
-### NOTE: This is a fork of the original [repository by Epic](https://github.com/EpicGamesExt/BlenderTools). 
+### NOTE: This is a fork of the original [repository by Epic](https://github.com/poly-hammer/BlenderTools). 
 ### This is now maintained by volunteers from the community and is not affiliated with Epic Games. 
 
 A repository of blender addons that improve the game development workflow between Blender and Unreal Engine.
@@ -12,32 +12,32 @@ A repository of blender addons that improve the game development workflow betwee
 
 ## Send to Unreal
 
-![4](docs/main/images/send2ue/4.gif)
+![4](docs/images/send2ue/4.gif)
 
 A one-click solution for sending assets from Blender to Unreal Engine.
 
-* [Read Docs](https://epicgamesext.github.io/BlenderTools/send2ue/)
-* [Download Addon](https://github.com/EpicGamesExt/BlenderTools/releases?q=Send+to+Unreal&expanded=true)
+* [Read Docs](https://poly-hammer.github.io/BlenderTools/send2ue/)
+* [Download Addon](https://github.com/poly-hammer/BlenderTools/releases?q=Send+to+Unreal&expanded=true)
 
 
 ## UE to Rigify
 
-![2](./docs/main/images/ue2rigify/2.png)
+![2](./docs/images/ue2rigify/2.png)
 
 A node based retargeting system for Blender's
 [Rigify](https://docs.blender.org/manual/en/latest/addons/rigging/rigify/index.html) addon. Quickly retarget and author
 new animation on unreal marketplace assets and more!
 
-* [Read Docs](https://epicgamesext.github.io/BlenderTools/ue2rigify/)
-* [Download Addon](https://github.com/EpicGamesExt/BlenderTools/releases?q=UE+to+Rigify&expanded=true)
+* [Read Docs](https://poly-hammer.github.io/BlenderTools/ue2rigify/)
+* [Download Addon](https://github.com/poly-hammer/BlenderTools/releases?q=UE+to+Rigify&expanded=true)
 
 
 ## Help Contribute
 Contributions are encouraged! Find out how you can contribute to this repo in one of the following ways:
 
-* [Help Develop](https://epicgamesext.github.io/BlenderTools/contributing/development.html)
-* [Help Document](https://epicgamesext.github.io/BlenderTools/contributing/documentation.html)
-* [Help Test](https://epicgamesext.github.io/BlenderTools/contributing/testing.html)
+* [Help Develop](https://poly-hammer.github.io/BlenderTools/contributing/development.html)
+* [Help Document](https://poly-hammer.github.io/BlenderTools/contributing/documentation.html)
+* [Help Test](https://poly-hammer.github.io/BlenderTools/contributing/testing.html)
 
 
 ## Get Notified on a New Release
