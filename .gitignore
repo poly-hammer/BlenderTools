@@ -10,8 +10,12 @@
 .vscode
 release/*
 venv
+.env
 .venv
 .unreal-venv
+results
+release
+site
 scripts/resources
 launch.py
 tests/test_files/data

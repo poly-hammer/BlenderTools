@@ -1,6 +1,3 @@
----
-home: false
----
 # Addons
 
 ## Send to Unreal
@@ -10,12 +7,14 @@ home: false
 A one-click solution for sending assets from Blender to Unreal Engine.
 
 * [Read Docs](./send2ue)
-* [Download Addon](https://github.com/EpicGamesExt/BlenderTools/releases?q=Send+to+Unreal&expanded=true)
+* [Download Addon](https://github.com/poly-hammer/BlenderTools/releases?q=Send+to+Unreal&expanded=true)
 
-::: tip Note
-   If you get a 404 error when you click the `Download Addon` link above, then you will need to sign in to your github account and link it with your Epic Games account.
+!!! note 
+
+   If you get a 404 error when you click the `Download Addon` link above, then you will need to sign in to your github account and link it with your Epic Games account. 
+   
 Here is a [link with instructions](https://www.unrealengine.com/en-US/ue4-on-github) on how to link your accounts.
-:::
+
 
 
 ## UE to Rigify
@@ -27,10 +26,10 @@ A node based retargeting system for Blender's
 new animation on unreal marketplace assets and more!
 
 * [Read Docs](./ue2rigify)
-* [Download Addon](https://github.com/EpicGamesExt/BlenderTools/releases?q=UE+to+Rigify&expanded=true)
+* [Download Addon](https://github.com/poly-hammer/BlenderTools/releases?q=UE+to+Rigify&expanded=true)
 
 
-::: tip Note
+!!! note
    If you get a 404 error when you click the `Download Addon` link above, then you will need to sign in to your github account and link it with your Epic Games account.
-Here is a [link with instructions](https://www.unrealengine.com/en-US/ue4-on-github) on how to link your accounts.
-:::
+   Here is a [link with instructions](https://www.unrealengine.com/en-US/ue4-on-github) on how to link your accounts.
+
