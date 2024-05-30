@@ -7,6 +7,7 @@ import time
 import threading
 import unittest
 import docker
+import docker.errors
 import xmlrunner
 import shutil
 import inspect
@@ -99,8 +100,13 @@ class ContainerTestManager:
 
         if os.environ.get('TEST_ENVIRONMENT'):
             try:
-                self.docker_client = docker.from_env()
-                self.docker_api_client = docker.APIClient()
+                if sys.platform == 'linux':
+                    self.docker_client = docker.DockerClient(base_url='unix://var/run/docker.sock')
+                    self.docker_api_client = docker.APIClient(base_url='unix://var/run/docker.sock')
+                else:
+                    self.docker_client = docker.from_env()
+                    self.docker_api_client = docker.APIClient()
+                    
             except docker.errors.DockerException:
                 raise docker.errors.DockerException('Can not talk to the docker API. Is docker installed and running?')
 
