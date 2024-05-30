@@ -107,7 +107,7 @@
   "import_lods": false,
   "import_materials_and_textures": true,
   "import_meshes": true,
-  "lod_regex": "(?i)(_LOD\\d).*",
+  "lod_regex": "(_LOD\\d).*",
   "path_mode": "send_to_project",
   "tab": "paths",
   "template_version": 1.0,
