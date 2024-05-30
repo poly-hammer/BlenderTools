@@ -7,6 +7,7 @@ on:
     paths:
       - 'send2ue/**/*'
       - 'ue2rigify/**/*'
+      - 'tests/**/*'
       - '.github/workflows/**'
       
 jobs:
