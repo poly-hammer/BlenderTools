@@ -4,7 +4,7 @@ fake-bpy-module-latest==20231010
 PyGithub==2.1.1
 debugpy==1.8.1
 numpy==1.26.4
-
+websocket==0.2.1
 
 # documenation 
 mkdocs<=1.5.3
