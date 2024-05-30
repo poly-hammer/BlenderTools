@@ -556,7 +556,6 @@ class ContainerTestManager:
                 system_cpu_usage = cpu_stats['system_cpu_usage']
                 pre_cpu_total_usage = pre_cpu_stats['cpu_usage']['total_usage']
                 pre_system_cpu_usage = pre_cpu_stats['system_cpu_usage']
-                cpu_usage_count = len(cpu_stats['cpu_usage']['percpu_usage'])
 
                 # get memory stats
                 memory_stats = stats["memory_stats"]["stats"]
@@ -568,7 +567,7 @@ class ContainerTestManager:
                 # calculate cpu percentages
                 total_cpu_usage_delta = cpu_total_usage - pre_cpu_total_usage
                 system_cpu_usage_delta = system_cpu_usage - pre_system_cpu_usage
-                cpu_percentage = round((total_cpu_usage_delta / system_cpu_usage_delta) * cpu_usage_count * 100, 3)
+                cpu_percentage = round((total_cpu_usage_delta / system_cpu_usage_delta) * 100, 3)
 
                 # calculate memory percentages
                 memory_percentage = round(memory_used / limit * 100, 2)
@@ -581,7 +580,7 @@ class ContainerTestManager:
 
                 self.logger.info(
                     f' {service_name.capitalize()}: Total runtime {runtime_delta.seconds} seconds | {cpu_percentage}% '
-                    f'CPU used across {cpu_usage_count} cores | {memory_percentage}% of available memory used '
+                    f'of available CPU was used | {memory_percentage}% of available memory used '
                     f'{gb_memory}GB / {gb_memory_limit}GB'
                 )
 
