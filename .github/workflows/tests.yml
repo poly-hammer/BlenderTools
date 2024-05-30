@@ -11,10 +11,14 @@ on:
       
 jobs:
   tests:
-    name: Test All
+    name: Tests
     runs-on: poly-hammer-runner
+    if: github.repository == 'poly-hammer/BlenderTools'
     timeout-minutes: 120
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
