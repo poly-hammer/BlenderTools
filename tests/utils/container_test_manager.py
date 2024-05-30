@@ -387,7 +387,7 @@ class ContainerTestManager:
             command = data.get('command', [])
             user = data.get('user')
             ports = data.get('ports', {})
-            ports.update({f'{rpc_port}/tcp': rpc_port})
+            ports.update({f'{rpc_port}/tcp': ('127.0.0.1', rpc_port)})
             entrypoint = data.get('entrypoint')
             environment = data.get('environment', {})
             environment.update({
