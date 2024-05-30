@@ -1,0 +1,49 @@
+name: Tests
+
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'send2ue/**/*'
+      - 'ue2rigify/**/*'
+      - '.github/workflows/**'
+      
+jobs:
+  tests:
+    name: Test All
+    runs-on: poly-hammer-runner
+    timeout-minutes: 120
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        shell: bash
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade -r requirements.txt
+
+      - name: Run All Tests
+        shell: bash
+        run: |
+          source .venv/bin/activate
+
+          export GITHUB_TOKEN=${{ secrets.GH_PAT }}
+          export TEST_ENVIRONMENT=1
+          cd ./tests
+          python run_tests.py
+          
+
+      - name: Publish All Test Report
+        uses: mikepenz/action-junit-report@v4
+        # always run even if the previous step fails
+        if: success() || failure()
+        with:
+          check_name: Pytest Results
+          include_passed: True
+          fail_on_failure: True
+          report_paths: './tests/results/*.xml'

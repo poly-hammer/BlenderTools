@@ -20,3 +20,4 @@ scripts/resources
 launch.py
 tests/test_files/data
 tests/test_files/unreal_projects/**/DefaultInput.ini
+tests/test_files/blender_files/textures

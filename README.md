@@ -4,6 +4,11 @@
 <h1 align="center">Blender Tools</h1>
 <br></br>
 
+[![Docs](https://github.com/poly-hammer/BlenderTools/actions/workflows/docs.yml/badge.svg)](https://github.com/poly-hammer/BlenderTools/actions/workflows/docs.yml)
+[![Tests](https://github.com/poly-hammer/BlenderTools/actions/workflows/tests.yml/badge.svg)](https://github.com/poly-hammer/BlenderTools/actions/workflows/tests.yml)
+
+
+
 ### NOTE: This is a fork of the original [repository by Epic](https://github.com/EpicGamesExt/BlenderTools). 
 ### This is now maintained by volunteers from the community and is not affiliated with Epic Games. 
 
