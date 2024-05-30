@@ -6,8 +6,8 @@
 * Removed (?i) from lod regex value in default settings template
 
 ## Special Thanks
-@universalconquistador, @JoshQuake
+@universalconquistador, @JoshQuake, @jack-yao91
 
 ## Tests Passing On
-* Blender `4.0` (installed from blender.org)
-* Unreal `5.3`
+* Blender `4.0`, `4.1` (installed from blender.org)
+* Unreal `5.3`, `5.4`
