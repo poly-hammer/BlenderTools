@@ -3,6 +3,7 @@ unittest-xml-reporting==3.2.0
 fake-bpy-module-latest==20231010
 PyGithub==2.1.1
 debugpy==1.8.1
+numpy==1.26.4
 
 
 # documenation 

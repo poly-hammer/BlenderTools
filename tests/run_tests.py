@@ -26,6 +26,7 @@ HOST_TEST_FOLDER = os.environ.get('HOST_TEST_FOLDER', os.getcwd())
 CONTAINER_TEST_FOLDER = os.environ.get('CONTAINER_TEST_FOLDER', f'{CONTAINER_REPO_FOLDER}tests')
 EXCLUSIVE_TEST_FILES = list(filter(None, os.environ.get('EXCLUSIVE_TEST_FILES', '').split(','))) or None
 EXCLUSIVE_TESTS = list(filter(None, os.environ.get('EXCLUSIVE_TESTS', '').split(','))) or None
+ALWAYS_PULL = bool(int(os.environ.get('ALWAYS_PULL', '0')))
 
 
 if __name__ == '__main__':
@@ -72,7 +73,7 @@ if __name__ == '__main__':
             'blender': {
                 'connects_to': 'unreal',
                 'refresh': True,
-                'always_pull': False,
+                'always_pull': ALWAYS_PULL,
                 'tag': 'blender:3.3.1-cpu-ubuntu18.04',
                 'repository': 'nytimes',
                 'rpc_port': BLENDER_PORT,
@@ -90,7 +91,7 @@ if __name__ == '__main__':
             },
             'unreal': {
                 'refresh': False,
-                'always_pull': False,
+                'always_pull': ALWAYS_PULL,
                 'rpc_port': UNREAL_PORT,
                 'environment': environment,
                 'volumes': volumes,
