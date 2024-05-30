@@ -11,7 +11,7 @@ on:
       
 jobs:
   tests:
-    name: Test All
+    name: Tests
     runs-on: poly-hammer-runner
     timeout-minutes: 120
     steps:
