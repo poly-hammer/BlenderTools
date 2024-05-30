@@ -39,6 +39,9 @@ jobs:
 
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
+
+          echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ secrets.GH_USER }} --password-stdin
+
           cd ./tests
           python run_tests.py
           
