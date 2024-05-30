@@ -47,7 +47,7 @@ jobs:
         # always run even if the previous step fails
         if: success() || failure()
         with:
-          check_name: Pytest Results
+          check_name: Test Results
           include_passed: True
           fail_on_failure: True
           report_paths: './tests/results/*.xml'
