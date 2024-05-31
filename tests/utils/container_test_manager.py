@@ -389,6 +389,11 @@ class ContainerTestManager:
             ports = data.get('ports', {})
             ports.update({f'{rpc_port}/tcp': ('127.0.0.1', rpc_port)})
             entrypoint = data.get('entrypoint')
+            if not entrypoint:
+                entrypoint = 'umask && umask 0000 && umask && bash'
+            else:
+                entrypoint = f'umask && umask 0000 && umask && {entrypoint}'
+
             environment = data.get('environment', {})
             environment.update({
                 f'RPC_SERVER_{rpc_port}': name,
