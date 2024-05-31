@@ -25,11 +25,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      # this is need so that docker can properly mount volumes to the repo
+      # this is needed so that docker can properly mount volumes to the repo
       - name: Set file permissions
         shell: bash
         run: |
-          sudo chown -R docker:docker /home/github/actions-runner/_work/BlenderTools
+          sudo chown -R $USER:$USER /home/github/actions-runner/_work/BlenderTools
 
       - name: Setup Python
         uses: actions/setup-python@v4
