@@ -561,7 +561,7 @@ class ContainerTestManager:
                 memory_stats = stats["memory_stats"]["stats"]
                 memory_usage = stats["memory_stats"]["usage"]
 
-                memory_used = memory_usage - memory_stats["cache"] + memory_stats["active_file"]
+                memory_used = memory_usage - memory_stats.get("cache", 0) + memory_stats.get("active_file", 0)
                 limit = stats["memory_stats"]['limit']
 
                 # calculate cpu percentages
