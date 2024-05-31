@@ -59,4 +59,7 @@ jobs:
           check_name: Test Results
           include_passed: True
           fail_on_failure: True
+          require_tests: True
+          require_passed_tests: True
+          detailed_summary: True
           report_paths: './tests/results/*.xml'
