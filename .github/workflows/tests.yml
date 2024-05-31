@@ -54,7 +54,7 @@ jobs:
           echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ secrets.GH_USER }} --password-stdin
 
           cd ./tests
-          python run_tests.py
+          sudo python run_tests.py
           
 
       - name: Publish All Test Report
