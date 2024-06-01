@@ -48,6 +48,8 @@ jobs:
         run: |
           source .venv/bin/activate
 
+          echo $USER
+
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
 
