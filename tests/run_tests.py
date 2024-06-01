@@ -125,6 +125,10 @@ if __name__ == '__main__':
     if TEST_ENVIRONMENT:
         container_test_manager.start()
 
+    # fix the file permissions after the volume mounts are created
+    if TEST_ENVIRONMENT and sys.platform == 'linux':
+        os.system(f'chmod -R 777 {HOST_REPO_FOLDER}')
+
     container_test_manager.run_test_cases()
 
     if TEST_ENVIRONMENT and os.environ.get('REMOVE_CONTAINERS', '').lower() != 'false':
