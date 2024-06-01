@@ -42,6 +42,8 @@ jobs:
         run: |
           source .venv/bin/activate
 
+          chmod -R 777 ./
+
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
 
