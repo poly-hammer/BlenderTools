@@ -25,12 +25,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      # this is needed so that docker can properly mount volumes to the repo
-      - name: Set file permissions
-        shell: bash
-        run: |
-          sudo chown -R $USER:$USER ./
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -48,7 +42,7 @@ jobs:
         run: |
           source .venv/bin/activate
 
-          echo $USER
+          whoami
 
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
