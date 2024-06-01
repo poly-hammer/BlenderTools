@@ -79,6 +79,7 @@ if __name__ == '__main__':
                 'rpc_port': BLENDER_PORT,
                 'environment': environment,
                 'volumes': volumes,
+                'user': 'root',
                 'command': [
                     'blender',
                     '--background',
@@ -124,10 +125,6 @@ if __name__ == '__main__':
     )
     if TEST_ENVIRONMENT:
         container_test_manager.start()
-
-    # fix the file permissions after the volume mounts are created
-    if TEST_ENVIRONMENT and sys.platform == 'linux':
-        os.system(f'chmod -R 777 {HOST_REPO_FOLDER}')
 
     container_test_manager.run_test_cases()
 
