@@ -40,9 +40,9 @@ jobs:
       - name: Run All Tests
         shell: bash
         run: |
+          su - ubuntu
+          
           source .venv/bin/activate
-
-          whoami
 
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
