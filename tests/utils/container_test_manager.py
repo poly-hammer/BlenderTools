@@ -459,7 +459,7 @@ class ContainerTestManager:
                 if rpc_client.proxy.is_running():
                     self.logger.info(f'{service_name} is running!')
                     break
-            except (RemoteDisconnected, ConnectionRefusedError):
+            except (RemoteDisconnected, ConnectionRefusedError, ConnectionResetError):
                 self.logger.debug(
                     f'{service_name} has not responded in {self.get_start_time_offset()} seconds...'
                 )
