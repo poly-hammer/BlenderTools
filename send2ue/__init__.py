@@ -12,7 +12,7 @@ from .core import formatting, validations, settings, utilities, export, ingest, 
 
 bl_info = {
     "name": "Send to Unreal",
-    "author": "Epic Games Inc.",
+    "author": "Epic Games Inc (now a community fork)",
     "version": (2, 4, 3),
     "blender": (3, 3, 0),
     "location": "Header > Pipeline > Send to Unreal",
