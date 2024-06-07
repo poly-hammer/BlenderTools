@@ -12,8 +12,8 @@ from utils.container_test_manager import ContainerTestManager
 
 BLENDER_ADDONS = os.environ.get('BLENDER_ADDONS', 'send2ue,ue2rigify')
 
-BLENDER_VERSION = os.environ.get('UNREAL_VERSION', '4.1')
-UNREAL_VERSION = os.environ.get('BLENDER_VERSION', '5.4')
+BLENDER_VERSION = os.environ.get('BLENDER_VERSION', '4.1')
+UNREAL_VERSION = os.environ.get('UNREAL_VERSION', '5.4')
 
 # switch ports depending on whether in test environment or not
 BLENDER_PORT = os.environ.get('BLENDER_PORT', '9997')
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         f'{host_temp_folder}:/tmp/blender/send2ue/data'
     ]
 
-    logging.debug(f'Launching ContainerTestManager...')
+    logging.debug('Launching ContainerTestManager...')
     # instance the container test manager with the blender and unreal containers
     container_test_manager = ContainerTestManager(
         images={
