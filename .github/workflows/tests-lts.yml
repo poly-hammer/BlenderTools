@@ -1,4 +1,4 @@
-name: Tests
+name: Tests LTS
 
 on: 
   push:
@@ -44,6 +44,8 @@ jobs:
 
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
+          export UNREAL_VERSION=5.3
+          export BLENDER_VERSION=3.6
 
           echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ secrets.GH_USER }} --password-stdin
 

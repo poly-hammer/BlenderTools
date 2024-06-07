@@ -12,6 +12,9 @@ from utils.container_test_manager import ContainerTestManager
 
 BLENDER_ADDONS = os.environ.get('BLENDER_ADDONS', 'send2ue,ue2rigify')
 
+BLENDER_VERSION = os.environ.get('UNREAL_VERSION', '4.1')
+UNREAL_VERSION = os.environ.get('BLENDER_VERSION', '5.4')
+
 # switch ports depending on whether in test environment or not
 BLENDER_PORT = os.environ.get('BLENDER_PORT', '9997')
 UNREAL_PORT = os.environ.get('UNREAL_PORT', '9998')
@@ -74,7 +77,7 @@ if __name__ == '__main__':
                 'connects_to': 'unreal',
                 'refresh': True,
                 'always_pull': ALWAYS_PULL,
-                'tag': 'blender-linux:3.6',
+                'tag': f'blender-linux:{BLENDER_VERSION}',
                 'repository': 'ghcr.io/poly-hammer',
                 'user': 'root',
                 'rpc_port': BLENDER_PORT,
@@ -98,7 +101,7 @@ if __name__ == '__main__':
                 'volumes': volumes,
                 # 'tag': 'unreal-linux:5.4',
                 # 'repository': 'ghcr.io/poly-hammer',
-                'tag': 'unreal-engine:dev-slim-5.3',
+                'tag': f'unreal-engine:dev-slim-{UNREAL_VERSION}',
                 'repository': 'ghcr.io/epicgames',
                 'user': 'ue4',
                 'command': [
