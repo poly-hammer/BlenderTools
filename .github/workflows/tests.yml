@@ -11,6 +11,7 @@ on:
       - '.github/workflows/**'
 
 permissions:
+  contents: read
   checks: write
   id-token: write
       
