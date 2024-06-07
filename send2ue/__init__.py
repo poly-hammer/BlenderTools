@@ -38,7 +38,8 @@ modules = [
     remote_execution,
     addon_preferences,
     extension,
-    io.fbx
+    io.fbx_b3,
+    io.fbx_b4
 ]
 
 
