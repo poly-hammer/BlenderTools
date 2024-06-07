@@ -413,7 +413,7 @@ def get_asset_name(asset_name, properties, lod=False):
         # remove the lod name from the asset
         result = re.search(properties.lod_regex, asset_name)
         if result and not lod:
-            asset_name = asset_name.replace(result.groups()[0], '')
+            asset_name = asset_name.split(result.groups()[0])[0]
 
     return asset_name
 

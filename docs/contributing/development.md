@@ -75,8 +75,8 @@ These steps must be completed in-order for the addons to hot-reload while you ty
 
 !!! Windows
     Run this from a commandline launched as administrator. Swapping out the last path with your own.
-      ```commandline:no-line-numbers
-    mklink /D "%APPDATA%\Blender Foundation\Blender\3.4\scripts\addons\send2ue" "D:\repos\BlenderTools\send2ue"
+    ```shell
+    mklink /D "%APPDATA%\Blender Foundation\Blender\3.6\scripts\addons\send2ue" "D:\repos\BlenderTools\send2ue"
     ```
 
 1. You must install the `./scripts/addon-watcher.xml` in Pycharm by going to `Settings > Tools > File Watchers > Import`

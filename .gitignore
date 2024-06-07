@@ -12,7 +12,7 @@ release/*
 venv
 .env
 .venv
-.unreal-venv
+.*-venv
 results
 release
 site
