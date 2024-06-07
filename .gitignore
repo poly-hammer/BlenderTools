@@ -16,6 +16,7 @@ venv
 results
 release
 site
+scratches
 scripts/resources
 launch.py
 tests/test_files/data

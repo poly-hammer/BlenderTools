@@ -1,5 +1,4 @@
-name: Tests
-
+name: re-use-tests
 
 on: 
   workflow_call:
@@ -67,7 +66,7 @@ jobs:
         # always run even if the previous step fails
         if: success() || failure()
         with:
-          check_name: ${{ inputs.title }} Results
+          check_name: ${{ inputs.title }} Results (Unreal ${{ inputs.unreal-version }} Blender ${{ inputs.blender-version }})
           include_passed: True
           fail_on_failure: True
           require_tests: True

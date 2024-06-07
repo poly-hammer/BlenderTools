@@ -88,12 +88,12 @@ def get_lod0_name(asset_name, properties):
     :param PropertyData properties: A property data instance that contains all property values of the tool.
     :return str: The full name for lod0.
     """
-    result = re.search(rf"({properties.lod_regex})", asset_name)
+    result = re.search(properties.lod_regex, asset_name)
+
     if result:
         lod = result.groups()[-1]
         return asset_name.replace(lod, f'{lod[:-1]}0')
     return asset_name
-
 
 def get_lod_index(asset_name, properties):
     """
@@ -103,7 +103,7 @@ def get_lod_index(asset_name, properties):
     :param PropertyData properties: A property data instance that contains all property values of the tool.
     :return int: The lod index
     """
-    result = re.search(rf"({properties.lod_regex})", asset_name)
+    result = re.search(properties.lod_regex, asset_name)
     if result:
         lod = result.groups()[-1]
         return int(lod[-1])
@@ -411,7 +411,7 @@ def get_asset_name(asset_name, properties, lod=False):
 
     if properties.import_lods:
         # remove the lod name from the asset
-        result = re.search(rf"({properties.lod_regex})", asset_name)
+        result = re.search(properties.lod_regex, asset_name)
         if result and not lod:
             asset_name = asset_name.replace(result.groups()[0], '')
 
