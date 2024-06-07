@@ -9,6 +9,10 @@ on:
       - 'ue2rigify/**/*'
       - 'tests/**/*'
       - '.github/workflows/**'
+
+permissions:
+  checks: write
+  id-token: write
       
 jobs:
   test-lts:
