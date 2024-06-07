@@ -5,7 +5,7 @@
 <br></br>
 
 [![Docs](https://github.com/poly-hammer/BlenderTools/actions/workflows/docs.yml/badge.svg)](https://github.com/poly-hammer/BlenderTools/actions/workflows/docs.yml)
-[![Tests](https://github.com/poly-hammer/BlenderTools/actions/workflows/tests-lts.yml/badge.svg)](https://github.com/poly-hammer/BlenderTools/actions/workflows/tests-lts.yml)
+[![Tests](https://github.com/poly-hammer/BlenderTools/actions/workflows/tests.yml/badge.svg)](https://github.com/poly-hammer/BlenderTools/actions/workflows/tests.yml)
 
 
 

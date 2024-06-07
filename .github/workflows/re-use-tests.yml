@@ -1,18 +1,27 @@
-name: Tests LTS
+name: Tests
+
 
 on: 
-  push:
-    branches:
-      - main
-    paths:
-      - 'send2ue/**/*'
-      - 'ue2rigify/**/*'
-      - 'tests/**/*'
-      - '.github/workflows/**'
+  workflow_call:
+    inputs:
+        title:
+          required: true
+          type: string
+        blender-version:
+          required: true
+          type: string
+        unreal-version:
+          required: true
+          type: string
+    secrets:
+      GH_USER:
+        required: true
+      GH_PAT:
+        required: true
       
 jobs:
   tests:
-    name: Tests
+    name: ${{ inputs.title }}
     runs-on: poly-hammer-runner
     if: github.repository == 'poly-hammer/BlenderTools'
     timeout-minutes: 120
@@ -44,8 +53,8 @@ jobs:
 
           export GITHUB_TOKEN=${{ secrets.GH_PAT }}
           export TEST_ENVIRONMENT=1
-          export UNREAL_VERSION=5.3
-          export BLENDER_VERSION=3.6
+          export UNREAL_VERSION=${{ inputs.unreal-version }}
+          export BLENDER_VERSION=${{ inputs.blender-version }}
 
           echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ secrets.GH_USER }} --password-stdin
 
@@ -53,12 +62,12 @@ jobs:
           python run_tests.py
           
 
-      - name: Publish All Test Report
+      - name: Publish ${{ inputs.title }} Report
         uses: mikepenz/action-junit-report@v4
         # always run even if the previous step fails
         if: success() || failure()
         with:
-          check_name: Test Results
+          check_name: ${{ inputs.title }} Results
           include_passed: True
           fail_on_failure: True
           require_tests: True
