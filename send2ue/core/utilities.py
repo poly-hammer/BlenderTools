@@ -825,12 +825,16 @@ def is_collision_of(asset_name, mesh_object_name, properties):
     # note we strip whitespace out of the collision name since whitespace is already striped out of the asset name
     # https://github.com/EpicGamesExt/BlenderTools/issues/397#issuecomment-1333982590
     mesh_object_name = mesh_object_name.strip()
+
+    # fixes error re.error: global flags not at the start of the expression
+    lod_regex = properties.lod_regex.replace('(?i)', '')
+
     return bool(
         re.fullmatch(
             r"U(BX|CP|SP|CX)_" + asset_name + r"(_\d+)?",
             mesh_object_name
         ) or re.fullmatch(
-            r"U(BX|CP|SP|CX)_" + asset_name + rf"{properties.lod_regex}(_\d+)?", mesh_object_name
+            r"(?i)U(BX|CP|SP|CX)_" + asset_name + rf"{lod_regex}(_\d+)?", mesh_object_name
         )
     )
 
