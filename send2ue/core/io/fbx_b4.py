@@ -1,5 +1,6 @@
 import os
 import bpy
+import numpy as np
 from ..utilities import report_error
 from mathutils import Vector
 from importlib.machinery import SourceFileLoader
@@ -38,6 +39,7 @@ def export(**keywords):
         FBX_DEFORMER_SKIN_VERSION,
         FBX_DEFORMER_CLUSTER_VERSION,
         BLENDER_OBJECT_TYPES_MESHLIKE,
+        FBX_KTIME,
         units_convertor_iter,
         matrix4_to_array,
         get_fbx_uuid_from_key,
@@ -59,6 +61,12 @@ def export(**keywords):
         elem_props_template_finalize,
         fbx_name_class
     )
+    
+    # Added version check to import new elem data type added in 4.0. Shading element was updated to use char instead of bool
+    if bpy.app.version >= (4,0,0): 
+        from io_scene_fbx.fbx_utils import (
+            elem_data_single_char
+        )
 
     convert_rad_to_deg_iter = units_convertor_iter("radian", "degree")
 
@@ -74,6 +82,7 @@ def export(**keywords):
         depsgraph = scene_data.depsgraph
         force_keying = scene_data.settings.bake_anim_use_all_bones
         force_sek = scene_data.settings.bake_anim_force_startend_keying
+        gscale = scene_data.settings.global_scale
 
         if objects is not None:
             # Add bones and duplis!
@@ -121,85 +130,167 @@ def export(**keywords):
         animdata_cameras = {}
         for cam_obj, cam_key in scene_data.data_cameras.items():
             cam = cam_obj.bdata.data
-            acnode = AnimationCurveNodeWrapper(cam_key, 'CAMERA_FOCAL', force_key, force_sek, (cam.lens,))
-            animdata_cameras[cam_key] = (acnode, cam)
+            acnode_lens = AnimationCurveNodeWrapper(cam_key, 'CAMERA_FOCAL', force_key, force_sek, (cam.lens,))
+            acnode_focus_distance = AnimationCurveNodeWrapper(cam_key, 'CAMERA_FOCUS_DISTANCE', force_key,
+                                                            force_sek, (cam.dof.focus_distance,))
+            animdata_cameras[cam_key] = (acnode_lens, acnode_focus_distance, cam)
 
-        currframe = f_start
-        while currframe <= f_end:
-            real_currframe = currframe - f_start if start_zero else currframe
-            scene.frame_set(int(currframe), subframe=currframe - int(currframe))
+        # Get all parent bdata of animated dupli instances, so that we can quickly identify which instances in
+        # `depsgraph.object_instances` are animated and need their ObjectWrappers' matrices updated each frame.
+        dupli_parent_bdata = {dup.get_parent().bdata for dup in animdata_ob if dup.is_dupli}
+        has_animated_duplis = bool(dupli_parent_bdata)
 
-            for dp_obj in ob_obj.dupli_list_gen(depsgraph):
-                pass  # Merely updating dupli matrix of ObjectWrapper...
+        # Initialize keyframe times array. Each AnimationCurveNodeWrapper will share the same instance.
+        # `np.arange` excludes the `stop` argument like when using `range`, so we use np.nextafter to get the next
+        # representable value after f_end and use that as the `stop` argument instead.
+        currframes = np.arange(f_start, np.nextafter(f_end, np.inf), step=bake_step)
 
-            for ob_obj, (anim_loc, anim_rot, anim_scale) in animdata_ob.items():
-                location_multiple = 100
-                scale_factor = 1
+        # Convert from Blender time to FBX time.
+        fps = scene.render.fps / scene.render.fps_base
+        real_currframes = currframes - f_start if start_zero else currframes
+        real_currframes = (real_currframes / fps * FBX_KTIME).astype(np.int64)
 
-                # if this curve is the object root then keep its scale at 1
-                if len(str(ob_obj).split('|')) == 1:
-                    location_multiple = 1
+        # Generator that yields the animated values of each frame in order.
+        def frame_values_gen():
+            # Precalculate integer frames and subframes.
+            int_currframes = currframes.astype(int)
+            subframes = currframes - int_currframes
+
+            # Create simpler iterables that return only the values we care about.
+            animdata_shapes_only = [shape for _anim_shape, _me, shape in animdata_shapes.values()]
+            animdata_cameras_only = [camera for _anim_camera_lens, _anim_camera_focus_distance, camera
+                                    in animdata_cameras.values()]
+            # Previous frame's rotation for each object in animdata_ob, this will be updated each frame.
+            animdata_ob_p_rots = p_rots.values()
+
+            # Iterate through each frame and yield the values for that frame.
+            # Iterating .data, the memoryview of an array, is faster than iterating the array directly.
+            for int_currframe, subframe in zip(int_currframes.data, subframes.data):
+                scene.frame_set(int_currframe, subframe=subframe)
+
+                if has_animated_duplis:
+                    # Changing the scene's frame invalidates existing dupli instances. To get the updated matrices of duplis
+                    # for this frame, we must get the duplis from the depsgraph again.
+                    for dup in depsgraph.object_instances:
+                        if (parent := dup.parent) and parent.original in dupli_parent_bdata:
+                            # ObjectWrapper caches its instances. Attempting to create a new instance updates the existing
+                            # ObjectWrapper instance with the current frame's matrix and then returns the existing instance.
+                            ObjectWrapper(dup)
+                next_p_rots = []
+                for ob_obj, p_rot in zip(animdata_ob, animdata_ob_p_rots):
+
+
+                    #
+                    # send2ue: Scale shennanigans
+                    #
+                    location_multiple = 100
+                    scale_factor = 1
+                    # if this curve is the object root then keep its scale at 1
+                    if len(str(ob_obj).split('|')) == 1:
+                        location_multiple = 1
+                        # Todo add to FBX addon
+                        scale_factor = SCALE_FACTOR
+
+
+
+                    # We compute baked loc/rot/scale for all objects (rot being euler-compat with previous value!).
+                    loc, rot, scale, _m, _mr = ob_obj.fbx_object_tx(scene_data, rot_euler_compat=p_rot)
+
+
+                    #
+                    # send2ue: Make location keyframes relative to the armature object
+                    #
                     # Todo add to FBX addon
-                    scale_factor = SCALE_FACTOR
+                    # the armature object's position is the reference we use to offset all location keyframes
+                    if ob_obj.type == 'ARMATURE':
+                        location_offset = loc
+                        # subtract the location offset from each location keyframe if the use_object_origin is on
+                        if bpy.context.scene.send2ue.use_object_origin:
+                            loc = Vector(
+                                (loc[0] - location_offset[0], loc[1] - location_offset[1], loc[2] - location_offset[2]))
 
-                # We compute baked loc/rot/scale for all objects (rot being euler-compat with previous value!).
-                p_rot = p_rots.get(ob_obj, None)
-                loc, rot, scale, _m, _mr = ob_obj.fbx_object_tx(scene_data, rot_euler_compat=p_rot)
 
-                # Todo add to FBX addon
-                # the armature object's position is the reference we use to offset all location keyframes
-                if ob_obj.type == 'ARMATURE':
-                    location_offset = loc
-                    # subtract the location offset from each location keyframe if the use_object_origin is on
-                    if bpy.context.scene.send2ue.use_object_origin:
-                        loc = Vector(
-                            (loc[0] - location_offset[0], loc[1] - location_offset[1], loc[2] - location_offset[2]))
 
-                p_rots[ob_obj] = rot
-                anim_loc.add_keyframe(real_currframe, loc * location_multiple)
-                anim_rot.add_keyframe(real_currframe, tuple(convert_rad_to_deg_iter(rot)))
-                anim_scale.add_keyframe(real_currframe, scale / scale_factor)
-            for anim_shape, me, shape in animdata_shapes.values():
-                anim_shape.add_keyframe(real_currframe, (shape.value * scale_factor,))
-            for anim_camera, camera in animdata_cameras.values():
-                anim_camera.add_keyframe(real_currframe, (camera.lens,))
-            currframe += bake_step
+                    next_p_rots.append(rot)
+                    yield from loc * location_multiple # send2ue: Apply translation scalar
+                    yield from rot
+                    yield from scale / scale_factor # send2ue: Apply scale factor
+                animdata_ob_p_rots = next_p_rots
+                for shape in animdata_shapes_only:
+                    yield shape.value
+                for camera in animdata_cameras_only:
+                    yield camera.lens
+                    yield camera.dof.focus_distance
 
+        # Providing `count` to np.fromiter pre-allocates the array, avoiding extra memory allocations while iterating.
+        num_ob_values = len(animdata_ob) * 9  # Location, rotation and scale, each of which have x, y, and z components
+        num_shape_values = len(animdata_shapes)  # Only 1 value per shape key
+        num_camera_values = len(animdata_cameras) * 2  # Focal length (`.lens`) and focus distance
+        num_values_per_frame = num_ob_values + num_shape_values + num_camera_values
+        num_frames = len(real_currframes)
+        all_values_flat = np.fromiter(frame_values_gen(), dtype=float, count=num_frames * num_values_per_frame)
+
+        # Restore the scene's current frame.
         scene.frame_set(back_currframe, subframe=0.0)
+
+        # View such that each column is all values for a single frame and each row is all values for a single curve.
+        all_values = all_values_flat.reshape(num_frames, num_values_per_frame).T
+        # Split into views of the arrays for each curve type.
+        split_at = [num_ob_values, num_shape_values, num_camera_values]
+        # For unequal sized splits, np.split takes indices to split at, which can be acquired through a cumulative sum
+        # across the list.
+        # The last value isn't needed, because the last split is assumed to go to the end of the array.
+        split_at = np.cumsum(split_at[:-1])
+        all_ob_values, all_shape_key_values, all_camera_values = np.split(all_values, split_at)
+
+        all_anims = []
+
+        # Set location/rotation/scale curves.
+        # Split into equal sized views of the arrays for each object.
+        split_into = len(animdata_ob)
+        per_ob_values = np.split(all_ob_values, split_into) if split_into > 0 else ()
+        for anims, ob_values in zip(animdata_ob.values(), per_ob_values):
+            # Split again into equal sized views of the location, rotation and scaling arrays.
+            loc_xyz, rot_xyz, sca_xyz = np.split(ob_values, 3)
+            # In-place convert from Blender rotation to FBX rotation.
+            np.rad2deg(rot_xyz, out=rot_xyz)
+
+            anim_loc, anim_rot, anim_scale = anims
+            anim_loc.set_keyframes(real_currframes, loc_xyz)
+            anim_rot.set_keyframes(real_currframes, rot_xyz)
+            anim_scale.set_keyframes(real_currframes, sca_xyz)
+            all_anims.extend(anims)
+
+        # Set shape key curves.
+        # There's only one array per shape key, so there's no need to split `all_shape_key_values`.
+        for (anim_shape, _me, _shape), shape_key_values in zip(animdata_shapes.values(), all_shape_key_values):
+            # In-place convert from Blender Shape Key Value to FBX Deform Percent.
+            shape_key_values *= 100.0
+            anim_shape.set_keyframes(real_currframes, shape_key_values)
+            all_anims.append(anim_shape)
+
+        # Set camera curves.
+        # Split into equal sized views of the arrays for each camera.
+        split_into = len(animdata_cameras)
+        per_camera_values = np.split(all_camera_values, split_into) if split_into > 0 else ()
+        zipped = zip(animdata_cameras.values(), per_camera_values)
+        for (anim_camera_lens, anim_camera_focus_distance, _camera), (lens_values, focus_distance_values) in zipped:
+            # In-place convert from Blender focus distance to FBX.
+            focus_distance_values *= (1000 * gscale)
+            anim_camera_lens.set_keyframes(real_currframes, lens_values)
+            anim_camera_focus_distance.set_keyframes(real_currframes, focus_distance_values)
+            all_anims.append(anim_camera_lens)
+            all_anims.append(anim_camera_focus_distance)
 
         animations = {}
 
         # And now, produce final data (usable by FBX export code)
-        # Objects-like loc/rot/scale...
-        for ob_obj, anims in animdata_ob.items():
-            for anim in anims:
-                anim.simplify(simplify_fac, bake_step, force_keep)
-                if not anim:
-                    continue
-                for obj_key, group_key, group, fbx_group, fbx_gname in anim.get_final_data(scene, ref_id, force_keep):
-                    anim_data = animations.setdefault(obj_key, ("dummy_unused_key", {}))
-                    anim_data[1][fbx_group] = (group_key, group, fbx_gname)
-
-        # And meshes' shape keys.
-        for channel_key, (anim_shape, me, shape) in animdata_shapes.items():
-            final_keys = {}
-            anim_shape.simplify(simplify_fac, bake_step, force_keep)
-            if not anim_shape:
+        for anim in all_anims:
+            anim.simplify(simplify_fac, bake_step, force_keep)
+            if not anim:
                 continue
-            for elem_key, group_key, group, fbx_group, fbx_gname in anim_shape.get_final_data(scene, ref_id,
-                                                                                              force_keep):
-                anim_data = animations.setdefault(elem_key, ("dummy_unused_key", {}))
-                anim_data[1][fbx_group] = (group_key, group, fbx_gname)
-
-        # And cameras' lens keys.
-        for cam_key, (anim_camera, camera) in animdata_cameras.items():
-            final_keys = {}
-            anim_camera.simplify(simplify_fac, bake_step, force_keep)
-            if not anim_camera:
-                continue
-            for elem_key, group_key, group, fbx_group, fbx_gname in anim_camera.get_final_data(scene, ref_id,
-                                                                                               force_keep):
-                anim_data = animations.setdefault(elem_key, ("dummy_unused_key", {}))
+            for obj_key, group_key, group, fbx_group, fbx_gname in anim.get_final_data(scene, ref_id, force_keep):
+                anim_data = animations.setdefault(obj_key, ("dummy_unused_key", {}))
                 anim_data[1][fbx_group] = (group_key, group, fbx_gname)
 
         astack_key = get_blender_anim_stack_key(scene, ref_id)
@@ -384,24 +475,41 @@ def export(**keywords):
             if bpy.context.scene.send2ue.use_object_origin:
                 asset_id = bpy.context.window_manager.send2ue.asset_id
                 asset_data = bpy.context.window_manager.send2ue.asset_data.get(asset_id)
+
                 # if this is a static mesh then check that all other mesh objects in this export are
                 # centered relative the asset object
                 if asset_data['_asset_type'] == 'StaticMesh':
                     asset_object = bpy.data.objects.get(asset_data['_mesh_object_name'])
                     current_object = bpy.data.objects.get(ob_obj.name)
-                    asset_world_location = asset_object.matrix_world.to_translation()
+                    # get the world location of the current mesh
                     object_world_location = current_object.matrix_world.to_translation()
-                    loc = Vector((
-                        (object_world_location[0] - asset_world_location[0]) * SCALE_FACTOR,
-                        (object_world_location[1] - asset_world_location[1]) * SCALE_FACTOR,
-                        (object_world_location[2] - asset_world_location[2]) * SCALE_FACTOR
-                    ))
 
-                    if bpy.context.scene.send2ue.extensions.instance_assets.place_in_active_level:
-                        # clear rotation and scale only if spawning actor
-                        # https://github.com/EpicGames/BlenderTools/issues/610
+                    # if this is using the empty from the combined meshes option
+                    # https://github.com/EpicGamesExt/BlenderTools/issues/627
+                    empty_object_name = asset_data.get('empty_object_name')
+                    if empty_object_name:
+                        empty_object = bpy.data.objects.get(empty_object_name)
+                        empty_world_location = empty_object.matrix_world.to_translation()
+                        loc = Vector((
+                            (object_world_location[0] - empty_world_location[0]) * SCALE_FACTOR,
+                            (object_world_location[1] - empty_world_location[1]) * SCALE_FACTOR,
+                            (object_world_location[2] - empty_world_location[2]) * SCALE_FACTOR
+                        ))
                         rot = (0, 0, 0)
-                        scale = (1.0 * SCALE_FACTOR, 1.0 * SCALE_FACTOR, 1.0 * SCALE_FACTOR)
+                    else:
+                        asset_world_location = asset_object.matrix_world.to_translation()
+                        loc = Vector((
+                            (object_world_location[0] - asset_world_location[0]),
+                            (object_world_location[1] - asset_world_location[1]),
+                            (object_world_location[2] - asset_world_location[2])
+                        ))
+                        # only adjust the asset object so collisions and lods are not effected
+                        # https://github.com/EpicGamesExt/BlenderTools/issues/587
+                        if asset_object == current_object:
+                            # clear rotation and scale only if spawning actor
+                            # https://github.com/EpicGamesExt/BlenderTools/issues/610
+                            rot = (0, 0, 0)
+                            scale = (1.0 * SCALE_FACTOR, 1.0 * SCALE_FACTOR, 1.0 * SCALE_FACTOR)
                 else:
                     loc = Vector((0, 0, 0))
 
@@ -432,7 +540,10 @@ def export(**keywords):
         # object type, etc.
         elem_data_single_int32(model, b"MultiLayer", 0)
         elem_data_single_int32(model, b"MultiTake", 0)
-        elem_data_single_bool(model, b"Shading", True)
+        if (bpy.app.version >= (4,0,0)):
+            elem_data_single_char(model, b"Shading", b"\x01")  # Shading was changed to a char from bool in blender 4
+        else:
+            elem_data_single_bool(model, b"Shading", True)
         elem_data_single_string(model, b"Culling", b"CullingOff")
 
         if obj_type == b"Camera":
@@ -534,9 +645,8 @@ def export(**keywords):
     export_fbx_bin.save(self, bpy.context, **keywords)
 
     # now re-patch back the export bin module so that the existing fbx addon still has its original code
-    # https://github.com/EpicGames/BlenderTools/issues/598
+    # https://github.com/EpicGamesExt/BlenderTools/issues/598
     export_fbx_bin.fbx_animations_do = original_fbx_animations_do
     export_fbx_bin.fbx_data_armature_elements = original_fbx_data_armature_elements
     export_fbx_bin.fbx_data_object_elements = original_fbx_data_object_elements
     export_fbx_bin.fbx_data_bindpose_element = original_fbx_data_bindpose_element
-

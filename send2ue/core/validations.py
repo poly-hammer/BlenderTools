@@ -207,8 +207,11 @@ class ValidationManager:
                 if len(mesh_object.material_slots) > 0:
                     # for each polygon check for its material index
                     for polygon in mesh_object.data.polygons:
-                        material = mesh_object.material_slots[polygon.material_index].name
+                        if polygon.material_index >= len(mesh_object.material_slots):
+                            utilities.report_error('Material index out of bounds!', f'Object "{mesh_object.name}" at polygon #{polygon.index} references invalid material index #{polygon.material_index}.')
+                            return False
 
+                        material = mesh_object.material_slots[polygon.material_index].name
                         # remove used material names from the list of unused material names
                         if material in material_slots:
                             material_slots.remove(material)
@@ -226,7 +229,7 @@ class ValidationManager:
         """
         if self.properties.import_lods:
             for mesh_object in self.mesh_objects:
-                result = re.search(rf"({self.properties.lod_regex})", mesh_object.name)
+                result = re.search(self.properties.lod_regex, mesh_object.name)
                 if not result:
                     utilities.report_error(
                         f'Object "{mesh_object.name}" does not follow the correct lod naming convention defined in the '
