@@ -44,13 +44,13 @@ if __name__ == '__main__':
         'CONTAINER_REPO_FOLDER': CONTAINER_REPO_FOLDER,
         'HOST_TEST_FOLDER': HOST_TEST_FOLDER,
         'CONTAINER_TEST_FOLDER': CONTAINER_TEST_FOLDER,
-        'RPC_TRACEBACK_FILE': f'{CONTAINER_TEST_FOLDER}/tmp/rpc/traceback.log',
+        'RPC_TRACEBACK_FILE': '/tmp/blender/send2ue/data/traceback.log',
         'RPC_TIME_OUT': '60'
     }
     # add the test environment variable if specified
     if TEST_ENVIRONMENT:
         os.environ['TEST_ENVIRONMENT'] = TEST_ENVIRONMENT
-        os.environ['RPC_TRACEBACK_FILE'] = os.path.join(HOST_TEST_FOLDER, 'tmp', 'rpc', 'traceback.log')
+        os.environ['RPC_TRACEBACK_FILE'] = os.path.join(HOST_TEST_FOLDER, 'data', 'traceback.log')
 
     # make sure this is set in the current environment
     os.environ.update(environment)
