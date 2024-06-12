@@ -7,6 +7,7 @@ import logging
 import threading
 from http import HTTPStatus
 from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRequestHandler
+from client import TRACEBACK_FILE
 
 # importlib machinery needs to be available for importing client modules
 from importlib.machinery import SourceFileLoader
@@ -99,6 +100,20 @@ class AuthenticatedRequestHandler(SimpleXMLRPCRequestHandler):
         else:
             self.report_401()
 
+    def _dispatch(self, method, params):
+        try: 
+            return self.server.funcs[method](*params) # type: ignore
+        except Exception as error:
+            import traceback
+            traceback.print_exc()
+
+            # dump the traceback to a file so that the client can read it.
+            os.makedirs(TRACEBACK_FILE.parent, exist_ok=True)
+            with open(TRACEBACK_FILE, 'w') as file:
+                file.write(f'Error from server:\n{traceback.format_exc()}')
+
+            raise error
+         
 
 class BaseServer(SimpleXMLRPCServer):
     def __init__(self, *args, **kwargs):
