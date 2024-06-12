@@ -5,9 +5,10 @@ import queue
 import time
 import logging
 import threading
+import tempfile
 from http import HTTPStatus
+from pathlib import Path
 from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRequestHandler
-from client import TRACEBACK_FILE
 
 # importlib machinery needs to be available for importing client modules
 from importlib.machinery import SourceFileLoader
@@ -17,6 +18,7 @@ logger = logging.getLogger(__name__)
 EXECUTION_QUEUE = queue.Queue()
 RETURN_VALUE_NAME = 'RPC_SERVER_RETURN_VALUE'
 ERROR_VALUE_NAME = 'RPC_SERVER_ERROR_VALUE'
+TRACEBACK_FILE = Path(os.environ.get('RPC_TRACEBACK_FILE', Path(tempfile.gettempdir(), 'rpc', 'traceback.log')))
 
 
 def run_in_main_thread(callable_instance, *args):
