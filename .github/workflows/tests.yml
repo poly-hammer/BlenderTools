@@ -21,7 +21,6 @@ permissions:
       
 jobs:
   test-lts:
-    if: github.repository == 'poly-hammer/BlenderTools' && github.event.pull_request.head.repo.full_name == github.repository
     name: Test LTS
     uses: poly-hammer/BlenderTools/.github/workflows/re-use-tests.yml@main
     secrets: inherit
@@ -31,7 +30,6 @@ jobs:
       blender-version: 3.6
 
   test-latest:
-    if: github.repository == 'poly-hammer/BlenderTools' && github.event.pull_request.head.repo.full_name == github.repository
     needs: test-lts
     name: Test Latest
     uses: poly-hammer/BlenderTools/.github/workflows/re-use-tests.yml@main
