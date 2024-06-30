@@ -115,7 +115,7 @@ def run_unreal_python_commands(remote_exec, commands, failed_connection_attempts
         print_python(commands)
 
     # wait a tenth of a second before attempting to connect
-    time.sleep(0.1)
+    time.sleep(1) # temporarily increasing to 1s from .1s
     try:
         # try to connect to an editor
         for node in remote_exec.remote_nodes:
