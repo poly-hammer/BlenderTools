@@ -19,6 +19,7 @@ except ModuleNotFoundError:
 
 REMAP_PAIRS = []
 UNREAL_PORT = int(os.environ.get('UNREAL_PORT', 9998))
+print(f'UNREAL_PORT: ${UNREAL_PORT}')
 
 # use a different remap pairs when inside a container
 if os.environ.get('TEST_ENVIRONMENT'):
@@ -31,6 +32,9 @@ remote_unreal_decorator = rpc.factory.remote_call(
     default_imports=['import unreal'],
     remap_pairs=REMAP_PAIRS,
 )
+
+print(f'remoteunrealdecorator: ${remote_unreal_decorator}')
+
 rpc_client = rpc.client.RPCClient(port=UNREAL_PORT)
 unreal_response = ''
 
@@ -115,14 +119,16 @@ def run_unreal_python_commands(remote_exec, commands, failed_connection_attempts
         print_python(commands)
 
     # wait a tenth of a second before attempting to connect
-    time.sleep(1) # temporarily increasing to 1s from .1s
+    time.sleep(.1)
     try:
         # try to connect to an editor
         for node in remote_exec.remote_nodes:
+            print(f'Found node ${node.get("node_id")}')
             remote_exec.open_command_connection(node.get("node_id"))
 
         # if a connection is made
         if remote_exec.has_command_connection():
+            print('Connection made')
             # run the import commands and save the response in the global unreal_response variable
             global unreal_response
             unreal_response = remote_exec.run_command('\n'.join(commands), unattended=False)
@@ -130,6 +136,7 @@ def run_unreal_python_commands(remote_exec, commands, failed_connection_attempts
         # otherwise make an other attempt to connect to the engine
         else:
             if failed_connection_attempts < 50:
+                print(f'Failed Attempt: ${failed_connection_attempts + 1}')
                 run_unreal_python_commands(remote_exec, commands, failed_connection_attempts + 1)
             else:
                 remote_exec.stop()
@@ -160,6 +167,8 @@ def run_commands(commands):
     remote_exec = remote_execution.RemoteExecution()
     remote_exec.start()
 
+    print('Started. Running commands')
+
     # send over the python code as a string and run it
     return run_unreal_python_commands(remote_exec, commands)
 
@@ -188,7 +197,7 @@ def bootstrap_unreal_with_rpc_server():
     if not os.environ.get('TEST_ENVIRONMENT'):
         if not is_connected():
             import bpy
-            rpc_response_timeout = bpy.context.preferences.addons["send2ue"].preferences.rpc_response_timeout
+            rpc_response_timeout = 60 # Removed bpy.context.preferences.addons["send2ue"].preferences.rpc_response_timeout
             dependencies_path = os.path.dirname(__file__)
             result = run_commands(
                 [

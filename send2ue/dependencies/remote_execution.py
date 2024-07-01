@@ -71,6 +71,7 @@ class RemoteExecution(object):
         Start the remote execution session. This will begin the discovey process for remote "nodes" (Unreal Editor instances running Python).
         '''
         self._broadcast_connection = _RemoteExecutionBroadcastConnection(self._config, self._node_id)
+        print(f'Start ${self._broadcast_connection}')
         self._broadcast_connection.open()
 
     def stop(self):
