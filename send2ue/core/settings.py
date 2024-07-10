@@ -6,8 +6,7 @@ import json
 import shutil
 import tempfile
 from ..constants import ToolInfo, Template
-from ..dependencies import unreal, remote_execution
-import re
+from ..dependencies import unreal
 
 
 def get_settings():
@@ -215,36 +214,6 @@ def get_rpc_response_timeout(self):
     Overrides getter method for the rpc_response_timeout property.
     """
     return self.get('rpc_response_timeout', 60)
-
-def get_multicast_ttl(self):
-    """
-    Overrides getter method for the multicast_ttl property.
-    """
-    return self.get('multicast_ttl', 0)
-
-def get_multicast_group_endpoint(self):
-    """
-    Overrides getter method for the multicast_group_endpoint property.
-    """
-    return self.get('multicast_group_endpoint', '239.0.0.1:6766')
-
-def get_multicast_bind_address(self):
-    """
-    Overrides getter method for the multicast_bind_address property.
-    """
-    return self.get('multicast_bind_address', '0.0.0.0')
-
-def get_command_endpoint(self):
-    """
-    Overrides getter method for the command_endpoint property.
-    """
-    return self.get('command_endpoint', '0.0.0.0:6776')
-
-def get_receive_buffer_size(self):
-    """
-    Overrides getter method for the receive_buffer_size property.
-    """
-    return self.get('receive_buffer_size', 8192)
 
 
 def set_property_group_with_dictionary(property_group, data):

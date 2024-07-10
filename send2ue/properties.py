@@ -44,7 +44,7 @@ class Send2UeAddonProperties:
         default="239.0.0.1:6766",
         description=(
             "The multicast group endpoint that the UDP multicast socket should join. Must match setting "
-            "in Unreal. Default '239.0.0.1:6766'"
+            "in Unreal."
         )
     )
     command_endpoint: bpy.props.StringProperty(
@@ -52,7 +52,7 @@ class Send2UeAddonProperties:
         default="127.0.0.1:6776" if sys.platform == 'win32' else "0.0.0.0:6776",
         description=(
             "IP for UDP multicast to bind to and TCP command connection hosted by this client. "
-            "Must match setting in Unreal. Default '0.0.0.0:6776'"
+            "Must match setting in Unreal."
         )
     )
     # End - Remote Execution

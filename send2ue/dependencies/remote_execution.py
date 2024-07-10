@@ -7,7 +7,7 @@ import time as _time
 import socket as _socket
 import logging as _logging
 import threading as _threading
-import bpy, re
+import bpy
 
 # Protocol constants (see PythonScriptRemoteExecution.cpp for the full protocol definition)
 _PROTOCOL_VERSION = 1                                   # Protocol version number
@@ -264,7 +264,6 @@ class _RemoteExecutionBroadcastConnection(object):
         '''
         Initialize the UDP based broadcast socket based on the current configuration.
         '''
-        _socket.setdefaulttimeout(0.1) # setting default timeout for all new sockets
         self._broadcast_socket = _socket.socket(_socket.AF_INET, _socket.SOCK_DGRAM, _socket.IPPROTO_UDP)  # UDP/IP socket
         if hasattr(_socket, 'SO_REUSEPORT'):
             self._broadcast_socket.setsockopt(_socket.SOL_SOCKET, _socket.SO_REUSEPORT, 1)
