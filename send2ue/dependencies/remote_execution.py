@@ -1,13 +1,13 @@
 # Copyright Epic Games, Inc. All Rights Reserved.
 
 import sys as _sys
-import platform as _platform
 import json as _json
 import uuid as _uuid
 import time as _time
 import socket as _socket
 import logging as _logging
 import threading as _threading
+import bpy, re
 
 # Protocol constants (see PythonScriptRemoteExecution.cpp for the full protocol definition)
 _PROTOCOL_VERSION = 1                                   # Protocol version number
@@ -24,8 +24,8 @@ _NODE_TIMEOUT_SECONDS = 5                               # Number of seconds to w
 
 DEFAULT_MULTICAST_TTL = 0                               # Multicast TTL (0 is limited to the local host, 1 is limited to the local subnet)
 DEFAULT_MULTICAST_GROUP_ENDPOINT = ('239.0.0.1', 6766)  # The multicast group endpoint tuple that the UDP multicast socket should join (must match the "Multicast Group Endpoint" setting in the Python plugin)
-DEFAULT_MULTICAST_BIND_ADDRESS = '127.0.0.1' if _platform.system() == 'Windows' else '0.0.0.0'           # The adapter address that the UDP multicast socket should bind to, or 0.0.0.0 to bind to all adapters (must match the "Multicast Bind Address" setting in the Python plugin)
-DEFAULT_COMMAND_ENDPOINT = ('127.0.0.1' if _platform.system() == 'Windows' else '0.0.0.0', 6776)          # The endpoint tuple for the TCP command connection hosted by this client (that the remote client will connect to)
+DEFAULT_MULTICAST_BIND_ADDRESS = '0.0.0.0'              # The adapter address that the UDP multicast socket should bind to, or 0.0.0.0 to bind to all adapters (must match the "Multicast Bind Address" setting in the Python plugin)
+DEFAULT_COMMAND_ENDPOINT = ('0.0.0.0', 6776)            # The endpoint tuple for the TCP command connection hosted by this client (that the remote client will connect to)
 DEFAULT_RECEIVE_BUFFER_SIZE = 8192                      # The default receive buffer size
 
 # Execution modes (these must match the names given to LexToString for EPythonCommandExecutionMode in IPythonScriptPlugin.h)
@@ -38,10 +38,33 @@ class RemoteExecutionConfig(object):
     Configuration data for establishing a remote connection with a Unreal Editor instance running Python.
     '''
     def __init__(self):
-        self.multicast_ttl = DEFAULT_MULTICAST_TTL
-        self.multicast_group_endpoint = DEFAULT_MULTICAST_GROUP_ENDPOINT
-        self.multicast_bind_address = DEFAULT_MULTICAST_BIND_ADDRESS
-        self.command_endpoint = DEFAULT_COMMAND_ENDPOINT
+        
+        try:
+
+            self.multicast_ttl = bpy.context.preferences.addons["send2ue"].preferences.multicast_ttl
+
+            s = bpy.context.preferences.addons["send2ue"].preferences.multicast_group_endpoint
+            s_l = re.split(':', s)
+            final_tuple = (s_l[0],  int(s_l[1]))
+
+            self.multicast_group_endpoint = final_tuple
+
+            self.multicast_bind_address = bpy.context.preferences.addons["send2ue"].preferences.multicast_bind_address
+
+            s = bpy.context.preferences.addons["send2ue"].preferences.command_endpoint
+            s_l = re.split(':', s)
+            final_tuple = (s_l[0],  int(s_l[1]))
+
+            self.command_endpoint = final_tuple
+            
+            self.receive_buffer_size = bpy.context.preferences.addons["send2ue"].preferences.receive_buffer_size
+        except:
+            self.multicast_ttl = DEFAULT_MULTICAST_TTL
+            self.multicast_group_endpoint = DEFAULT_MULTICAST_GROUP_ENDPOINT
+            self.multicast_bind_address = DEFAULT_MULTICAST_BIND_ADDRESS
+            self.command_endpoint = DEFAULT_COMMAND_ENDPOINT
+            self.receive_buffer_size = DEFAULT_RECEIVE_BUFFER_SIZE
+
 
 class RemoteExecution(object):
     '''
@@ -71,7 +94,7 @@ class RemoteExecution(object):
         Start the remote execution session. This will begin the discovey process for remote "nodes" (Unreal Editor instances running Python).
         '''
         self._broadcast_connection = _RemoteExecutionBroadcastConnection(self._config, self._node_id)
-        print(f'Start ${self._broadcast_connection}')
+        print('Start')
         self._broadcast_connection.open()
 
     def stop(self):
@@ -286,7 +309,7 @@ class _RemoteExecutionBroadcastConnection(object):
             # Receive and process all pending data
             while True:
                 try:
-                    data = self._broadcast_socket.recv(DEFAULT_RECEIVE_BUFFER_SIZE)
+                    data = self._broadcast_socket.recv(self._config.receive_buffer_size)
                 except _socket.timeout:
                     data = None
                 if data:
@@ -456,7 +479,7 @@ class _RemoteExecutionCommandConnection(object):
         Returns:
             The message that was received.
         '''
-        data = self._command_channel_socket.recv(DEFAULT_RECEIVE_BUFFER_SIZE)
+        data = self._command_channel_socket.recv(self._config.receive_buffer_size)
         if data:
             message = _RemoteExecutionMessage(None, None)
             if message.from_json_bytes(data) and message.passes_receive_filter(self._node_id) and message.type_ == expected_type:

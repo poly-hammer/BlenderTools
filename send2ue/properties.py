@@ -27,6 +27,60 @@ class Send2UeAddonProperties:
         set=settings.set_rpc_response_timeout,
         get=settings.get_rpc_response_timeout
     )
+    """
+    Remote Execution settings.
+    """
+    multicast_ttl: bpy.props.IntProperty(
+        name="Multicast TTL",
+        default=0,
+        description=(
+            "Limits packet propagation for multicast connections. 0 restricts to local computer, 1 restricts to "
+            "local network. Default '0'"
+        ),
+        get=settings.get_multicast_ttl,
+        set=settings.set_multicast_ttl
+    )
+    multicast_group_endpoint: bpy.props.StringProperty(
+        name="Multicast Group Endpoint",
+        default="239.0.0.1:6766",
+        description=(
+            "The multicast group endpoint that the UDP multicast socket should join. Must match setting "
+            "in Unreal. Default '239.0.0.1:6766'"
+        ),
+        get=settings.get_multicast_group_endpoint,
+        set=settings.set_multicast_group_endpoint
+    )
+    multicast_bind_address: bpy.props.StringProperty(
+        name="Multicast Bind Address",
+        default="0.0.0.0",
+        description=(
+            "Default IP for UDP multicast to bind to and TCP command connection hosted by this client. "
+            "Must match setting in Unreal. Default '0.0.0.0'"
+        ),
+        get=settings.get_multicast_bind_address,
+        set=settings.set_multicast_bind_address
+    )
+    command_endpoint: bpy.props.StringProperty(
+        name="Command Endpoint",
+        default="0.0.0.0:6776",
+        description=(
+            "IP for UDP multicast to bind to and TCP command connection hosted by this client. "
+            "Must match setting in Unreal. Default '0.0.0.0:6776'"
+        ),
+        get=settings.get_command_endpoint,
+        set=settings.set_command_endpoint
+    )
+    receive_buffer_size: bpy.props.IntProperty(
+        name="Receive Buffer Size",
+        default=8192,
+        description=(
+            "Buffer size for receiving data. Default '8192'"
+        ),
+        get=settings.get_receive_buffer_size,
+        set=settings.set_receive_buffer_size
+    )
+    # End - Remote Execution
+
     extensions_repo_path: bpy.props.StringProperty(
             name="Extensions Repo Path",
             default="",

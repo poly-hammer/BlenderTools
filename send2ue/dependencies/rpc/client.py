@@ -1,4 +1,5 @@
 import os
+import platform
 import re
 import logging
 import inspect
@@ -99,7 +100,7 @@ class RPCClient:
         :param int port: A port number the client should connect to.
         :param bool marshall_exceptions: Whether the exceptions should be marshalled.
         """
-        server_ip = os.environ.get('RPC_SERVER_IP', '127.0.0.1')
+        server_ip = os.environ.get('RPC_SERVER_IP', '127.0.0.1' if platform.system() == 'Windows' else '0.0.0.0')
 
         self.proxy = RPCServerProxy(
             f"http://{server_ip}:{port}",
