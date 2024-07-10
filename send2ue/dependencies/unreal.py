@@ -19,7 +19,6 @@ except ModuleNotFoundError:
 
 REMAP_PAIRS = []
 UNREAL_PORT = int(os.environ.get('UNREAL_PORT', 9998))
-print(f'UNREAL_PORT: ${UNREAL_PORT}')
 
 # use a different remap pairs when inside a container
 if os.environ.get('TEST_ENVIRONMENT'):
@@ -32,8 +31,6 @@ remote_unreal_decorator = rpc.factory.remote_call(
     default_imports=['import unreal'],
     remap_pairs=REMAP_PAIRS,
 )
-
-print(f'remoteunrealdecorator: ${remote_unreal_decorator}')
 
 rpc_client = rpc.client.RPCClient(port=UNREAL_PORT)
 unreal_response = ''
@@ -128,7 +125,6 @@ def run_unreal_python_commands(remote_exec, commands, failed_connection_attempts
 
         # if a connection is made
         if remote_exec.has_command_connection():
-            print('Connection made')
             # run the import commands and save the response in the global unreal_response variable
             global unreal_response
             unreal_response = remote_exec.run_command('\n'.join(commands), unattended=False)

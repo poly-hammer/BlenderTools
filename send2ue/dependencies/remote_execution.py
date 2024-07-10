@@ -40,6 +40,16 @@ class RemoteExecutionConfig(object):
     def __init__(self):
         
         try:
+            self.update_config()
+        except:
+            print('defaults')
+            self.multicast_ttl = DEFAULT_MULTICAST_TTL
+            self.multicast_group_endpoint = DEFAULT_MULTICAST_GROUP_ENDPOINT
+            self.multicast_bind_address = DEFAULT_MULTICAST_BIND_ADDRESS
+            self.command_endpoint = DEFAULT_COMMAND_ENDPOINT
+            self.receive_buffer_size = DEFAULT_RECEIVE_BUFFER_SIZE
+
+    def update_config(self):
 
             self.multicast_ttl = bpy.context.preferences.addons["send2ue"].preferences.multicast_ttl
 
@@ -58,13 +68,7 @@ class RemoteExecutionConfig(object):
             self.command_endpoint = final_tuple
             
             self.receive_buffer_size = bpy.context.preferences.addons["send2ue"].preferences.receive_buffer_size
-        except:
-            self.multicast_ttl = DEFAULT_MULTICAST_TTL
-            self.multicast_group_endpoint = DEFAULT_MULTICAST_GROUP_ENDPOINT
-            self.multicast_bind_address = DEFAULT_MULTICAST_BIND_ADDRESS
-            self.command_endpoint = DEFAULT_COMMAND_ENDPOINT
-            self.receive_buffer_size = DEFAULT_RECEIVE_BUFFER_SIZE
-
+            print('updated config')
 
 class RemoteExecution(object):
     '''
@@ -93,6 +97,7 @@ class RemoteExecution(object):
         '''
         Start the remote execution session. This will begin the discovey process for remote "nodes" (Unreal Editor instances running Python).
         '''
+        self._config.update_config()
         self._broadcast_connection = _RemoteExecutionBroadcastConnection(self._config, self._node_id)
         print('Start')
         self._broadcast_connection.open()
