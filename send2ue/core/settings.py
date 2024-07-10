@@ -285,59 +285,6 @@ def set_rpc_response_timeout(self, value):
     os.environ['RPC_TIME_OUT'] = str(value)
     self['rpc_response_timeout'] = value
 
-def set_multicast_ttl(self, value):
-    """
-    Overrides setter method on multicast_ttl property to update the
-    remote execution config on the rpc instance as well.
-    """
-    
-    remote_execution.RemoteExecutionConfig.multicast_ttl = value
-    print(remote_execution.RemoteExecutionConfig.multicast_ttl)
-    self['multicast_ttl'] = value
-
-def set_multicast_group_endpoint(self, value):
-    """
-    Overrides setter method on multicast_group_endpoint property to update the
-    remote execution config on the rpc instance as well.
-    """
-
-    sl = re.split(':', value)
-    final_tuple = (sl[0],  int(sl[1]))
-    print(final_tuple)
-    remote_execution.RemoteExecutionConfig.multicast_group_endpoint = final_tuple
-    self['multicast_group_endpoint'] = final_tuple
-
-def set_multicast_bind_address(self, value):
-    """
-    Overrides setter method on multicast_bind_address property to update the
-    remote execution config on the rpc instance as well.
-    """
-    
-    remote_execution.RemoteExecutionConfig.multicast_bind_address = value
-    print(remote_execution.RemoteExecutionConfig.multicast_bind_address)
-    self['multicast_bind_address'] = value
-
-def set_command_endpoint(self, value):
-    """
-    Overrides setter method on command_endpoint property to update the
-    remote execution config on the rpc instance as well.
-    """
-    
-    sl = re.split(':', value)
-    final_tuple = (sl[0],  int(sl[1]))
-    print(final_tuple)
-    remote_execution.RemoteExecutionConfig.command_endpoint = final_tuple
-    self['command_endpoint'] = final_tuple
-
-def set_receive_buffer_size(self, value):
-    """
-    Overrides setter method on receive_buffer_size property to update the
-    remote execution config on the rpc instance as well.
-    """
-    
-    remote_execution.RemoteExecutionConfig.receive_buffer_size = value
-    self['receive_buffer_size'] = value
-
 
 def set_active_template(self=None, context=None):
     """

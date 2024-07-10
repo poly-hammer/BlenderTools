@@ -116,11 +116,10 @@ def run_unreal_python_commands(remote_exec, commands, failed_connection_attempts
         print_python(commands)
 
     # wait a tenth of a second before attempting to connect
-    time.sleep(.1)
+    time.sleep(0.1)
     try:
         # try to connect to an editor
         for node in remote_exec.remote_nodes:
-            print(f'Found node ${node.get("node_id")}')
             remote_exec.open_command_connection(node.get("node_id"))
 
         # if a connection is made
@@ -132,7 +131,6 @@ def run_unreal_python_commands(remote_exec, commands, failed_connection_attempts
         # otherwise make an other attempt to connect to the engine
         else:
             if failed_connection_attempts < 50:
-                print(f'Failed Attempt: ${failed_connection_attempts + 1}')
                 run_unreal_python_commands(remote_exec, commands, failed_connection_attempts + 1)
             else:
                 remote_exec.stop()
@@ -162,8 +160,6 @@ def run_commands(commands):
     # start a connection to the engine that lets you send python-commands.md strings
     remote_exec = remote_execution.RemoteExecution()
     remote_exec.start()
-
-    print('Started. Running commands')
 
     # send over the python code as a string and run it
     return run_unreal_python_commands(remote_exec, commands)
