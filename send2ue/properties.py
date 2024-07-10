@@ -17,6 +17,15 @@ class Send2UeAddonProperties:
         default=True,
         description=f"This automatically creates the pre-defined collection (Export)"
     )
+    extensions_repo_path: bpy.props.StringProperty(
+        name="Extensions Repo Path",
+        default="",
+        description=(
+            "Set this path to the folder that contains your Send to Unreal python extensions. All extensions "
+            "in this folder will be automatically loaded"
+        )
+    )
+    # ------------- Remote Execution settings ------------------
     rpc_response_timeout: bpy.props.IntProperty(
         name="RPC Response Timeout",
         default=60,
@@ -28,9 +37,6 @@ class Send2UeAddonProperties:
         set=settings.set_rpc_response_timeout,
         get=settings.get_rpc_response_timeout
     )
-    """
-    Remote Execution settings.
-    """
     multicast_ttl: bpy.props.IntProperty(
         name="Multicast TTL",
         default=0,
@@ -53,16 +59,6 @@ class Send2UeAddonProperties:
         description=(
             "IP for UDP multicast to bind to and TCP command connection hosted by this client. "
             "Must match setting in Unreal."
-        )
-    )
-    # End - Remote Execution
-
-    extensions_repo_path: bpy.props.StringProperty(
-        name="Extensions Repo Path",
-        default="",
-        description=(
-            "Set this path to the folder that contains your Send to Unreal python extensions. All extensions "
-            "in this folder will be automatically loaded"
         )
     )
 
