@@ -22,7 +22,7 @@ permissions:
 jobs:
   test-lts:
     name: Test LTS
-    uses: poly-hammer/BlenderTools/.github/workflows/re-use-tests.yml@restructure-addons-for-better-dev-setup
+    uses: poly-hammer/BlenderTools/.github/workflows/re-use-tests.yml@main
     secrets: inherit
     with:
       title: Test LTS
@@ -32,9 +32,9 @@ jobs:
   test-latest:
     needs: test-lts
     name: Test Latest
-    uses: poly-hammer/BlenderTools/.github/workflows/re-use-tests.yml@restructure-addons-for-better-dev-setup
+    uses: poly-hammer/BlenderTools/.github/workflows/re-use-tests.yml@main
     secrets: inherit
     with:
       title: Test Latest
-      unreal-version: 5.3
-      blender-version: 4.1
+      unreal-version: 5.4
+      blender-version: 4.2
