@@ -1,0 +1,17 @@
+schema_version = "1.0.0"
+id = "send2ue"
+name = "Send to Unreal"
+tagline = "Sends an asset to the first open Unreal Editor instance on your machine"
+version = "2.4.5"
+type = "add-on"
+tags = [ "Pipeline" ]
+blender_version_min = "3.6.0"
+website = "https://poly-hammer.github.io/BlenderTools/send2ue"
+maintainer = "Community"
+license = [ "SPDX:MIT" ]
+copyright = [
+    "2020-2023 Epic Games, Inc."
+]
+
+[permissions]
+files = "Import/export FBX from/to disk"
