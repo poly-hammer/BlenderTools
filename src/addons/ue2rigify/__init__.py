@@ -44,8 +44,6 @@ def register():
     """
     Registers the addon classes when the addon is enabled.
     """
-    # TODO remove this when new undo is stable
-    bpy.context.preferences.experimental.use_undo_legacy = True
 
     templates.copy_default_templates()
 
