@@ -17,6 +17,43 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
             "the specified mesh folder in your unreal project"
         )
     )
+    
+    def pre_animation_export(self, asset_data, properties):
+        """
+        Defines the pre animation export logic that uses blender collections as unreal folders
+        
+        :param dict asset_data: A mutable dictionary of asset data for the current asset.
+        :param Send2UeSceneProperties properties: The scene property group that contains all the addon properties.
+        """
+        if self.use_collections_as_folders:
+            asset_type = asset_data.get('_asset_type')
+            if asset_type and asset_type in [UnrealTypes.ANIM_SEQUENCE]:
+                action_name = asset_data.get('_action_name')
+                if action_name:
+                    action = bpy.data.actions.get(action_name)
+                    
+                    if not action:
+                        print(f"Couldnt find action '{action_name}'.")
+                        return
+                        
+					# Grab armature object to then grab the collection from, as we can't grab it from the action itself
+                    armature_object_name = asset_data['_armature_object_name']
+                    armature_object = bpy.data.objects.get(armature_object_name)
+                    if not armature_object:
+                        print(f"Couldnt find armature '{armature_object_name}'.")
+                        return
+                    
+                    asset_name = utilities.get_asset_name(action_name, properties)
+                    
+                    _, file_extension = os.path.splitext(asset_data.get('file_path'))
+                    export_path = self.get_full_export_path(properties, UnrealTypes.ANIM_SEQUENCE, armature_object)
+                    file_name_with_extension = f'{asset_name}{file_extension}'
+                    
+                    file_path = os.path.join(export_path, file_name_with_extension)
+                    
+                    self.update_asset_data({
+                        'file_path': file_path
+                    })
 
     def pre_mesh_export(self, asset_data, properties):
         """
@@ -27,9 +64,7 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
         """
         if self.use_collections_as_folders:
             asset_type = asset_data.get('_asset_type')
-            if asset_type and asset_type in [UnrealTypes.ANIM_SEQUENCE, UnrealTypes.GROOM]:
-                print('Unsupported at this time')
-            elif asset_type and asset_type in [UnrealTypes.STATIC_MESH, UnrealTypes.SKELETAL_MESH]:
+            if asset_type and asset_type in [UnrealTypes.STATIC_MESH, UnrealTypes.SKELETAL_MESH]:
                 object_name = asset_data.get('_mesh_object_name')
                 if object_name:
                     scene_object = bpy.data.objects.get(object_name)
@@ -73,17 +108,27 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
         if self.use_collections_as_folders:
             asset_type = asset_data.get('_asset_type')
             if asset_type and asset_type == UnrealTypes.ANIM_SEQUENCE:
-                object_name = asset_data['_armature_object_name']
-                scene_object = bpy.data.objects.get(object_name)
-                # update skeletal asset path now that it is under new collections path
-                self.update_asset_data({
-                    'skeleton_asset_path': utilities.get_skeleton_asset_path(
-                        scene_object,
-                        properties,
-                        self.get_full_import_path,
-                        scene_object,
-                    )
-                })
+                action_name = asset_data.get('_action_name')
+                if action_name:
+                    asset_name = utilities.get_asset_name(action_name, properties)
+                    
+                    armature_object_name = asset_data['_armature_object_name']
+                    armature_object = bpy.data.objects.get(armature_object_name)
+                
+                    import_path = self.get_full_import_path(properties, UnrealTypes.ANIM_SEQUENCE, armature_object)
+
+                    self.update_asset_data({
+                        # update skeletal asset path now that it is under new collections path
+                        'skeleton_asset_path': utilities.get_skeleton_asset_path(
+                            armature_object,
+                            properties,
+                            self.get_full_import_path,
+                            armature_object,
+                        ),
+                        # update asset folder and path to the new path based on the collections
+                        'asset_folder': import_path,
+                        'asset_path': f'{import_path}{asset_name}'
+                    })
             elif asset_type:
                 object_name = asset_data.get('_mesh_object_name')
                 if object_name:
