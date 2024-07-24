@@ -84,6 +84,36 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
                         'file_path': os.path.join(export_path, file_name_with_extension)
                     })
 
+    def pre_groom_export(self, asset_data, properties):
+        """
+        Defines the pre groom export logic that uses blender collections as unreal folders
+
+        :param dict asset_data: A mutable dictionary of asset data for the current asset.
+        :param Send2UeSceneProperties properties: The scene property group that contains all the addon properties.
+        """
+
+        if self.use_collections_as_folders:
+            print('GROOOM')
+            asset_type = asset_data.get('_asset_type')
+            if asset_type and asset_type in [UnrealTypes.GROOM]:
+                object_name = asset_data.get('_object_name')
+                if object_name:
+                    scene_object = bpy.data.objects.get(object_name)
+
+                    asset_name = utilities.get_asset_name(object_name, properties)
+
+                    _, file_extension = os.path.splitext(asset_data.get('file_path'))
+                    export_path = self.get_full_export_path(properties, UnrealTypes.GROOM, scene_object)
+                    print(export_path)
+                    file_name_with_extension = f'{asset_name}{file_extension}'
+                    file_path = os.path.join(export_path, file_name_with_extension)
+                    print(file_path)
+                    self.update_asset_data({
+                        'file_path': file_path
+                    })
+        
+
+
     def get_full_export_path(self, properties, asset_type, scene_object):
         """
         Gets the unreal export path when use_collections_as_folders extension is active.
@@ -129,6 +159,14 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
                         'asset_folder': import_path,
                         'asset_path': f'{import_path}{asset_name}'
                     })
+            elif asset_type and asset_type == UnrealTypes.GROOM:
+                object_name = asset_data.get('_object_name')
+                scene_object = bpy.data.objects.get(object_name)
+                import_path = self.get_full_import_path(properties, UnrealTypes.GROOM, scene_object)
+                self.update_asset_data({
+                    'asset_folder': import_path,
+                    'asset_path': f'{import_path}{object_name}'
+                })
             elif asset_type:
                 object_name = asset_data.get('_mesh_object_name')
                 if object_name:
