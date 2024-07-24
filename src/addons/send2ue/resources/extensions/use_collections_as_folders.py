@@ -157,12 +157,14 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
                     })
             elif asset_type and asset_type == UnrealTypes.GROOM:
                 object_name = asset_data.get('_object_name')
-                scene_object = bpy.data.objects.get(object_name)
-                import_path = self.get_full_import_path(properties, UnrealTypes.GROOM, scene_object)
-                self.update_asset_data({
-                    'asset_folder': import_path,
-                    'asset_path': f'{import_path}{object_name}'
-                })
+                if object_name:
+                    scene_object = bpy.data.objects.get(object_name)
+                    asset_name = utilities.get_asset_name(object_name, properties)
+                    import_path = self.get_full_import_path(properties, UnrealTypes.GROOM, scene_object)
+                    self.update_asset_data({
+                        'asset_folder': import_path,
+                        'asset_path': f'{import_path}{asset_name}'
+                    })
             elif asset_type:
                 object_name = asset_data.get('_mesh_object_name')
                 if object_name:
