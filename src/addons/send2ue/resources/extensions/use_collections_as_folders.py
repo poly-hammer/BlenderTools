@@ -98,10 +98,14 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
                 object_name = asset_data.get('_object_name')
                 if object_name:
                     scene_object = bpy.data.objects.get(object_name)
+                    particle_object_name = asset_data.get('_particle_object_name')
+                    if particle_object_name:
+                        scene_object = utilities.get_mesh_object_for_groom_name(object_name)
+
                     asset_name = utilities.get_asset_name(object_name, properties)
 
                     _, file_extension = os.path.splitext(asset_data.get('file_path'))
-                    export_path = self.get_full_export_path(properties, UnrealTypes.GROOM, scene_object)
+                    export_path = self.get_full_export_path(properties, asset_type, scene_object)
                     file_name_with_extension = f'{asset_name}{file_extension}'
                     file_path = os.path.join(export_path, file_name_with_extension)
                     self.update_asset_data({
@@ -159,8 +163,12 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
                 object_name = asset_data.get('_object_name')
                 if object_name:
                     scene_object = bpy.data.objects.get(object_name)
+                    particle_object_name = asset_data.get('_particle_object_name')
+                    if particle_object_name:
+                        scene_object = utilities.get_mesh_object_for_groom_name(object_name)
+
                     asset_name = utilities.get_asset_name(object_name, properties)
-                    import_path = self.get_full_import_path(properties, UnrealTypes.GROOM, scene_object)
+                    import_path = self.get_full_import_path(properties, asset_type, scene_object)
                     self.update_asset_data({
                         'asset_folder': import_path,
                         'asset_path': f'{import_path}{asset_name}'
