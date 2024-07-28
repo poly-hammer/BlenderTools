@@ -45,8 +45,6 @@ def register():
     Registers the addon classes when the addon is enabled.
     """
 
-    templates.copy_default_templates()
-
     # reload the submodules
     if os.environ.get('UE2RIGIFY_DEV'):
         for module in modules:
@@ -57,6 +55,8 @@ def register():
     view_3d.register()
     operators.register()
     nodes.register()
+
+    templates.copy_default_templates()
 
 
 def unregister():
@@ -73,4 +73,4 @@ def unregister():
         properties.unregister()
     except Exception as e:
         print(f"Error un-registering UE2Rigify: \n{e}")
-        
+

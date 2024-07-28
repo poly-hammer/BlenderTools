@@ -2,6 +2,7 @@
 import bpy
 import os
 import tempfile
+import pathlib
 from enum import Enum
 
 
@@ -40,6 +41,7 @@ class Template:
         else:
             return os.path.join(tempfile.gettempdir(), ToolInfo.NAME.value, 'resources', 'rig_templates', 'b4_0')
 
+    CUSTOM_RIG_TEMPLATES_PATH = os.path.join(pathlib.Path().resolve(), 'resources', 'rig_templates')
     DEFAULT_MALE_TEMPLATE = 'male_mannequin_UE4'
     DEFAULT_FEMALE_TEMPLATE = 'female_mannequin_UE4'
 

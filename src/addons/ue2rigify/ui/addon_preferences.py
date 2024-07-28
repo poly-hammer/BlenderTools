@@ -1,7 +1,7 @@
 # Copyright Epic Games, Inc. All Rights Reserved.
 
 import bpy
-from ..constants import ToolInfo
+from ..constants import ToolInfo, Template
 
 
 class Ue2RigifyAddonPreferences(bpy.types.AddonPreferences):
@@ -9,6 +9,13 @@ class Ue2RigifyAddonPreferences(bpy.types.AddonPreferences):
     This class subclasses the AddonPreferences class to create the addon preferences interface.
     """
     bl_idname = ToolInfo.NAME.value
+
+    custom_rig_template_path: bpy.props.StringProperty(
+        name='Templates folder',
+        description='The location where your rig templates will be stored, including default templates',
+        subtype='DIR_PATH',
+        default=Template.CUSTOM_RIG_TEMPLATES_PATH
+    )
 
     def draw(self, context):
         """
@@ -19,6 +26,7 @@ class Ue2RigifyAddonPreferences(bpy.types.AddonPreferences):
         """
         layout = self.layout
 
+        layout.prop(self, 'custom_rig_template_path')
         row = layout.row()
         row.operator('ue2rigify.import_rig_template', icon='IMPORT')
         row.operator('ue2rigify.export_rig_template', icon='EXPORT')
