@@ -508,7 +508,7 @@ def export(**keywords):
                             # clear rotation and scale only if spawning actor
                             # https://github.com/EpicGamesExt/BlenderTools/issues/610
                             rot = (0, 0, 0)
-                            scale = (1.0 * SCALE_FACTOR, 1.0 * SCALE_FACTOR, 1.0 * SCALE_FACTOR)
+                            scale = (1.0, 1.0, 1.0)
                 else:
                     loc = Vector((0, 0, 0))
 
