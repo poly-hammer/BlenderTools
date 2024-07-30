@@ -58,6 +58,7 @@ class UE2RigifyProperties(bpy.types.PropertyGroup):
         description=tool_tips.starter_metarig_template_tool_tip,
         items=templates.safe_get_starter_metarig_templates,
         update=scene.set_meta_rig,
+        default=None
     )
 
     selected_rig_template: bpy.props.EnumProperty(

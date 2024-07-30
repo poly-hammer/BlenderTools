@@ -15,7 +15,3 @@ mkdocs-mermaid2-plugin<=1.1.1
 mkdocs-monorepo-plugin<=1.1.0
 termynal<=0.12.1
 mkdocstrings[python]<=1.9.0
-requests~=2.32.3
-urllib3~=2.2.2
-certifi~=2024.7.4
-idna~=3.7

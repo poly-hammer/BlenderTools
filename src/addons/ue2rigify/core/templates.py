@@ -5,10 +5,9 @@ import re
 import bpy
 import json
 import shutil
-import tempfile
 from mathutils import Color, Euler, Matrix, Quaternion, Vector
 
-from ..constants import Template, Modes, Rigify, ToolInfo
+from ..constants import Template, Modes, Rigify
 from . import scene
 from . import utilities
 from ..settings.tool_tips import *
@@ -26,7 +25,7 @@ def copy_default_templates():
     sub_folder = 'b3_6' if bpy.app.version[0] < 4 else 'b4_0'
     template_location = os.path.join(os.path.dirname(__file__), os.path.pardir, 'resources', 'rig_templates', sub_folder)
 
-    shutil.copytree(template_location, get_custom_rig_template_path(), dirs_exist_ok=True)
+    shutil.copytree(template_location, utilities.get_rig_template_path(), dirs_exist_ok=True)
 
 
 def get_saved_node_data(properties):
@@ -189,7 +188,7 @@ def get_rig_templates(self=None, context=None, index_offset=0):
     :return list: A list of tuples that define the rig template enumeration.
     """
     rig_templates = []
-    rig_template_directories = next(os.walk(get_custom_rig_template_path()))[1]
+    rig_template_directories = next(os.walk(utilities.get_rig_template_path()))[1]
 
     # ensure that the male and female template are first
     rig_templates.append((
@@ -235,7 +234,7 @@ def get_template_file_path(template_file_name, properties):
         template_name = re.sub(r'\W+', '_', properties.new_template_name).lower()
 
     return os.path.join(
-        get_custom_rig_template_path(),
+        utilities.get_rig_template_path(),
         template_name,
         template_file_name
     )
@@ -286,7 +285,7 @@ def remove_template_folder(properties, template):
     properties.selected_mode = Modes.SOURCE.name
 
     # delete the selected rig template folder
-    selected_template_path = os.path.join(get_custom_rig_template_path(), template)
+    selected_template_path = os.path.join(utilities.get_rig_template_path(), template)
 
     import logging
     logging.info(selected_template_path)
@@ -307,7 +306,7 @@ def create_template_folder(template_name, properties):
     template_name = parse_template_name(template_name)
 
     # create the template folder
-    template_path = os.path.join(get_custom_rig_template_path(), template_name)
+    template_path = os.path.join(utilities.get_rig_template_path(), template_name)
     if not os.path.exists(template_path):
         os.makedirs(template_path, exist_ok=True)
 
@@ -396,7 +395,7 @@ def import_zip(zip_file_path, properties):
     """
     # get the template name and path from the zip file
     template_name = os.path.basename(zip_file_path).replace('.zip', '').lower()
-    template_folder_path = os.path.join(get_custom_rig_template_path(), template_name)
+    template_folder_path = os.path.join(utilities.get_rig_template_path(), template_name)
 
     # create the template folder
     create_template_folder(template_name, properties)
@@ -419,7 +418,7 @@ def export_zip(zip_file_path, properties):
     no_extension_file_path = zip_file_path.replace('.zip', '')
 
     # zip up the folder and save it to the given path
-    template_folder_path = os.path.join(get_custom_rig_template_path(), properties.selected_export_template)
+    template_folder_path = os.path.join(utilities.get_rig_template_path(), properties.selected_export_template)
     shutil.make_archive(no_extension_file_path, 'zip', template_folder_path)
 
 #
@@ -490,7 +489,3 @@ def safe_get_rig_templates(self, context):
 def parse_template_name(template_name):
     return re.sub(r'\W+', '_', template_name.strip()).lower()
 
-def get_custom_rig_template_path():
-    main_prefs = bpy.context.preferences.addons.get(ToolInfo.NAME.value).preferences
-    template_path = main_prefs.custom_rig_template_path
-    return template_path

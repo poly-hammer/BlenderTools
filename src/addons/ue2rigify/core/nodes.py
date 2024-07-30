@@ -8,9 +8,9 @@ import nodeitems_utils
 from . import scene
 from . import utilities
 from ..ui import node_editor
-from ..constants import ToolInfo, Nodes, Modes, Rigify
+from ..constants import Nodes, Modes, Rigify
 from bpy.types import NodeTree, NodeSocket
-from nodeitems_utils import NodeCategory, NodeItem
+from nodeitems_utils import NodeItem
 
 addon_key_maps = []
 pie_menu_classes = []
