@@ -1,8 +1,9 @@
 # Copyright Epic Games, Inc. All Rights Reserved.
 import bpy
 import re
+import os
 from . import scene, templates
-from ..constants import Viewport, Modes, Rigify
+from ..constants import Viewport, Modes, Rigify, Template, ToolInfo
 from mathutils import Vector, Quaternion
 
 
@@ -1183,3 +1184,15 @@ def get_rigify_bone_operator(un_hashed_operator_name, bone_name, properties):
 
                 if output_bones and input_bones and ctrl_bones:
                     return f'bpy.ops.{operator}({output_bones}, {input_bones}, {ctrl_bones})'
+
+def get_rig_template_path():
+    preferences = bpy.context.preferences.addons.get(ToolInfo.NAME.value).preferences
+
+    template_path = preferences.custom_rig_template_path
+    # If custom_rig_template_path is empty, returns Temp folder
+    if template_path:
+        subpath = 'b3_6' if bpy.app.version[0] < 4 else 'b4_0'
+        template_path = os.path.join(template_path, subpath)
+    else:
+        template_path = Template.DEFAULT_RIG_TEMPLATES_PATH()
+    return template_path

@@ -34,7 +34,7 @@ class Nodes:
 
 class Template:
     @staticmethod
-    def RIG_TEMPLATES_PATH():
+    def DEFAULT_RIG_TEMPLATES_PATH():
         if bpy.app.version[0] < 4:
             return os.path.join(tempfile.gettempdir(), ToolInfo.NAME.value, 'resources', 'rig_templates', 'b3_6')
         else:

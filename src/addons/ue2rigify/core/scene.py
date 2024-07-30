@@ -267,7 +267,7 @@ def set_meta_rig(self=None, context=None):
     else:
         remove_metarig()
         create_meta_rig(self, file_path=os.path.join(
-            Template.RIG_TEMPLATES_PATH(),
+            utilities.get_rig_template_path(),
             self.selected_starter_metarig_template,
             f'{Rigify.META_RIG_NAME}.py'
         ))
@@ -697,7 +697,17 @@ def create_starter_metarig_template(properties):
 
     # create the selected metarig
     operator = properties.selected_starter_metarig_template
-    exec(operator)
+    if operator.startswith('bpy.ops'):
+        exec(operator)
+    else:
+        # If selected starter isn't set nor a default Rigify template i.e. ue manny
+        if not operator:
+            operator = Template.DEFAULT_MALE_TEMPLATE
+        create_meta_rig(properties, file_path=os.path.join(
+            utilities.get_rig_template_path(),
+            operator,
+            f'{Rigify.META_RIG_NAME}.py'
+        ))
 
     # get the meta rig object
     meta_rig_object = bpy.data.objects.get(Rigify.META_RIG_NAME)
@@ -1449,7 +1459,7 @@ def edit_meta_rig_template(properties):
 
     :param object properties: The property group that contains variables that maintain the addon's correct state.
     """
-    # if not creating a new template, initiate the
+    # if not creating a new template, initiate the metarig
     if properties.selected_rig_template != 'create_new':
         meta_rig_object = create_meta_rig(properties)
     else:
