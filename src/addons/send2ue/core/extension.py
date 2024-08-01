@@ -10,6 +10,7 @@ from . import settings
 from abc import abstractmethod
 from ..constants import ToolInfo, Extensions, ExtensionTasks
 from . import utilities
+from pathlib import Path
 
 
 def run_extension_filters(armature_objects, mesh_objects, hair_objects):
@@ -262,6 +263,12 @@ class ExtensionCollector(ast.NodeVisitor):
 
     def __init__(self, file_path):
         super(ExtensionCollector, self).__init__()
+
+        # Todo: Remove this when extensions don't need base classes
+        addons_folder = str(Path(__file__).parent.parent.parent)
+        if addons_folder not in sys.path:
+            sys.path.insert(0, addons_folder)
+
         self._extension_module = self.get_module(file_path)
         self._extension_classes = []
 
