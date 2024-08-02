@@ -3,13 +3,14 @@
 import bpy
 from ..properties import Send2UeAddonProperties
 from ..constants import ToolInfo
+from .. import __package__
 
 
 class SendToUnrealPreferences(Send2UeAddonProperties, bpy.types.AddonPreferences):
     """
     This class creates the settings interface in the send to unreal addon.
     """
-    bl_idname = ToolInfo.NAME.value
+    bl_idname = __package__
 
     def draw(self, context):
         """

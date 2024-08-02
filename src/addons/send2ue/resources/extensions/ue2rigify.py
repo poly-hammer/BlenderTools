@@ -45,6 +45,7 @@ class Ue2RigifyExtension(ExtensionBase):
         """
         Sets the use_ue2rigify property depending on whether to use code from the ue2rigify addon or not.
         """
+        # TODO: I dont think this will ever be true in blender 4.2 (master poet over here)
         if bpy.context.preferences.addons.get('ue2rigify'):
             ue2rigify_properties = bpy.context.scene.ue2rigify
             if ue2rigify_properties.selected_mode == self.control_mode:

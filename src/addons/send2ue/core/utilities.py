@@ -9,6 +9,7 @@ import importlib
 import tempfile
 import base64
 from . import settings, formatting
+from .. import __package__ as base_package
 from ..ui import header_menu
 from ..dependencies import unreal
 from ..constants import BlenderTypes, UnrealTypes, ToolInfo, PreFixToken, PathModes, RegexPresets
@@ -1101,7 +1102,7 @@ def setup_project(*args):
     bpy.ops.send2ue.reload_extensions()
 
     # create the scene collections
-    addon = bpy.context.preferences.addons.get(ToolInfo.NAME.value)
+    addon = bpy.context.preferences.addons.get(base_package)
     if addon and addon.preferences.automatically_create_collections:
         create_collections()
 

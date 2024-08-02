@@ -189,7 +189,8 @@ def bootstrap_unreal_with_rpc_server():
     if not os.environ.get('TEST_ENVIRONMENT'):
         if not is_connected():
             import bpy
-            rpc_response_timeout = bpy.context.preferences.addons["send2ue"].preferences.rpc_response_timeout
+            from .. import __package__ as base_package
+            rpc_response_timeout = bpy.context.preferences.addons[base_package].preferences.rpc_response_timeout
             dependencies_path = os.path.dirname(__file__)
             result = run_commands(
                 [
