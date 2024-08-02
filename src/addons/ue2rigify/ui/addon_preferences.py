@@ -1,15 +1,14 @@
 # Copyright Epic Games, Inc. All Rights Reserved.
 
 import bpy
-from ..constants import ToolInfo
 from ..core import templates
-
+from .. import __package__
 
 class Ue2RigifyAddonPreferences(bpy.types.AddonPreferences):
     """
     This class subclasses the AddonPreferences class to create the addon preferences interface.
     """
-    bl_idname = ToolInfo.NAME.value
+    bl_idname = __package__
     
     def get_custom_location(self):
         # create key if doesn't exist then return

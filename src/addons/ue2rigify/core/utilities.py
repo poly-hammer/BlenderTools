@@ -3,8 +3,9 @@ import bpy
 import re
 import os
 from . import scene, templates
-from ..constants import Viewport, Modes, Rigify, Template, ToolInfo
+from ..constants import Viewport, Modes, Rigify, Template
 from mathutils import Vector, Quaternion
+from .. import __package__ as base_package
 
 
 def get_modes():
@@ -1186,7 +1187,7 @@ def get_rigify_bone_operator(un_hashed_operator_name, bone_name, properties):
                     return f'bpy.ops.{operator}({output_bones}, {input_bones}, {ctrl_bones})'
 
 def get_rig_template_path():
-    preferences = bpy.context.preferences.addons.get(ToolInfo.NAME.value).preferences
+    preferences = bpy.context.preferences.addons.get(base_package).preferences
 
     template_path = preferences.custom_rig_template_path
     # If custom_rig_template_path is empty, returns Temp folder
