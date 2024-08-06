@@ -4,7 +4,6 @@ import os
 import bpy
 import sys
 import ast
-import importlib.util
 import tempfile
 from . import settings
 from abc import abstractmethod
@@ -12,6 +11,8 @@ from ..constants import ToolInfo, Extensions, ExtensionTasks
 from . import utilities
 from .. import __package__ as base_package
 from pathlib import Path
+from importlib.machinery import SourceFileLoader
+from importlib.util import module_from_spec, spec_from_loader
 
 
 def run_extension_filters(armature_objects, mesh_objects, hair_objects):
@@ -266,9 +267,9 @@ class ExtensionCollector(ast.NodeVisitor):
         super(ExtensionCollector, self).__init__()
 
         # Todo: Remove this when extensions don't need base classes
-        addons_folder = str(Path(__file__).parent.parent.parent)
-        if addons_folder not in sys.path:
-            sys.path.insert(0, addons_folder)
+        addons_folder = Path(__file__).parent.parent.parent
+        if addons_folder not in [Path(i) for i in sys.path]:
+            sys.path.insert(0, str(addons_folder))
 
         self._extension_module = self.get_module(file_path)
         self._extension_classes = []
@@ -282,15 +283,10 @@ class ExtensionCollector(ast.NodeVisitor):
         """
         Gets the module from the file path.
         """
-        path = os.path.dirname(file_path)
-        name, file_extension = os.path.splitext(os.path.basename(file_path))
-        if path not in sys.path:
-            sys.path.insert(0, path)
-        module = importlib.import_module(name)
-        importlib.reload(module)
-
-        # remove to prevent root module naming conflicts
-        sys.path.remove(path)
+        name = f'send2ue_extension_{Path(file_path).name}'
+        spec = spec_from_loader(name, SourceFileLoader(name, str(file_path)))
+        module = module_from_spec(spec) # type: ignore
+        spec.loader.exec_module(module) # type: ignore 
         return module
 
     def get_extension_classes(self):
@@ -307,7 +303,7 @@ class ExtensionCollector(ast.NodeVisitor):
         """
         extension_class = getattr(self._extension_module, node.name)
 
-        if issubclass(extension_class, ExtensionBase):
+        if ExtensionBase.__name__ in [i.__name__ for i in extension_class.__bases__]:
             self._extension_classes.append(extension_class)
 
 
