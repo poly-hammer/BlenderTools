@@ -34,15 +34,16 @@ class RemoteExecutionConfig(object):
     '''
     def __init__(self):
         import bpy
+        from .. import __package__ as base_package
         # The multicast group endpoint tuple that the UDP multicast socket should join (must match the "Multicast Group Endpoint" setting in the Python plugin)
-        self.multicast_ttl = bpy.context.preferences.addons["send2ue"].preferences.multicast_ttl
+        self.multicast_ttl = bpy.context.preferences.addons[base_package].preferences.multicast_ttl
 
         # The multicast group endpoint tuple that the UDP multicast socket should join (must match the "Multicast Group Endpoint" setting in the Python plugin)
-        host, port = bpy.context.preferences.addons["send2ue"].preferences.multicast_group_endpoint.split(':')
+        host, port = bpy.context.preferences.addons[base_package].preferences.multicast_group_endpoint.split(':')
         self.multicast_group_endpoint = (host, int(port))
         
         # The endpoint tuple for the TCP command connection hosted by this client (that the remote client will connect to)
-        host, port = bpy.context.preferences.addons["send2ue"].preferences.command_endpoint.split(':')
+        host, port = bpy.context.preferences.addons[base_package].preferences.command_endpoint.split(':')
         self.command_endpoint = (host, int(port))
 
         # The adapter address that the UDP multicast socket should bind to, or 0.0.0.0 to bind to all adapters (must match the "Multicast Bind Address" setting in the Python plugin)

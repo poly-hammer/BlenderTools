@@ -10,6 +10,7 @@ from . import settings
 from abc import abstractmethod
 from ..constants import ToolInfo, Extensions, ExtensionTasks
 from . import utilities
+from .. import __package__ as base_package
 from pathlib import Path
 
 
@@ -345,7 +346,7 @@ class ExtensionFactory:
         extensions = []
 
         # add in the additional extensions from the addons preferences
-        addon = bpy.context.preferences.addons.get(ToolInfo.NAME.value)
+        addon = bpy.context.preferences.addons.get(base_package)
         if addon and addon.preferences:
             if os.path.exists(addon.preferences.extensions_repo_path):
                 for file_name in os.listdir(addon.preferences.extensions_repo_path):

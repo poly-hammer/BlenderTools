@@ -10,6 +10,7 @@ from .ui import file_browser, dialog
 from .dependencies import unreal
 from .dependencies.rpc import blender_server
 from .properties import register_scene_properties, unregister_scene_properties
+from . import __package__ as base_package
 
 
 class Send2Ue(bpy.types.Operator):
@@ -251,7 +252,7 @@ class ReloadExtensions(bpy.types.Operator):
     bl_label = "Reload Extensions"
 
     def execute(self, context):
-        addon = bpy.context.preferences.addons.get(ToolInfo.NAME.value)
+        addon = bpy.context.preferences.addons.get(base_package)
         if addon:
             extensions_repo_path = addon.preferences.extensions_repo_path
             if extensions_repo_path:
