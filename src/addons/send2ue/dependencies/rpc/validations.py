@@ -16,8 +16,7 @@ def get_source_file_path(function):
     :param callable function: A callable.
     :return str: A file path.
     """
-    client_module = inspect.getmodule(function)
-    return client_module.__file__
+    return inspect.getsourcefile(function)
 
 
 def get_line_link(function):
