@@ -291,7 +291,7 @@ def get_current_context():
     :return dict: A dictionary of values that are the current context.
     """
     object_contexts = {}
-    for scene_object in bpy.data.objects:
+    for scene_object in bpy.context.scene.objects:
         active_action_name = ''
         if scene_object.animation_data and scene_object.animation_data.action:
             active_action_name = scene_object.animation_data.action.name
@@ -972,7 +972,7 @@ def escape_local_view():
     for area in bpy.context.screen.areas:
         if area.type == 'VIEW_3D':
             if area.spaces[0].local_view:
-                for scene_object in bpy.data.objects:
+                for scene_object in bpy.context.scene.objects:
                     scene_object.local_view_set(area.spaces[0], True)
 
 
@@ -1208,7 +1208,7 @@ def deselect_all_objects():
     """
     This function deselects all object in the scene.
     """
-    for scene_object in bpy.data.objects:
+    for scene_object in bpy.context.scene.objects:
         scene_object.select_set(False)
 
 

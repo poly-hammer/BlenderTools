@@ -303,8 +303,7 @@ def export_hair(asset_id, properties):
     utilities.deselect_all_objects()
 
     # clear animation transformations prior to export so groom exports with no distortion
-    # TODO: we apparently need to avoid operating on all objects in bpy.data.objects
-    for scene_object in bpy.data.objects:
+    for scene_object in bpy.context.scene.objects:
         if scene_object.animation_data:
             if scene_object.animation_data.action:
                 scene_object.animation_data.action = None
