@@ -1,6 +1,6 @@
 import os
 
-from base_server import BaseRPCServerManager
+from .base_server import BaseRPCServerManager
 
 
 class RPCServer(BaseRPCServerManager):
@@ -11,8 +11,3 @@ class RPCServer(BaseRPCServerManager):
         super(RPCServer, self).__init__()
         self.name = 'RPCServer'
         self.port = int(os.environ.get('RPC_PORT', 9998))
-
-
-if __name__ == '__main__':
-    rpc_server = RPCServer()
-    rpc_server.start(threaded=False)
