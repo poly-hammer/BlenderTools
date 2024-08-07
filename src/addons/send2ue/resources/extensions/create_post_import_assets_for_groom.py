@@ -4,7 +4,10 @@ import bpy
 from send2ue.core.extension import ExtensionBase
 from send2ue.core import utilities
 from send2ue.constants import UnrealTypes
-from send2ue.dependencies.unreal import UnrealRemoteCalls
+from send2ue.dependencies.unreal import UnrealRemoteCalls as UnrealCalls
+from send2ue.dependencies.rpc.factory import make_remote
+
+UnrealRemoteCalls = make_remote(UnrealCalls)
 
 
 class CreatePostImportAssetsForGroom(ExtensionBase):
