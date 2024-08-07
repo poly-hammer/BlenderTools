@@ -4,10 +4,9 @@ import os
 import bpy
 from pprint import pprint
 from send2ue.core.extension import ExtensionBase
-from send2ue.dependencies.unreal import remote_unreal_decorator
+from send2ue.dependencies.rpc.factory import make_remote
 
 
-@remote_unreal_decorator
 def rename_unreal_asset(source_asset_path, destination_asset_path):
     if unreal.EditorAssetLibrary.does_asset_exist(destination_asset_path):
         unreal.EditorAssetLibrary.delete_asset(destination_asset_path)
@@ -99,7 +98,8 @@ class ExampleExtension(ExtensionBase):
             print('After the import task')
             asset_path = asset_data.get('asset_path')
             if asset_path:
-                rename_unreal_asset(asset_path, f'{asset_path}_renamed_again')
+                remote_rename_unreal_asset = make_remote(rename_unreal_asset)
+                remote_rename_unreal_asset(asset_path, f'{asset_path}_renamed_again')
 
     def post_operation(self, properties):
         """

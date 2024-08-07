@@ -29,8 +29,9 @@ class BaseTestCase(unittest.TestCase):
 
         from utils.blender import BlenderRemoteCalls
         from send2ue.dependencies.unreal import UnrealRemoteCalls
+        from send2ue.dependencies.rpc.factory import make_remote
         self.blender = BlenderRemoteCalls
-        self.unreal = UnrealRemoteCalls
+        self.unreal = make_remote(UnrealRemoteCalls)
 
     def setUp(self):
         # load in the object from the file you will run tests with

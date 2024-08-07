@@ -8,29 +8,17 @@ import inspect
 from xmlrpc.client import ProtocolError
 from http.client import RemoteDisconnected
 
-sys.path.append(os.path.dirname(__file__))
-import rpc.factory
-import remote_execution
-
 try:
     import unreal
 except ModuleNotFoundError:
     pass
 
-REMAP_PAIRS = []
 UNREAL_PORT = int(os.environ.get('UNREAL_PORT', 9998))
 
 # use a different remap pairs when inside a container
 if os.environ.get('TEST_ENVIRONMENT'):
     UNREAL_PORT = int(os.environ.get('UNREAL_PORT', 8998))
-    REMAP_PAIRS = [(os.environ.get('HOST_REPO_FOLDER'), os.environ.get('CONTAINER_REPO_FOLDER'))]
 
-# this defines a the decorator that makes function run as remote call in unreal
-remote_unreal_decorator = rpc.factory.remote_call(
-    port=UNREAL_PORT,
-    default_imports=['import unreal'],
-    remap_pairs=REMAP_PAIRS,
-)
 unreal_response = ''
 
 
@@ -152,6 +140,8 @@ def run_commands(commands):
     :param list commands: A formatted string of python commands that will be run by unreal engine.
     :return str: The stdout produced by the remote python command.
     """
+    from . import remote_execution
+
     # wrap the commands in a try except so that all exceptions can be logged in the output
     commands = ['try:'] + add_indent(commands, '\t') + ['except Exception as error:', '\tprint(error)']
 
@@ -168,7 +158,8 @@ def is_connected():
     Checks the rpc server connection
     """
     try:
-        rpc_client = rpc.client.RPCClient(port=UNREAL_PORT)
+        from .rpc import client
+        rpc_client = client.RPCClient(port=UNREAL_PORT)
         return rpc_client.proxy.is_running()
     except (RemoteDisconnected, ConnectionRefusedError, ProtocolError):
         return False
@@ -178,7 +169,8 @@ def set_rpc_env(key, value):
     """
     Sets an env value on the unreal RPC server.
     """
-    rpc_client = rpc.client.RPCClient(port=UNREAL_PORT)
+    from .rpc import client
+    rpc_client = client.RPCClient(port=UNREAL_PORT)
     rpc_client.proxy.set_env(key, value)
 
 
@@ -986,7 +978,6 @@ class UnrealImportSequence(Unreal):
             )
 
 
-@rpc.factory.remote_class(remote_unreal_decorator)
 class UnrealRemoteCalls:
     @staticmethod
     def get_lod_count(asset_path):

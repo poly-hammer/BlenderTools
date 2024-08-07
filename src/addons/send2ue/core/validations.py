@@ -4,8 +4,11 @@ import re
 import os
 import bpy
 from . import utilities, formatting, extension
-from ..dependencies.unreal import UnrealRemoteCalls
 from ..constants import BlenderTypes, PathModes, ToolInfo, Extensions, ExtensionTasks, RegexPresets
+from ..dependencies.unreal import UnrealRemoteCalls as UnrealCalls
+from ..dependencies.rpc.factory import make_remote
+
+UnrealRemoteCalls = make_remote(UnrealCalls)
 
 
 class ValidationManager:

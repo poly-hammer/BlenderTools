@@ -2,7 +2,11 @@
 
 import os
 import bpy
-from ..dependencies.unreal import UnrealRemoteCalls, is_connected
+from ..dependencies.unreal import is_connected
+from ..dependencies.unreal import UnrealRemoteCalls as UnrealCalls
+from ..dependencies.rpc.factory import make_remote
+
+UnrealRemoteCalls = make_remote(UnrealCalls)
 
 
 def set_property_error_message(property_name, error_message):

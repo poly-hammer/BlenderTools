@@ -3,8 +3,11 @@
 import bpy
 from . import settings, extension
 from ..constants import PathModes, ExtensionTasks, UnrealTypes
-from ..dependencies.unreal import UnrealRemoteCalls
+from ..dependencies.unreal import UnrealRemoteCalls as UnrealCalls
 from .utilities import track_progress, get_asset_id
+from ..dependencies.rpc.factory import make_remote
+
+UnrealRemoteCalls = make_remote(UnrealCalls)
 
 
 @track_progress(message='Importing asset "{attribute}"...', attribute='file_path')

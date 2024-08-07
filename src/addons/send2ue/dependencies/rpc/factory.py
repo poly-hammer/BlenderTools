@@ -6,6 +6,7 @@ import types
 import inspect
 import textwrap
 import unittest
+from typing import Any, Iterator, Optional, Union, List, Tuple, Callable
 from xmlrpc.client import Fault
 
 from .client import RPCClient
@@ -264,6 +265,109 @@ def remote_class(decorator):
                 setattr(cls, attribute, decorator(getattr(cls, attribute)))
         return cls
     return decorate
+
+def execute_remotely(
+        port: int,
+        function: Callable, 
+        args: Optional[Union[List, Tuple]] = None,
+        kwargs: Optional[dict] = None,
+        remap_pairs: Optional[List[Tuple[str, str]]] = None,
+        default_imports: Optional[List[str]] = None,
+    ):
+    """
+    Executes the given function remotely.
+    """
+    if not args:
+        args = []
+
+    validate_file_is_saved(function)
+    validate_key_word_parameters(function, kwargs)
+    rpc_factory = RPCFactory(
+        rpc_client=RPCClient(port),
+        remap_pairs=remap_pairs,
+        default_imports=default_imports
+    )
+    return rpc_factory.run_function_remotely(function, args)
+
+def _make_remote(
+        port: int, 
+        remap_pairs: Optional[List[Tuple[str, str]]] = None, 
+        default_imports: Optional[List[str]] = None
+    ):
+    def decorator(function):
+        def wrapper(*args, **kwargs):
+            validate_key_word_parameters(function, kwargs)
+            return execute_remotely(
+                function=function,
+                args=args,
+                kwargs=kwargs,
+                port=port,
+                remap_pairs=remap_pairs,
+                default_imports=default_imports
+            )
+
+        return wrapper
+
+    return decorator
+
+
+def get_all_parent_classes(cls) -> Iterator[Any]:
+    """
+    Gets all parent classes recursively upward from the given class.
+    """
+    for _cls in cls.__bases__:
+        if object not in _cls.__bases__ and len(_cls.__bases__) >= 1:
+            yield from get_all_parent_classes(_cls)
+        yield _cls
+
+def make_remote(
+        reference: Any, 
+        port: Optional[int] = None
+    ) -> Callable:
+    """
+    Makes the given class or function run remotely when invoked.
+    """
+    default_imports = []
+    remap_pairs = []
+    unreal_port = int(os.environ.get('UNREAL_PORT', 9998))
+
+    # use a different remap pairs when inside a container
+    if os.environ.get('TEST_ENVIRONMENT'):
+        unreal_port = int(os.environ.get('UNREAL_PORT', 8998))
+        remap_pairs = [(os.environ.get('HOST_REPO_FOLDER', ''), os.environ.get('CONTAINER_REPO_FOLDER', ''))]
+
+
+    if not port:
+        port = unreal_port
+
+    # if this is not a class then decorate it
+    if not inspect.isclass(reference):
+        return _make_remote(
+            port=port,
+            remap_pairs=remap_pairs,
+            default_imports=default_imports
+        )(reference)
+
+    # if this is a class then decorate all its methods
+    methods = {}
+    for _cls in [*get_all_parent_classes(reference), reference]:
+        for attribute, value in _cls.__dict__.items():
+            # dont look at magic methods
+            if not attribute.startswith('__'):
+                validate_class_method(_cls, value)
+                # note that we use getattr instead of passing the value directly.
+                methods[attribute] = _make_remote(
+                    port=port,
+                    remap_pairs=remap_pairs,
+                    default_imports=default_imports
+                )(getattr(_cls, attribute))
+
+    # return a new class with the decorated methods all in the same class
+    return type(
+        reference.__name__,
+        (object,),
+        methods
+    )
 
 
 class RPCTestCase(unittest.TestCase):
