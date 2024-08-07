@@ -368,7 +368,7 @@ def remove_metarig():
         bpy.data.objects.remove(metarig_object)
 
     # remove the metarig object duplicates
-    for scene_object in bpy.data.objects:
+    for scene_object in bpy.context.scene.objects:
         if scene_object.name.startswith(f'{Rigify.META_RIG_NAME}.'):
             bpy.data.objects.remove(scene_object)
 
