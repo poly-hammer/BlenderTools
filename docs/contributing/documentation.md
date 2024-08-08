@@ -39,4 +39,4 @@ The can be built into a single static html site by running:
 mkdocs build
 ```
 
-They are built and deployed using this [workflow](https://github.com/poly-hammer/BlenderTools/.github/workflows/docs.yml)
+They are built and deployed using this [workflow](https://github.com/poly-hammer/BlenderTools/blob/main/.github/workflows/docs.yml)
