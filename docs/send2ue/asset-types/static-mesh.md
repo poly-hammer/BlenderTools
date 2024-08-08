@@ -78,4 +78,4 @@ Any child mesh that has the pre fix `SOCKET_` in its name will be separately imp
 ## Only Mesh
 
 To run a strictly mesh asset import (ex: excluding import of particle systems as groom assets), all import options
-must be turned off in your [import settings](/settings/import.html) except for `Mesh`.
+must be turned off in your [import settings](../settings/import.md) except for `Mesh`.

@@ -25,7 +25,7 @@ When enabled this option launches the import UI in Unreal.
 
 ## LOD Settings
 The section contains the settings related to LOD workflows. You can read more about these under the
-[Skeletal Mesh](/asset-types/skeletal-mesh.html#lods) and [Static Mesh](/asset-types/static-mesh.html#lods) pages.
+[Skeletal Mesh](../asset-types/skeletal-mesh.md#lods) and [Static Mesh](../asset-types/static-mesh.md#lods) pages.
 
 #### LODs
 Whether or not to export the custom LODs

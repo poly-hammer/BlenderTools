@@ -12,9 +12,9 @@
 
 Extensions provide a python interface for Send to Unreal users to quickly and cleanly extend its functionality
 with a minimal amount of code. Within an extension class several things can be defined:
-* [Tasks](/customize/extensions.html#tasks)
-* [Properties](/customize/extensions.html#properties)
-* [Draws](/customize/extensions.html#draws)
+* [Tasks](#tasks)
+* [Properties](#properties)
+* [Draws](#draws)
 
 ![1](./images/extensions/1.svg)
 
@@ -92,7 +92,7 @@ console and that the cube got sent to the `/Game/example_extension/test/` folder
 
 This same approach can be applied to many other use cases where you need to extend the Send to Unreal operation.
 For practical examples check out the
-[send2ue/resources](https://github.com/poly-hammer/BlenderTools/tree/master/send2ue/resources/extensions) folder.
+[send2ue/resources](https://github.com/poly-hammer/BlenderTools/tree/master/src/addons/send2ue/resources/extensions) folder.
 
 ## Tasks
 Tasks contain logic for key points within the runtime of the send to unreal

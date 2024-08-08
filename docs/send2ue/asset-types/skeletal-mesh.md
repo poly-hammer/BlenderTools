@@ -24,7 +24,7 @@ as the skeleton and physics asset with `_Skeleton` and `_PhysicsAsset` post fixe
 
 
 To run a strictly skeletal mesh import(meaning no animation will be exported), the animations import option must be
-turned off in your [Import](/settings/import.html#animation) settings.
+turned off in your [Import](../settings/import.md#animation) settings.
 
 ![3](./images/skeletal-mesh/3.png)
 
@@ -60,4 +60,4 @@ Also notice that the LOD build settings can be set under the
 ## Only Mesh
 
 To run a strictly mesh asset import (ex: excluding import of particle systems as groom assets), all import options
-must be turned off in your [import settings](/settings/import.html) except for `Mesh`.
+must be turned off in your [import settings](../settings/import.md) except for `Mesh`.

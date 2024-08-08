@@ -8,7 +8,7 @@ imported groom asset.
 ### Groom Binding Asset
 This creates a binding asset for the imported groom asset. The target skeletal mesh is the hair's surface mesh in blender
 that is part of the same import. For this option to work correctly, the _import mesh_ and _import groom_ options in the
-[import settings](https://poly-hammer.github.io/BlenderTools/send2ue/settings/import.html) must be turned on.
+[import settings](../settings/import.md) must be turned on.
 
 The binding asset will use the name of the groom asset and the name of the target skeletal mesh post fixed with `_Binding`.
 Note this is the unreal convention of naming binding assets.
@@ -18,7 +18,7 @@ will yield a binding asset named `hair_SK_Mannequin_Female_Binding`.
 
 !!! note
 
-    A binding asset can only be created when the groom's surface mesh is a [skeletal mesh](https://poly-hammer.github.io/BlenderTools/send2ue/asset-types/skeletal-mesh.html).
+    A binding asset can only be created when the groom's surface mesh is a [skeletal mesh](../asset-types/skeletal-mesh.md).
 
 ### Blueprint Asset with Groom
 This creates a blueprint asset for each imported skeletal mesh and its surface hairs. The blueprint asset will have
@@ -29,7 +29,7 @@ blueprint asset uses the name of the skeletal mesh asset with a postfix `_BP`.
     There are multiple hair systems surfaced on the mesh object `SK_Mannequin`, which results in a groom
     component created for each groom asset imported.
 
-  <img src="./images/create-post-import-groom-assets/2.png" alt="2" width="400"/>
+![2](./images/create-post-import-groom-assets/2.png){: style="width:400px"}
 
 !!! note
 

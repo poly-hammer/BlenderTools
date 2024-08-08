@@ -19,7 +19,7 @@ imported to unreal as a groom asset.
 
 !!! tip
 
-    To gain more control over how particle systems are exported, use the [_combine assets_](https://poly-hammer.github.io/BlenderTools/send2ue/extensions/combine-assets.html)
+    To gain more control over how particle systems are exported, use the [_combine assets_](../extensions/combine-assets.md)
     extension that has options such as _combine groom for each mesh_ and more.
 
 
@@ -43,12 +43,12 @@ the curves object into a hair particle system on the mesh that it’s surfaced t
 
 By default, the groom asset will import along with the mesh asset that it is surfaced to. To run a strictly groom asset
 import (meaning no other asset types will be exported from blender and imported to unreal), all import options (mesh,
-animation, textures) must be turned off in your [import settings](https://poly-hammer.github.io/BlenderTools/send2ue/settings/import.html) except for `Groom`. Alternatively,
+animation, textures) must be turned off in your [import settings](../settings/import.md) except for `Groom`. Alternatively,
 the blender `Curves` objects can be placed in the `Export` collection (without their surface mesh objects) which
 denotes an exclusive groom workflow as well.
 
 ## Binding Assets and More
 
-The addon provides an extension called [create post import assets for groom](https://poly-hammer.github.io/BlenderTools/send2ue/extensions/create-post-import-groom-assets.html)
+The addon provides an extension called [create post import assets for groom](../extensions/create-post-import-groom-assets.md)
 to automatically create unreal assets (such as a binding asset) for the imported groom asset. See the extensions section
 for more information on its usage.

@@ -58,7 +58,7 @@ will be combined into one skeletal mesh using the name of the first child mesh i
 !!! note
 
     This might not give you enough control over the skeletal mesh name, so using the
-    [immediate parent name](https://poly-hammer.github.io/BlenderTools/send2ue/extensions/use-immediate-parent-name.html)
+    [immediate parent name](use-immediate-parent-name.md)
     extension can be useful.
 
 ![2](./images/combine-assets/2.png)
