@@ -13,6 +13,10 @@ nav:
     - Relink Constraints: "./advanced/relink-constraints.md"
   - Extras: 
     - Community Templates: "./extras/community-templates.md"
+  - User Interface:
+    - 3D View Panel: "./user-interface/3d-view-panel.md"
+    - Node Editor Panel: "./user-interface/node-editor-panel.md"
+    - Hotkeys: "./user-interface/hot-keys.md"
   - Trouble Shooting: 
     - FAQ: "./trouble-shooting/faq.md"
     - Errors: "./trouble-shooting/errors.md"
