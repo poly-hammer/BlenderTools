@@ -322,12 +322,14 @@ def get_all_parent_classes(cls) -> Iterator[Any]:
 
 def make_remote(
         reference: Any, 
-        port: Optional[int] = None
+        port: Optional[int] = None,
+        default_imports: Optional[List[str]] = None,
     ) -> Callable:
     """
     Makes the given class or function run remotely when invoked.
     """
-    default_imports = []
+    if not default_imports:
+        default_imports = ['import unreal']
     remap_pairs = []
     unreal_port = int(os.environ.get('UNREAL_PORT', 9998))
 
@@ -335,7 +337,6 @@ def make_remote(
     if os.environ.get('TEST_ENVIRONMENT'):
         unreal_port = int(os.environ.get('UNREAL_PORT', 8998))
         remap_pairs = [(os.environ.get('HOST_REPO_FOLDER', ''), os.environ.get('CONTAINER_REPO_FOLDER', ''))]
-
 
     if not port:
         port = unreal_port

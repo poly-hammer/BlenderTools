@@ -4,13 +4,14 @@ import bpy
 import os
 from send2ue.constants import UnrealTypes
 from send2ue.core.extension import ExtensionBase
-from send2ue.dependencies.unreal import UnrealRemoteCalls
 from send2ue.core.utilities import (
     convert_blender_rotation_to_unreal_rotation,
     convert_blender_to_unreal_location,
     get_armature_modifier_rig_object,
     get_asset_name
 )
+from send2ue.dependencies.unreal import UnrealRemoteCalls as UnrealCalls
+from send2ue.dependencies.rpc.factory import make_remote
 
 STATIC_MESH_INSTANCE_NAMES = []
 SKELETAL_MESH_INSTANCE_NAMES = []
@@ -162,7 +163,7 @@ class InstanceAssetsExtension(ExtensionBase):
                             break
 
             if unique_name:
-                UnrealRemoteCalls.instance_asset(
+                make_remote(UnrealCalls).instance_asset(
                     asset_data['asset_path'],
                     convert_blender_to_unreal_location(location),
                     convert_blender_rotation_to_unreal_rotation(rotation),
