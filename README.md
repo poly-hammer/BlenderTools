@@ -39,9 +39,9 @@ new animation on unreal marketplace assets and more!
 ## Help Contribute
 Contributions are encouraged! Find out how you can contribute to this repo in one of the following ways:
 
-* [Help Develop](https://poly-hammer.github.io/BlenderTools/contributing/development.html)
-* [Help Document](https://poly-hammer.github.io/BlenderTools/contributing/documentation.html)
-* [Help Test](https://poly-hammer.github.io/BlenderTools/contributing/testing.html)
+* [Help Develop](https://poly-hammer.github.io/BlenderTools/contributing/development/)
+* [Help Document](https://poly-hammer.github.io/BlenderTools/contributing/documentation/)
+* [Help Test](https://poly-hammer.github.io/BlenderTools/contributing/testing/)
 
 
 ## Get Notified on a New Release
