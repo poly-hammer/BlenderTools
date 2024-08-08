@@ -670,7 +670,7 @@ def set_to_title(text):
     :param str text: The original text to convert to a title.
     :return str: The new title text.
     """
-    return ' '.join([word.capitalize() for word in text.lower().split('_')]).strip('.json')
+    return ' '.join([word.capitalize() for word in text.lower().split('_')]).removesuffix('.json')
 
 
 def set_pose(rig_object, pose_values):
