@@ -2,7 +2,7 @@
 A node based retargeting system for Blender's Rigify addon.
 
 
-* [Quick Start](./introduction/quickstart)
+* [Quick Start](introduction/quickstart.md)
     
 ## Features
 * ### Retarget Animation

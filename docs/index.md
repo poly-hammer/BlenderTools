@@ -6,7 +6,7 @@
 
 A one-click solution for sending assets from Blender to Unreal Engine.
 
-* [Read Docs](./send2ue)
+* [Read Docs](send2ue/index.md)
 * [Download Addon](https://github.com/poly-hammer/BlenderTools/releases?q=Send+to+Unreal&expanded=true)
 
 
@@ -18,5 +18,5 @@ A node based retargeting system for Blender's
 [Rigify](https://docs.blender.org/manual/en/latest/addons/rigging/rigify/index.html) addon. Quickly retarget and author
 new animation on unreal marketplace assets and more!
 
-* [Read Docs](./ue2rigify)
+* [Read Docs](ue2rigify/index.md)
 * [Download Addon](https://github.com/poly-hammer/BlenderTools/releases?q=UE+to+Rigify&expanded=true)
