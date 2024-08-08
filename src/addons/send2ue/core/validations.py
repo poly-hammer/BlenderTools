@@ -288,7 +288,7 @@ class ValidationManager:
         """
         Checks whether the required unreal plugins are enabled.
         """
-        if self.properties.import_grooms and self.hair_objects:
+        if self.properties.validate_unreal_plugins and self.properties.import_grooms and self.hair_objects:
             # A dictionary of plugins where the key is the plugin name and value is the plugin label.
             groom_plugins = {
                 'HairStrands': 'Groom',

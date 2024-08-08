@@ -504,6 +504,11 @@ def get_scene_property_class():
             default=True,
             description="This checks that a mesh with an armature modifier has vertex groups"
         )
+        validate_unreal_plugins: bpy.props.BoolProperty(
+            name="Check Unreal has required plugins",
+            default=True,
+            description="Disable only if you know Groom plugin is enabled but still get an error"
+        )
 
     return Send2UeSceneProperties
 
