@@ -35,7 +35,7 @@ class Ue2RigifyExtension(ExtensionBase):
         :param bool hide_value: The hide value to set the source rig to.
         :return bool: The original hide value of the source rig.
         """
-        if self.use_ue2rigify:
+        if self.use_ue2rigify and hasattr(bpy.context.scene, 'ue2rigify'):
             ue2rigify_properties = bpy.context.scene.ue2rigify
             if ue2rigify_properties.source_rig:
                 self.original_hide_value = ue2rigify_properties.source_rig.hide_get()
@@ -45,7 +45,7 @@ class Ue2RigifyExtension(ExtensionBase):
         """
         Sets the use_ue2rigify property depending on whether to use code from the ue2rigify addon or not.
         """
-        if bpy.context.preferences.addons.find('ue2rigify'):
+        if bpy.context.preferences.addons.find('ue2rigify') and hasattr(bpy.context.scene, 'ue2rigify'):
             ue2rigify_properties = bpy.context.scene.ue2rigify
             if ue2rigify_properties.selected_mode == self.control_mode:
                 self.use_ue2rigify = True
@@ -78,7 +78,7 @@ class Ue2RigifyExtension(ExtensionBase):
         asset_path = asset_data.get('asset_path')
         file_path = asset_data.get('file_path')
         control_rig_object = bpy.data.objects.get(self.control_rig_name)
-        action_name = asset_data.get('_action_name').strip(self.action_prefix)
+        action_name = asset_data.get('_action_name').removeprefix(self.action_prefix)
 
         if self.use_ue2rigify and control_rig_object:
             if control_rig_object.animation_data:
@@ -95,7 +95,7 @@ class Ue2RigifyExtension(ExtensionBase):
                 'asset_path': f'{os.path.dirname(asset_path)}/{action_name}',
                 'file_path': os.path.join(
                     os.path.dirname(file_path),
-                    os.path.basename(file_path).strip(self.action_prefix)
+                    os.path.basename(file_path).removeprefix(self.action_prefix)
                 )
             })
 
@@ -105,7 +105,7 @@ class Ue2RigifyExtension(ExtensionBase):
         """
         asset_path = asset_data.get('asset_path')
         control_rig_object = bpy.data.objects.get(self.control_rig_name)
-        action_name = os.path.basename(asset_path).strip(self.action_prefix)
+        action_name = os.path.basename(asset_path).removeprefix(self.action_prefix)
 
         if self.use_ue2rigify and control_rig_object:
             # mute the action
