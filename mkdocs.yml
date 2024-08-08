@@ -1,6 +1,7 @@
 site_name: Documentation
 
 nav:
+    - Home: index.md
     - Addons: 
         - Send to Unreal: '!include ./docs/send2ue/mkdocs.yml'
         - UE to Rigify: '!include ./docs/ue2rigify/mkdocs.yml'
