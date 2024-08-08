@@ -1,6 +1,7 @@
-site_name: UE to Rigify
+site_name: ue2rigify
 docs_dir: '.'
 nav:
+  - Overview: "./index.md"
   - Quick Start: "./introduction/quickstart.md"
   - Concepts: 
     - Modes: "./concepts/modes.md"

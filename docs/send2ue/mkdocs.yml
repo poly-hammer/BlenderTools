@@ -1,6 +1,7 @@
-site_name: Send to Unreal
+site_name: send2ue
 docs_dir: '.'
 nav:
+  - Overview: "./index.md"
   - Quick Start: "./introduction/quickstart.md"
   - Asset Types:
     - Static Mesh: "./asset-types/static-mesh.md"
