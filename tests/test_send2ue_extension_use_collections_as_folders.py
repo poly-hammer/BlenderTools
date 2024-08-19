@@ -45,6 +45,9 @@ class TestSend2UeExtensionCollectionsAsFoldersBase(BaseSend2ueTestCaseCore, Base
 
             # check that the groom assets have the correct binding target mesh
             for groom in groom_systems:
+                groom_folder_path = self.blender.get_addon_property('scene', 'send2ue', 'unreal_groom_folder_path')
+                collection_hierarchy_path = '/'.join(collection_hierarchy[1:])
+                folder_path = f'{groom_folder_path}{collection_hierarchy_path}/'
                 self.assert_binding_asset(groom, object_name, folder_path)
 
 
