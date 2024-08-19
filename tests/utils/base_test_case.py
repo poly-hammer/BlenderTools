@@ -400,7 +400,7 @@ class BaseSend2ueTestCase(BaseTestCase):
             self.log(f'Ensuring that "{asset_name}" exists...')
             self.assertTrue(
                 self.unreal.asset_exists(f'{folder_path}{asset_name}'),
-                f'The "{asset_name}" does not exist in unreal!'
+                f'The "{asset_name}" does not exist in unreal! Loc: {folder_path}'
             )
         else:
             self.log(f'Ensuring that "{asset_name}" does not exist...')
