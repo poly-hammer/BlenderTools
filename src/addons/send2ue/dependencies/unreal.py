@@ -456,8 +456,8 @@ class Unreal:
             )
 
             # source groom asset and target skeletal mesh for the binding asset
-            groom_binding_asset.set_editor_property('groom', groom_asset)
             groom_binding_asset.set_editor_property('target_skeletal_mesh', mesh_asset)
+            groom_binding_asset.set_editor_property('groom', groom_asset)
 
             # if a previous version of the binding asset exists, consolidate all references with new asset
             if existing_binding_asset:
