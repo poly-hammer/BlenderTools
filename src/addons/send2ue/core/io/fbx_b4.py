@@ -55,18 +55,13 @@ def export(**keywords):
         elem_data_single_string,
         elem_data_single_int32_array,
         elem_data_single_float64_array,
+        elem_data_single_char,
         elem_properties,
         elem_props_template_init,
         elem_props_template_set,
         elem_props_template_finalize,
         fbx_name_class
     )
-    
-    # Added version check to import new elem data type added in 4.0. Shading element was updated to use char instead of bool
-    if bpy.app.version[0] >= 4: 
-        from io_scene_fbx.fbx_utils import (
-            elem_data_single_char
-        )
 
     convert_rad_to_deg_iter = units_convertor_iter("radian", "degree")
 
@@ -540,10 +535,8 @@ def export(**keywords):
         # object type, etc.
         elem_data_single_int32(model, b"MultiLayer", 0)
         elem_data_single_int32(model, b"MultiTake", 0)
-        if (bpy.app.version[0] >= 4):
-            elem_data_single_char(model, b"Shading", b"\x01")  # Shading was changed to a char from bool in blender 4
-        else:
-            elem_data_single_bool(model, b"Shading", True)
+        elem_data_single_char(model, b"Shading", b"\x01")  # Shading was changed to a char from bool in blender 4
+
         elem_data_single_string(model, b"Culling", b"CullingOff")
 
         if obj_type == b"Camera":
