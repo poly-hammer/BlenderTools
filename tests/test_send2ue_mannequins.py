@@ -199,6 +199,19 @@ class TestSend2UeMannequins(BaseSend2ueTestCase):
                 'frames': [2, 6, 11]
             }})
 
+    def test_custom_root_bone_name(self):
+        """
+        Tests custom root bone name option.
+        """
+        self.run_custom_root_bone_name_option_tests({
+            'SK_Mannequin_Female': {
+                'rig': 'female_root',
+                'animations': ['third_person_walk_01', 'third_person_run_01'],
+                'bones': ['spine_02', 'calf_l', 'lowerarm_r'],
+                'frames': [2, 6, 11],
+                'custom_name': 'my_test_root_bone',
+            }})
+
     def test_export_custom_property_fcurves_option(self):
         """
         Tests export custom property fcurves option.
