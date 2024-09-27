@@ -24,6 +24,10 @@ class TestSend2UeCubes(BaseSend2ueTestCase):
         pass
 
     @unittest.skip
+    def test_custom_root_bone_name(self):
+        pass
+
+    @unittest.skip
     def test_export_custom_property_fcurves_option(self):
         pass
 

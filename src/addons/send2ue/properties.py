@@ -286,6 +286,14 @@ def get_scene_property_class():
                 "the first bone in the armature hierarchy is used as the root bone in unreal."
             )
         )
+        export_custom_root_name: bpy.props.StringProperty(
+            name="Custom root bone name",
+            default="",
+            description=(
+                "If specified, this adds a root bone by this name in Unreal. This overrides the "
+                "\"Export object name as root bone\" setting."
+            )
+        )
         export_custom_property_fcurves: bpy.props.BoolProperty(
             name="Export custom property fcurves",
             default=True,

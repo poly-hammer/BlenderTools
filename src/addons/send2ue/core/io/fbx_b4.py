@@ -434,7 +434,10 @@ def export(**keywords):
             obj_type = b"Camera"
 
         if ob_obj.type == 'ARMATURE':
-            if bpy.context.scene.send2ue.export_object_name_as_root:
+            if bpy.context.scene.send2ue.export_custom_root_name:
+                # if the user has provided a custom name for a root bone, use this directly
+                ob_obj.name = bpy.context.scene.send2ue.export_custom_root_name
+            elif bpy.context.scene.send2ue.export_object_name_as_root:
                 # if the object is already named armature this forces the object name to root
                 if 'armature' == ob_obj.name.lower():
                     ob_obj.name = 'root'

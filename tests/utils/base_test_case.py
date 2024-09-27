@@ -691,7 +691,7 @@ class BaseSend2ueTestCase(BaseTestCase):
         else:
             self.assertFalse(result, f'Curve "{curve_name}" exists on animation "{animation_name}" when it should not!')
 
-    def assert_animation_hierarchy(self, rig_name, animation_name, bone_name, include_object=True):
+    def assert_animation_hierarchy(self, rig_name, animation_name, bone_name, include_object=True, custom_root_name=None):
         self.log(
             f'Checking the bone hierarchy of "{animation_name}" to see if "{bone_name}" has the same path '
             f'to the root bone...'
@@ -701,6 +701,9 @@ class BaseSend2ueTestCase(BaseTestCase):
         asset_path = f'{folder_path}{animation_name}'
         unreal_bone_path = self.unreal.get_bone_path_to_root(asset_path, bone_name)
         blender_bone_path = self.blender.get_bone_path_to_root(rig_name, bone_name, include_object)
+
+        if custom_root_name:
+            blender_bone_path.append(custom_root_name)
 
         self.assertEqual(
             collections.Counter(blender_bone_path),
@@ -1084,6 +1087,29 @@ class BaseSend2ueTestCase(BaseTestCase):
                     for frame in frames:
                         self.assert_animation_translation(rig_name, animation_name, bone_name, frame)
 
+    def run_custom_root_bone_name_option_tests(self, objects_and_animations):
+        self.blender.set_addon_property('scene', 'send2ue', 'export_all_actions', True)
+        self.blender.set_addon_property('scene', 'send2ue', 'import_animations', True)
+        # This option should be ignored as we're setting a custom name below.
+        self.blender.set_addon_property('scene', 'send2ue', 'export_object_name_as_root', True)
+
+        for object_name, data in objects_and_animations.items():
+            rig_name = data.get('rig')
+            animation_names = data.get('animations')
+            bone_names = data.get('bones')
+            frames = data.get('frames')
+            custom_root_bone_name = data.get('custom_name')
+            self.blender.set_addon_property('scene', 'send2ue', 'export_custom_root_name', custom_root_bone_name)
+            self.move_to_collection([object_name, rig_name], 'Export')
+            self.send2ue_operation()
+            self.assert_mesh_import(object_name)
+            # check that the animations are as expected
+            for animation_name in animation_names:
+                for bone_name in bone_names:
+                    self.assert_animation_hierarchy(rig_name, animation_name, bone_name, include_object=False, custom_root_name=custom_root_bone_name)
+                    for frame in frames:
+                        self.assert_animation_translation(rig_name, animation_name, bone_name, frame)
+
     def run_export_custom_property_fcurves_option_tests(self, objects_and_animations):
         self.blender.set_addon_property('scene', 'send2ue', 'export_all_actions', True)
         self.blender.set_addon_property('scene', 'send2ue', 'import_animations', True)
@@ -1168,6 +1194,9 @@ class BaseSend2ueTestCase(BaseTestCase):
         """
         raise NotImplementedError('This test case must be implemented or skipped')
 
+    def test_custom_root_bone_name(self):
+        raise NotImplementedError('This test case must be implemented or skipped')
+
     def test_export_custom_property_fcurves_option(self):
         """
         Tests export custom property fcurves option.
@@ -1233,6 +1262,10 @@ class SkipSend2UeTests(unittest.TestCase):
 
     @unittest.skip
     def test_export_object_name_as_root_option(self):
+        pass
+
+    @unittest.skip
+    def test_custom_root_bone_name(self):
         pass
 
     @unittest.skip
