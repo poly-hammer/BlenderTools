@@ -1,6 +1,7 @@
 ## Patch Changes
-* Extensions compliance - Avoid data.objects iteration
-  * [72](https://github.com/poly-hammer/BlenderTools/pull/72)
+* Fixed issue with creating multiple templates
+  * [91](https://github.com/poly-hammer/BlenderTools/pull/91)
+* Extensions compliance - License now GPL3.0
 
 ## Special Thanks
 * @JoshQuake
