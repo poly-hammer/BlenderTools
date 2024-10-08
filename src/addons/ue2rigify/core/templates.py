@@ -207,6 +207,11 @@ def get_rig_templates(self=None, context=None, index_offset=0):
         1 + index_offset
     ))
 
+    # remove from rig_template_directories
+    rig_template_directories.remove(Template.DEFAULT_MALE_TEMPLATE)
+    rig_template_directories.remove(Template.DEFAULT_FEMALE_TEMPLATE)
+
+    # enumerate remaining templates with an offset of 2
     for index, rig_template in enumerate(rig_template_directories, 2):
         if rig_template not in [Template.DEFAULT_MALE_TEMPLATE, Template.DEFAULT_FEMALE_TEMPLATE]:
             rig_templates.append((
