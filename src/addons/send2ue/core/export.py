@@ -232,8 +232,9 @@ def export_mesh(asset_id, mesh_object, properties, lod=0):
     set_parent_rig_selection(mesh_object, properties)
 
     # select collision meshes
-    asset_name = utilities.get_asset_name(mesh_object.name, properties)
-    utilities.select_asset_collisions(asset_name, properties)
+    if lod == 0:
+        asset_name = utilities.get_asset_name(mesh_object.name, properties)
+        utilities.select_asset_collisions(asset_name, properties)
 
     # Note: this is a weird work around for morph targets not exporting when
     # particle systems are on the mesh. Making them not visible fixes this bug
