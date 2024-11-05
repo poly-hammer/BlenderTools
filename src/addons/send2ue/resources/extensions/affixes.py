@@ -221,13 +221,14 @@ def restore_texture_paths():
     for mesh_object in mesh_objects:
         texture_images = get_texture_images(mesh_object)
         
-        for index, image in enumerate(texture_images):
-            original_path = os.path.join( AffixesExtension.images_original_paths[index], image.name )
-            
-            if not os.path.exists(original_path):
-                shutil.copy(image.filepath_from_user(), original_path)
+        for image_index, image in enumerate(texture_images):
+            if image.source == 'FILE':
+                original_path = os.path.join( AffixesExtension.images_original_paths[image_index], image.name )
+                
+                if not os.path.exists(original_path):
+                    shutil.copy(image.filepath_from_user(), original_path)
 
-            image.filepath = original_path
+                image.filepath = original_path
 
 def check_asset_affixes(self, context=None):
     """
