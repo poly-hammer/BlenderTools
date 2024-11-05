@@ -15,7 +15,8 @@ def add_affixes():
     properties = bpy.context.scene.send2ue
     mesh_objects = utilities.get_from_collection(BlenderTypes.MESH)
     rig_objects = utilities.get_from_collection(BlenderTypes.SKELETON)
-
+    AffixesExtension.images_original_paths = []
+    
     for mesh_object in mesh_objects:
         if mesh_object.modifiers:
             is_armature = False
@@ -351,7 +352,6 @@ class AffixesExtension(ExtensionBase):
             remove_affixes()
         
         restore_texture_paths()
-        AffixesExtension.images_original_paths = []
 
     def pre_validations(self, properties):
         """
