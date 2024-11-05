@@ -227,7 +227,6 @@ def restore_texture_paths():
                 shutil.copy(image.filepath_from_user(), original_path)
 
             image.filepath = original_path
-            pass
 
 def check_asset_affixes(self, context=None):
     """
