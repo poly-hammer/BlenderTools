@@ -42,6 +42,8 @@ def add_affixes():
                 append_affix(slot.material, properties.extensions.affixes.material_name_affix)
 
         texture_images = get_texture_images(mesh_object)
+        for image in texture_images:
+            save_image_filepath(image)
         rename_all_textures(texture_images, append_affix, properties)
 
     for rig_object in rig_objects:
@@ -86,6 +88,9 @@ def remove_affixes():
         for action in actions:
             discard_affix(action, properties.extensions.affixes.animation_sequence_name_affix)
 
+def save_image_filepath(image):
+    path, filename = os.path.split(image.filepath_from_user())
+    AffixesExtension.images_original_paths.append(path)
 
 def append_affix(scene_object, affix, is_image=False):
     """
@@ -210,6 +215,19 @@ def rename_texture(image, new_name):
         if os.path.exists(new_path):
             image.filepath = new_path
 
+def restore_texture_paths():
+    mesh_objects = utilities.get_from_collection(BlenderTypes.MESH)
+    for mesh_object in mesh_objects:
+        texture_images = get_texture_images(mesh_object)
+        
+        for index, image in enumerate(texture_images):
+            original_path = os.path.join( AffixesExtension.images_original_paths[index], image.name )
+            
+            if not os.path.exists(original_path):
+                shutil.copy(image.filepath_from_user(), original_path)
+
+            image.filepath = original_path
+            pass
 
 def check_asset_affixes(self, context=None):
     """
@@ -245,6 +263,7 @@ class AffixesExtension(ExtensionBase):
         AddAssetAffixes,
         RemoveAssetAffixes
     ]
+    images_original_paths = []
 
     show_name_affix_settings: bpy.props.BoolProperty(default=False)
     # ---------------------------- name affix settings --------------------------------
@@ -331,6 +350,9 @@ class AffixesExtension(ExtensionBase):
         """
         if self.auto_remove_asset_name_affixes:
             remove_affixes()
+        
+        restore_texture_paths()
+        AffixesExtension.images_original_paths = []
 
     def pre_validations(self, properties):
         """
