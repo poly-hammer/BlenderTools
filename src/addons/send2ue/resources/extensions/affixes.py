@@ -15,7 +15,6 @@ def add_affixes():
     properties = bpy.context.scene.send2ue
     mesh_objects = utilities.get_from_collection(BlenderTypes.MESH)
     rig_objects = utilities.get_from_collection(BlenderTypes.SKELETON)
-    AffixesExtension.images_original_paths = []
     
     for mesh_object in mesh_objects:
         if mesh_object.modifiers:
@@ -342,6 +341,7 @@ class AffixesExtension(ExtensionBase):
         """
         Defines the pre operation logic that will be run before the operation.
         """
+        AffixesExtension.images_original_paths.clear()
         if self.auto_add_asset_name_affixes:
             add_affixes()
 
