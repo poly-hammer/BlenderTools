@@ -342,6 +342,7 @@ class AffixesExtension(ExtensionBase):
         """
         Defines the pre operation logic that will be run before the operation.
         """
+        AffixesExtension.images_original_paths.clear()
         if self.auto_add_asset_name_affixes:
             add_affixes()
 
@@ -352,7 +353,8 @@ class AffixesExtension(ExtensionBase):
         if self.auto_remove_asset_name_affixes:
             remove_affixes()
         
-        restore_texture_paths()
+        if self.auto_add_asset_name_affixes:
+            restore_texture_paths()
 
     def pre_validations(self, properties):
         """
