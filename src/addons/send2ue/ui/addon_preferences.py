@@ -6,10 +6,9 @@ from ..properties import Send2UeAddonProperties, ExtensionFolder
 from ..constants import ToolInfo
 from .. import __package__
 
-from bl_ui.generic_ui_list import (
-    _get_context_attr, # type: ignore
-    _draw_move_buttons # type: ignore
-) 
+def _get_context_attr(context, data_path):
+    """Return the value of a context member based on its data path."""
+    return context.path_resolve(data_path)
 
 def _draw_add_remove_buttons(
     *,
@@ -38,7 +37,6 @@ def draw_ui_list(
         list_path,
         active_index_path,
         insertion_operators=True,
-        move_operators=True,
         menu_class_name="",
         **kwargs,
 ):
@@ -83,14 +81,6 @@ def draw_ui_list(
     if menu_class_name:
         col.menu(menu_class_name, icon='DOWNARROW_HLT', text="")
         col.separator()
-
-    if move_operators and list_to_draw:
-        _draw_move_buttons(
-            layout=col,
-            list_path=list_path,
-            active_index_path=active_index_path,
-            list_length=len(list_to_draw),
-        )
 
     # Return the right-side column.
     return col
@@ -142,8 +132,7 @@ class SendToUnrealPreferences(Send2UeAddonProperties, bpy.types.AddonPreferences
             list_path="preferences.extension_folder_list",
             active_index_path="preferences.extension_folder_list_active_index",
             unique_id="extension_folder_list_id",
-            insertion_operators=True,
-            move_operators=False,
+            insertion_operators=True
         ) # type: ignore
         row = self.layout.row()
         row.operator('send2ue.reload_extensions', text='Reload All Extensions', icon='FILE_REFRESH')

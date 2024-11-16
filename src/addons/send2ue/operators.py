@@ -4,7 +4,6 @@ import os
 import bpy
 import queue
 import threading
-from bl_ui.generic_ui_list import GenericUIListOperator
 from .constants import ToolInfo, ExtensionTasks
 from .core import export, utilities, settings, validations, extension
 from .ui import file_browser, dialog
@@ -304,6 +303,24 @@ class NullOperator(bpy.types.Operator):
 
     def execute(self, context):
         return {'FINISHED'}
+    
+
+class GenericUIListOperator:
+    """Mix-in class containing functionality shared by operators
+    that deal with managing Blender list entries."""
+    bl_options = {'REGISTER', 'UNDO', 'INTERNAL'}
+
+    list_path: StringProperty()
+    active_index_path: StringProperty()
+
+    def get_list(self, context):
+        return _get_context_attr(context, self.list_path)
+
+    def get_active_index(self, context):
+        return _get_context_attr(context, self.active_index_path)
+
+    def set_active_index(self, context, index):
+        _set_context_attr(context, self.active_index_path, index)
     
 
 class UILIST_ADDON_PREFERENCES_OT_entry_remove(GenericUIListOperator, bpy.types.Operator):
