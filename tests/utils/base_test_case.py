@@ -144,12 +144,7 @@ class BaseSend2ueTestCaseCore(BaseTestCase):
         if self.test_environment:
             path = os.path.normpath(path).replace(os.path.sep, '/')
 
-        self.blender.set_addon_property(
-            'preferences',
-            self.addon_name,
-            'extensions_repo_path',
-            path
-        )
+        self.blender.add_extension_repo(path)
         self.blender.run_addon_operator(self.addon_name, 'reload_extensions')
 
     def assert_extension_operators(self, extension_name, extension_operators, exists=True):

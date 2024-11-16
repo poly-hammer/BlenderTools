@@ -2,10 +2,16 @@
 
 import os
 import sys
-import uuid
 import bpy
 from .constants import ToolInfo, PathModes, Template
 from .core import settings, formatting, extension
+
+class ExtensionFolder(bpy.types.PropertyGroup):
+    folder_path: bpy.props.StringProperty(
+        default='',
+        description='The folder location of the extension repo.',
+        subtype='FILE_PATH'
+    ) # type: ignore
 
 
 class Send2UeAddonProperties:
@@ -16,14 +22,6 @@ class Send2UeAddonProperties:
         name="Automatically create pre-defined collections",
         default=True,
         description=f"This automatically creates the pre-defined collection (Export)"
-    )
-    extensions_repo_path: bpy.props.StringProperty(
-        name="Extensions Repo Path",
-        default="",
-        description=(
-            "Set this path to the folder that contains your Send to Unreal python extensions. All extensions "
-            "in this folder will be automatically loaded"
-        )
     )
     # ------------- Remote Execution settings ------------------
     rpc_response_timeout: bpy.props.IntProperty(
@@ -61,6 +59,9 @@ class Send2UeAddonProperties:
             "Must match setting in Unreal."
         )
     )
+
+    extension_folder_list: bpy.props.CollectionProperty(type=ExtensionFolder) # type: ignore
+    extension_folder_list_active_index: bpy.props.IntProperty() # type: ignore
 
 
 class Send2UeWindowMangerProperties(bpy.types.PropertyGroup):

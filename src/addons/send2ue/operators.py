@@ -4,6 +4,7 @@ import os
 import bpy
 import queue
 import threading
+from bl_ui.generic_ui_list import GenericUIListOperator
 from .constants import ToolInfo, ExtensionTasks
 from .core import export, utilities, settings, validations, extension
 from .ui import file_browser, dialog
@@ -254,13 +255,13 @@ class ReloadExtensions(bpy.types.Operator):
     def execute(self, context):
         addon = bpy.context.preferences.addons.get(base_package)
         if addon:
-            extensions_repo_path = addon.preferences.extensions_repo_path
-            if extensions_repo_path:
-                if not os.path.exists(extensions_repo_path) or not os.path.isdir(
-                    extensions_repo_path
-                ):
-                    self.report(f'"{extensions_repo_path}" is not a folder path on disk.')
-                    return {'FINISHED'}
+            for extension_folder in addon.preferences.extension_folder_list: # type: ignore
+                if extension_folder.folder_path:
+                    if not os.path.exists(extension_folder.folder_path) or not os.path.isdir(
+                        extension_folder.folder_path
+                    ):
+                        self.report(f'"{extension_folder.folder_path}" is not a folder path on disk.')
+                        return {'FINISHED'}
 
         extension_factory = extension.ExtensionFactory()
 
@@ -303,6 +304,44 @@ class NullOperator(bpy.types.Operator):
 
     def execute(self, context):
         return {'FINISHED'}
+    
+
+class UILIST_ADDON_PREFERENCES_OT_entry_remove(GenericUIListOperator, bpy.types.Operator):
+    """Remove the selected entry from the list"""
+
+    bl_idname = "uilist.addon_preferences_entry_remove"
+    bl_label = "Remove Selected Entry"
+
+    def execute(self, context):
+        addon_preferences = context.preferences.addons[ToolInfo.NAME.value]
+        my_list = self.get_list(addon_preferences)
+        active_index = self.get_active_index(addon_preferences)
+
+        my_list.remove(active_index)
+        to_index = min(active_index, len(my_list) - 1)
+        self.set_active_index(addon_preferences, to_index)
+
+        return {'FINISHED'}
+
+
+class UILIST_ADDON_PREFERENCES_OT_entry_add(GenericUIListOperator, bpy.types.Operator):
+    """Add an entry to the list after the current active item"""
+
+    bl_idname = "uilist.addon_preferences_entry_add"
+    bl_label = "Add Entry"
+
+    def execute(self, context):
+        addon_preferences = context.preferences.addons[ToolInfo.NAME.value]
+        my_list = self.get_list(addon_preferences)
+        active_index = self.get_active_index(addon_preferences)
+
+        to_index = min(len(my_list), active_index + 1)
+
+        my_list.add()
+        my_list.move(len(my_list) - 1, to_index)
+        self.set_active_index(addon_preferences, to_index)
+
+        return {'FINISHED'}
 
 
 operator_classes = [
@@ -316,6 +355,8 @@ operator_classes = [
     ReloadExtensions,
     StartRPCServers,
     NullOperator,
+    UILIST_ADDON_PREFERENCES_OT_entry_remove,
+    UILIST_ADDON_PREFERENCES_OT_entry_add,
 ]
 
 

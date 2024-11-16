@@ -4,6 +4,7 @@ from utils.addon_packager import AddonPackager
 import logging
 import importlib
 import tempfile
+from pathlib import Path
 
 try:
     import bpy
@@ -110,6 +111,16 @@ class BlenderRemoteCalls:
                 setattr(properties, sub_property_name, value)
                 break
             properties = getattr(properties, sub_property_name)
+
+    @staticmethod
+    def add_extension_repo(file_path):       
+        preferences = bpy.context.preferences.addons['send2ue'].preferences
+        for extension_folder in preferences.extension_folder_list:
+            if Path(extension_folder.folder_path) == Path(file_path):
+                break
+        else:
+            extension_folder = preferences.extension_folder_list.add()
+            extension_folder.folder_path = file_path
 
     @staticmethod
     def check_particles(mesh_name, particle_names):

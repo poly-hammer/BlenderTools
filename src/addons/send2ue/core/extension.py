@@ -344,14 +344,15 @@ class ExtensionFactory:
         # add in the additional extensions from the addons preferences
         addon = bpy.context.preferences.addons.get(base_package)
         if addon and addon.preferences:
-            if os.path.exists(addon.preferences.extensions_repo_path):
-                for file_name in os.listdir(addon.preferences.extensions_repo_path):
-                    name, file_extension = os.path.splitext(file_name)
-                    if file_extension == '.py':
-                        extension_collector = ExtensionCollector(
-                            os.path.join(addon.preferences.extensions_repo_path, file_name)
-                        )
-                        extensions.extend(extension_collector.get_extension_classes())
+            for extension_folder in addon.preferences.extension_folder_list: # type: ignore
+                if os.path.exists(extension_folder.folder_path):
+                    for file_name in os.listdir(extension_folder.folder_path):
+                        name, file_extension = os.path.splitext(file_name)
+                        if file_extension == '.py':
+                            extension_collector = ExtensionCollector(
+                                os.path.join(extension_folder.folder_path, file_name)
+                            )
+                            extensions.extend(extension_collector.get_extension_classes())
 
         # add in the extensions that shipped with the addon
         for file_name in os.listdir(self.source_path):
