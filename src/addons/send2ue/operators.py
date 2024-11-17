@@ -6,7 +6,7 @@ import queue
 import threading
 from .constants import ToolInfo, ExtensionTasks
 from .core import export, utilities, settings, validations, extension
-from .ui import file_browser, dialog
+from .ui import file_browser, dialog, addon_preferences
 from .dependencies import unreal
 from .dependencies.rpc import blender_server
 from .properties import register_scene_properties, unregister_scene_properties
@@ -310,17 +310,17 @@ class GenericUIListOperator:
     that deal with managing Blender list entries."""
     bl_options = {'REGISTER', 'UNDO', 'INTERNAL'}
 
-    list_path: StringProperty()
-    active_index_path: StringProperty()
+    list_path: bpy.props.StringProperty() # type: ignore
+    active_index_path: bpy.props.StringProperty() # type: ignore
 
     def get_list(self, context):
-        return _get_context_attr(context, self.list_path)
+        return addon_preferences.get_context_attr(context, self.list_path)
 
     def get_active_index(self, context):
-        return _get_context_attr(context, self.active_index_path)
+        return addon_preferences.get_context_attr(context, self.active_index_path)
 
     def set_active_index(self, context, index):
-        _set_context_attr(context, self.active_index_path, index)
+        addon_preferences.set_context_attr(context, self.active_index_path, index)
     
 
 class UILIST_ADDON_PREFERENCES_OT_entry_remove(GenericUIListOperator, bpy.types.Operator):

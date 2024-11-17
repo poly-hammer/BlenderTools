@@ -6,9 +6,16 @@ from ..properties import Send2UeAddonProperties, ExtensionFolder
 from ..constants import ToolInfo
 from .. import __package__
 
-def _get_context_attr(context, data_path):
+
+def get_context_attr(context, data_path):
     """Return the value of a context member based on its data path."""
     return context.path_resolve(data_path)
+
+def set_context_attr(context, data_path, value):
+    """Set the value of a context member based on its data path."""
+    owner_path, attr_name = data_path.rsplit('.', 1)
+    owner = context.path_resolve(owner_path)
+    setattr(owner, attr_name, value)
 
 def _draw_add_remove_buttons(
     *,
@@ -51,12 +58,12 @@ def draw_ui_list(
     row = layout.row()
 
     list_owner_path, list_prop_name = list_path.rsplit('.', 1)
-    list_owner = _get_context_attr(context, list_owner_path)
+    list_owner = get_context_attr(context, list_owner_path)
 
     index_owner_path, index_prop_name = active_index_path.rsplit('.', 1)
-    index_owner = _get_context_attr(context, index_owner_path)
+    index_owner = get_context_attr(context, index_owner_path)
 
-    list_to_draw = _get_context_attr(context, list_path)
+    list_to_draw = get_context_attr(context, list_path)
 
     row.template_list(
         class_name,
