@@ -1113,7 +1113,7 @@ def setup_project(*args):
         create_collections()
 
     # create the header menu
-    if importlib.util.find_spec('unpipe') is None:
+    if not os.environ.get('SEND2UE_HIDE_PIPELINE_MENU'):
         header_menu.add_pipeline_menu()
 
 
