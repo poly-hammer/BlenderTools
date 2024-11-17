@@ -542,8 +542,8 @@ def send2ue(properties):
     utilities.escape_local_view()
 
     # clear the asset_data and current id
-    bpy.context.window_manager.send2ue.asset_id = ''
-    bpy.context.window_manager.send2ue.asset_data.clear()
+    bpy.context.window_manager.send2ue.asset_id = '' # type: ignore
+    bpy.context.window_manager.send2ue.asset_data.clear() # type: ignore
 
     # if there are no failed validations continue
     validation_manager = validations.ValidationManager(properties)
@@ -551,3 +551,5 @@ def send2ue(properties):
         # create the asset data
         create_asset_data(properties)
         ingest.assets(properties)
+
+    bpy.context.window_manager.send2ue.object_collection_override.clear() # type: ignore

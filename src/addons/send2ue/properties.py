@@ -68,6 +68,9 @@ class Send2UeWindowMangerProperties(bpy.types.PropertyGroup):
     """
     This class holds the properties for a window.
     """
+    # This can be set programmatically to override the default collection behavior.
+    # This is cleared back to an empty list after the send2ue operation has completed.
+    object_collection_override = []
     # ------------- current asset info ------------------
     asset_data = {}
     asset_id: bpy.props.StringProperty(

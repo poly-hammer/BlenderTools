@@ -367,11 +367,17 @@ def get_from_collection(object_type):
     """
     collection_objects = []
 
+    # first check if the collection_objects is overridden
+    for collection_object in bpy.context.window_manager.send2ue.object_collection_override: # type: ignore
+        if collection_object.type == object_type:
+            collection_objects.append(collection_object)
+
     # get the collection with the given name
     export_collection = bpy.data.collections.get(ToolInfo.EXPORT_COLLECTION.value)
-    if export_collection:
+    # if the collection exists and the collection_objects is not overridden
+    if export_collection and not collection_objects:
         # get all the objects in the collection
-        for collection_object in export_collection.all_objects:
+        for collection_object in export_collection.all_objects: # type: ignore
             # if the object is the correct type
             if collection_object.type == object_type:
                 # if the object is visible

@@ -111,5 +111,20 @@ bpy.ops.send2ue.start_rpc_servers()
     bpy.ops.wm.send2ue()
     ```
 
+!!! tip
+
+    Here is how you could use Python to override what objects are collected.
+    ```python
+    import bpy
+
+    # override what objects are collected
+    bpy.context.window_manager.send2ue.object_collection_override.extend([
+        bpy.data.objects['Cube']
+    ])
+
+    # run send to unreal
+    bpy.ops.wm.send2ue()
+    ```
+
 The same process can be used to dynamically set any property on the Send to Unreal tool.
 
