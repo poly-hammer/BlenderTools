@@ -115,6 +115,12 @@ class BlenderRemoteCalls:
     @staticmethod
     def add_extension_repo(file_path):       
         preferences = bpy.context.preferences.addons['send2ue'].preferences
+        
+        # clear the list if the file path is empty
+        if not file_path:
+            preferences.extension_folder_list.clear()
+            return
+
         for extension_folder in preferences.extension_folder_list:
             if Path(extension_folder.folder_path) == Path(file_path):
                 break
