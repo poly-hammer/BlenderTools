@@ -135,7 +135,8 @@ class BaseSend2ueTestCaseCore(BaseTestCase):
 
     def setUp(self):
         super().setUp()
-        self.set_extension_repo('')
+        self.blender.clear_extension_repos()
+        self.blender.run_addon_operator(self.addon_name, 'reload_extensions')
 
     def set_extension_repo(self, path):
         self.log(f'Setting the addon extension repo to "{path}"')
@@ -235,7 +236,8 @@ class BaseSend2ueTestCaseCore(BaseTestCase):
             self.assert_extension(extension_name, extensions_data)
 
         # check that external extensions are removed are being removed correctly
-        self.set_extension_repo('')
+        self.blender.clear_extension_repos()
+        self.blender.run_addon_operator(self.addon_name, 'reload_extensions')
         for extension_name, extensions_data in external_extensions.items():
             self.assert_extension(extension_name, extensions_data, False)
 

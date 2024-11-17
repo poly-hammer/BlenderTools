@@ -115,18 +115,17 @@ class BlenderRemoteCalls:
     @staticmethod
     def add_extension_repo(file_path):       
         preferences = bpy.context.preferences.addons['send2ue'].preferences
-        
-        # clear the list if the file path is empty
-        if not file_path:
-            preferences.extension_folder_list.clear()
-            return
-
         for extension_folder in preferences.extension_folder_list:
             if Path(extension_folder.folder_path) == Path(file_path):
                 break
         else:
             extension_folder = preferences.extension_folder_list.add()
             extension_folder.folder_path = file_path
+
+    @staticmethod
+    def clear_extension_repos():       
+        preferences = bpy.context.preferences.addons['send2ue'].preferences
+        preferences.extension_folder_list.clear()
 
     @staticmethod
     def check_particles(mesh_name, particle_names):
