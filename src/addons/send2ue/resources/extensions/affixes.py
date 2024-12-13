@@ -36,7 +36,7 @@ def add_affixes():
                 )
         else:
             append_affix(mesh_object, properties.extensions.affixes.static_mesh_name_affix)
-
+        
         for slot in mesh_object.material_slots:
             if slot.material:
                 append_affix(slot.material, properties.extensions.affixes.material_name_affix)
@@ -72,7 +72,7 @@ def remove_affixes():
             discard_affix(mesh_object, properties.extensions.affixes.skeletal_mesh_name_affix)
             if old_mesh_object_name == mesh_object.name:
                 break
-
+        
         for slot in mesh_object.material_slots:
             discard_affix(slot.material, properties.extensions.affixes.material_name_affix)
 
@@ -352,7 +352,7 @@ class AffixesExtension(ExtensionBase):
         if self.auto_remove_asset_name_affixes:
             remove_affixes()
         
-        if self.auto_add_asset_name_affixes:
+        if properties.import_materials_and_textures and self.auto_add_asset_name_affixes:
             restore_texture_paths()
 
     def pre_validations(self, properties):
