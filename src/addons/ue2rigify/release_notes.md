@@ -1,7 +1,6 @@
 ## Patch Changes
-* Fixed issue with creating multiple templates
-  * [91](https://github.com/poly-hammer/BlenderTools/pull/91)
-* Extensions compliance - License now GPL3.0
+* Extensions Platform manifests removed
+  * [109](https://github.com/poly-hammer/BlenderTools/pull/109)
 
 ## Special Thanks
 * @JoshQuake

@@ -1,14 +1,11 @@
-## Minor Changes
-* Enhanced Python API by allowing other scripts to set `object_collection_override` to a list of objects to override collection behavior. Check out example in [docs](https://poly-hammer.github.io/BlenderTools/send2ue/customize/python-api/#examples)
-  * [101](https://github.com/poly-hammer/BlenderTools/issues/101)
-  * [104](https://github.com/poly-hammer/BlenderTools/issues/104)
-* Made the extensions repo path a list view in addons preferences.
-  * [102](https://github.com/poly-hammer/BlenderTools/issues/102)
-  * [103](https://github.com/poly-hammer/BlenderTools/pull/103)
-
+## Patch Changes
+* Extensions Platform manifests removed
+  * [109](https://github.com/poly-hammer/BlenderTools/pull/109)
+* Fixed issue with affixes extension failing with properties.import_materials_and_textures disabled
+  * [106](https://github.com/poly-hammer/BlenderTools/pull/106)
 
 ## Special Thanks
-@jack-yao91
+* @JoshQuake
 
 ## Tests Passing On
 * Blender `3.6`, `4.2` (installed from blender.org)
