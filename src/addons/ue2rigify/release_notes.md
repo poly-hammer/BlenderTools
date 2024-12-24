@@ -1,6 +1,6 @@
 ## Patch Changes
-* Extensions Platform manifests removed
-  * [109](https://github.com/poly-hammer/BlenderTools/pull/109)
+* Added template for UEFN Mannequin
+  * [111](https://github.com/poly-hammer/BlenderTools/pull/111)
 
 ## Special Thanks
 * @JoshQuake

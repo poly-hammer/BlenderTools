@@ -1,0 +1,2995 @@
+{
+ "object": {
+  "show_in_front": false
+ },
+ "armature": {
+  "show_names": false,
+  "show_bone_custom_shapes": true,
+  "show_bone_colors": true
+ },
+ "bones": {
+  "root": {
+   "custom_shape": {
+    "name": "WGT-rig_root",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "VIS_upper_arm_ik_pole.L": {
+   "custom_shape": {
+    "name": "WGT-rig_VIS_upper_arm_ik_pole.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "VIS_upper_arm_ik_pole.R": {
+   "custom_shape": {
+    "name": "WGT-rig_VIS_upper_arm_ik_pole.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "VIS_thigh_ik_pole.L": {
+   "custom_shape": {
+    "name": "WGT-rig_VIS_thigh_ik_pole.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "VIS_thigh_ik_pole.R": {
+   "custom_shape": {
+    "name": "WGT-rig_VIS_thigh_ik_pole.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "torso": {
+   "custom_shape": {
+    "name": "WGT-rig_torso",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hips": {
+   "custom_shape": {
+    "name": "WGT-rig_hips",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "chest": {
+   "custom_shape": {
+    "name": "WGT-rig_chest",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "spine_fk.001": {
+   "custom_shape": {
+    "name": "WGT-rig_spine_fk.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "spine_fk": {
+   "custom_shape": {
+    "name": "WGT-rig_spine_fk",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "toe.L": {
+   "custom_shape": {
+    "name": "WGT-rig_toe.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_tweak.L": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_tweak.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_tweak.L": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_tweak.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_tweak.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_tweak.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_tweak.L.002": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_tweak.L.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_tweak.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_tweak.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_tweak.L.002": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_tweak.L.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "toe.R": {
+   "custom_shape": {
+    "name": "WGT-rig_toe.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_tweak.R": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_tweak.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_tweak.R": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_tweak.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_tweak.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_tweak.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_tweak.R.002": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_tweak.R.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_tweak.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_tweak.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_tweak.R.002": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_tweak.R.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_parent.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_parent.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_fk.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_fk.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_fk.L": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_fk.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_fk.L": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_fk.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_ik.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_ik.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_tweak.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_tweak.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_parent.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_parent.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_fk.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_fk.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shin_fk.R": {
+   "custom_shape": {
+    "name": "WGT-rig_shin_fk.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_fk.R": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_fk.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_ik.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_ik.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_tweak.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_tweak.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.001": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "spine_fk.002": {
+   "custom_shape": {
+    "name": "WGT-rig_spine_fk.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.002": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "spine_fk.003": {
+   "custom_shape": {
+    "name": "WGT-rig_spine_fk.003",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.003": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.003",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "spine_fk.007": {
+   "custom_shape": {
+    "name": "WGT-rig_spine_fk.007",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.007": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.007",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "spine_fk.008": {
+   "custom_shape": {
+    "name": "WGT-rig_spine_fk.008",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "neck": {
+   "custom_shape": {
+    "name": "WGT-rig_neck",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "head": {
+   "custom_shape": {
+    "name": "WGT-rig_head",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.004": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.004",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.005": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.005",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "tweak_spine.008": {
+   "custom_shape": {
+    "name": "WGT-rig_tweak_spine.008",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hand_tweak.L": {
+   "custom_shape": {
+    "name": "WGT-rig_hand_tweak.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_tweak.L": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_tweak.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_tweak.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_tweak.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_tweak.L.002": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_tweak.L.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_tweak.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_tweak.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_tweak.L.002": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_tweak.L.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_parent.L": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_parent.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_fk.L": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_fk.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_fk.L": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_fk.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hand_fk.L": {
+   "custom_shape": {
+    "name": "WGT-rig_hand_fk.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_ik.L": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_ik.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_tweak.L": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_tweak.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.01_master.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.01_master.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.01_master.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.01_master.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.01.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.01.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.02.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.02.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.03.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.03.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.01.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.01.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.01.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.01.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.02.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.02.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.03.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.03.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.01.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.01.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.01_master.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.01_master.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.01.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.01.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.02.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.02.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.03.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.03.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.01.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.01.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.01_master.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.01_master.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.01.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.01.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.02.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.02.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.03.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.03.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.01.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.01.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.01_master.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.01_master.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.01.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.01.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.02.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.02.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.03.L": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.03.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.01.L.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.01.L.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "palm.L": {
+   "custom_shape": {
+    "name": "WGT-rig_palm.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hand_tweak.R": {
+   "custom_shape": {
+    "name": "WGT-rig_hand_tweak.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_tweak.R": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_tweak.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_tweak.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_tweak.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_tweak.R.002": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_tweak.R.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_tweak.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_tweak.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_tweak.R.002": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_tweak.R.002",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_parent.R": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_parent.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_fk.R": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_fk.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "forearm_fk.R": {
+   "custom_shape": {
+    "name": "WGT-rig_forearm_fk.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hand_fk.R": {
+   "custom_shape": {
+    "name": "WGT-rig_hand_fk.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_ik.R": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_ik.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_tweak.R": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_tweak.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.01_master.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.01_master.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.01_master.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.01_master.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.01.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.01.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.02.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.02.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.03.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.03.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_index.01.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_index.01.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.01.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.01.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.02.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.02.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.03.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.03.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thumb.01.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_thumb.01.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.01_master.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.01_master.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.01.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.01.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.02.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.02.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.03.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.03.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_middle.01.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_middle.01.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.01_master.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.01_master.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.01.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.01.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.02.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.02.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.03.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.03.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_ring.01.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_ring.01.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.01_master.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.01_master.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.01.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.01.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.02.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.02.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.03.R": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.03.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "f_pinky.01.R.001": {
+   "custom_shape": {
+    "name": "WGT-rig_f_pinky.01.R.001",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "palm.01.R": {
+   "custom_shape": {
+    "name": "WGT-rig_palm.01.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "breast.L": {
+   "custom_shape": {
+    "name": "WGT-rig_breast.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "breast.R": {
+   "custom_shape": {
+    "name": "WGT-rig_breast.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shoulder.L": {
+   "custom_shape": {
+    "name": "WGT-rig_shoulder.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "shoulder.R": {
+   "custom_shape": {
+    "name": "WGT-rig_shoulder.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hand_ik.L": {
+   "custom_shape": {
+    "name": "WGT-rig_hand_ik.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_ik_target.L": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_ik_target.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "hand_ik.R": {
+   "custom_shape": {
+    "name": "WGT-rig_hand_ik.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "upper_arm_ik_target.R": {
+   "custom_shape": {
+    "name": "WGT-rig_upper_arm_ik_target.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_ik.L": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_ik.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_spin_ik.L": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_spin_ik.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_heel_ik.L": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_heel_ik.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_ik_target.L": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_ik_target.L",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_ik.R": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_ik.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_spin_ik.R": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_spin_ik.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "foot_heel_ik.R": {
+   "custom_shape": {
+    "name": "WGT-rig_foot_heel_ik.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  },
+  "thigh_ik_target.R": {
+   "custom_shape": {
+    "name": "WGT-rig_thigh_ik_target.R",
+    "translation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "scale": [
+     -1.0,
+     1.0,
+     1.0
+    ],
+    "use_bone_size": true
+   }
+  }
+ },
+ "bone_colors": {}
+}

@@ -1,0 +1,1978 @@
+[
+ {
+  "name": "Control Rig tweak_spine",
+  "label": "Control Rig tweak_spine",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -337.4118347167969,
+   1576.3341064453125
+  ],
+  "width": 188.047119140625,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "tweak_spine"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig tweak_spine.001",
+  "label": "Control Rig tweak_spine.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -352.9218444824219,
+   1684.91259765625
+  ],
+  "width": 203.6903076171875,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "tweak_spine.001"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_01",
+  "label": "Source Rig spine_01",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -80.28257751464844,
+   1684.912353515625
+  ],
+  "width": 194.7513427734375,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_01"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig pelvis",
+  "label": "Source Rig pelvis",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -63.77410888671875,
+   1575.55517578125
+  ],
+  "width": 183.57785034179688,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "pelvis"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig spine_fk.008",
+  "label": "Control Rig spine_fk.008",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -347.3382873535156,
+   1375.8642578125
+  ],
+  "width": 193.63421630859375,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_fk.008"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig spine_fk.007",
+  "label": "Control Rig spine_fk.007",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -343.9861145019531,
+   1275.41162109375
+  ],
+  "width": 189.1646728515625,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_fk.007"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig spine_fk.003",
+  "label": "Control Rig spine_fk.003",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -348.4556579589844,
+   1167.14599609375
+  ],
+  "width": 192.516845703125,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_fk.003"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig spine_fk.002",
+  "label": "Control Rig spine_fk.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -346.2208557128906,
+   1070.0419921875
+  ],
+  "width": 189.16470336914062,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_fk.002"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig spine_fk.001",
+  "label": "Control Rig spine_fk.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -347.3382263183594,
+   982.9830322265625
+  ],
+  "width": 188.04733276367188,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_fk.001"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig spine_fk",
+  "label": "Control Rig spine_fk",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -343.9864807128906,
+   883.646484375
+  ],
+  "width": 185.8128662109375,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_fk"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig head",
+  "label": "Control Rig head",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -303.76055908203125,
+   760.8717041015625
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "head"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig neck",
+  "label": "Control Rig neck",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -299.2909851074219,
+   669.346923828125
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "neck"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_05",
+  "label": "Source Rig spine_05",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -36.94643020629883,
+   1376.9364013671875
+  ],
+  "width": 185.81268310546875,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_05"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_04",
+  "label": "Source Rig spine_04",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -35.73052978515625,
+   1274.58740234375
+  ],
+  "width": 186.93008422851562,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_04"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_03",
+  "label": "Source Rig spine_03",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -30.1436767578125,
+   1165.2052001953125
+  ],
+  "width": 195.86917114257812,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_03"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_02",
+  "label": "Source Rig spine_02",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -34.61314010620117,
+   1070.3330078125
+  ],
+  "width": 208.16036987304688,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_02"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_02.001",
+  "label": "Source Rig spine_02.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -35.50727844238281,
+   984.0518188476562
+  ],
+  "width": 208.16036987304688,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_02"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig spine_01.001",
+  "label": "Source Rig spine_01.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -33.4871826171875,
+   886.3089599609375
+  ],
+  "width": 203.69110107421875,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "spine_01"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig head",
+  "label": "Source Rig head",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -31.25241470336914,
+   763.53271484375
+  ],
+  "width": 203.69110107421875,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "head"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig neck_02",
+  "label": "Source Rig neck_02",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -14.49163818359375,
+   669.7763671875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "neck_02"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig shoulder.R",
+  "label": "Control Rig shoulder.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -336.0314636230469,
+   536.2474365234375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "shoulder.L",
+   "shoulder.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig clavicle_r",
+  "label": "Source Rig clavicle_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -29.899250030517578,
+   538.479736328125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "clavicle_l",
+   "clavicle_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig root",
+  "label": "Control Rig root",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -299.978515625,
+   384.45086669921875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "root"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "root",
+  "label": "root",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -19.57404327392578,
+   385.56695556640625
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "object"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thigh_tweak.R.001",
+  "label": "Control Rig thigh_tweak.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -354.6676025390625,
+   237.67697143554688
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thigh_tweak.L.001",
+   "thigh_tweak.R.001"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig thigh_twist_01_r",
+  "label": "Source Rig thigh_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -41.81458282470703,
+   237.677001953125
+  ],
+  "width": 250.271728515625,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "thigh_twist_01_l",
+   "thigh_twist_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig shin_tweak.R",
+  "label": "Control Rig shin_tweak.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -363.5023193359375,
+   -94.82408142089844
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "shin_tweak.L",
+   "shin_tweak.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig calf_r",
+  "label": "Source Rig calf_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -35.618988037109375,
+   -95.38214874267578
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "calf_l",
+   "calf_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig shin_tweak.R.001",
+  "label": "Control Rig shin_tweak.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -363.9718933105469,
+   -187.82012939453125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "shin_tweak.L.001",
+   "shin_tweak.R.001"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig calf_twist_02_r",
+  "label": "Source Rig calf_twist_02_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -48.37723922729492,
+   -187.26205444335938
+  ],
+  "width": 236.86590576171875,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "calf_twist_02_l",
+   "calf_twist_02_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig shin_tweak.R.002",
+  "label": "Control Rig shin_tweak.R.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -356.15185546875,
+   -271.53131103515625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "shin_tweak.L.002",
+   "shin_tweak.R.002"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig calf_twist_01_r",
+  "label": "Source Rig calf_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -29.94425392150879,
+   -272.64752197265625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "calf_twist_01_l",
+   "calf_twist_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig toe.R",
+  "label": "Control Rig toe.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -371.23333740234375,
+   -599.679931640625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "toe.L",
+   "toe.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig ball_r",
+  "label": "Source Rig ball_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -38.32283401489258,
+   -598.5638427734375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "ball_l",
+   "ball_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig foot_tweak.R",
+  "label": "Control Rig foot_tweak.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -370.1162109375,
+   -707.388427734375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "foot_tweak.L",
+   "foot_tweak.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig foot_r",
+  "label": "Source Rig foot_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -34.971370697021484,
+   -706.830322265625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "foot_l",
+   "foot_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig foot_r.001",
+  "label": "Source Rig foot_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -40.467674255371094,
+   -822.43017578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "foot_l",
+   "foot_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig foot_fk.R",
+  "label": "Control Rig foot_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -365.07623291015625,
+   -823.197021484375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "foot_fk.L",
+   "foot_fk.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig shin_fk.R",
+  "label": "Control Rig shin_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -357.2562561035156,
+   -930.90576171875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "shin_fk.L",
+   "shin_fk.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig calf_r.001",
+  "label": "Source Rig calf_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -44.64667510986328,
+   -930.4466552734375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "calf_l",
+   "calf_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thigh_fk.R",
+  "label": "Control Rig thigh_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -356.512939453125,
+   -1307.2210693359375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thigh_fk.L",
+   "thigh_fk.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thigh_fk.R.001",
+  "label": "Control Rig thigh_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -59.350826263427734,
+   -1305.5467529296875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "thigh_l",
+   "thigh_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thigh_tweak.R",
+  "label": "Control Rig thigh_tweak.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -357.66937255859375,
+   -1190.216064453125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thigh_tweak.L",
+   "thigh_tweak.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thigh_fk.R.002",
+  "label": "Control Rig thigh_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -61.10052490234375,
+   -1189.63623046875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "thigh_l",
+   "thigh_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_pinky.01.L",
+  "label": "Control Rig f_pinky.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -358.53973388671875,
+   -1488.48486328125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_pinky.03.L",
+   "f_pinky.02.L",
+   "f_pinky.01.L"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig pinky_01_l",
+  "label": "Source Rig pinky_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -64.76679229736328,
+   -1486.7454833984375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "pinky_03_l",
+   "pinky_02_l",
+   "pinky_01_l"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_pinky.01.R",
+  "label": "Control Rig f_pinky.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -353.31707763671875,
+   -1601.540771484375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_pinky.03.R",
+   "f_pinky.02.R",
+   "f_pinky.01.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig pinky_01_r",
+  "label": "Source Rig pinky_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -56.93288040161133,
+   -1600.671142578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "pinky_03_r",
+   "pinky_02_r",
+   "pinky_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_ring.01.L",
+  "label": "Control Rig f_ring.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -357.66925048828125,
+   -1718.94482421875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_ring.03.L",
+   "f_ring.02.L",
+   "f_ring.01.L"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig ring_01_l",
+  "label": "Source Rig ring_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -66.94288635253906,
+   -1716.7706298828125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "ring_03_l",
+   "ring_02_l",
+   "ring_01_l"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_ring.01.R",
+  "label": "Control Rig f_ring.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -356.36358642578125,
+   -1824.608642578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_ring.03.R",
+   "f_ring.02.R",
+   "f_ring.01.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig ring_01_r",
+  "label": "Source Rig ring_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -59.54413604736328,
+   -1824.608642578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "ring_03_r",
+   "ring_02_r",
+   "ring_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_middle.01.L",
+  "label": "Control Rig f_middle.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -364.8900451660156,
+   -1942.6514892578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_middle.03.L",
+   "f_middle.02.L",
+   "f_middle.01.L"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig middle_01_l",
+  "label": "Source Rig middle_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -61.122711181640625,
+   -1943.5211181640625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "middle_03_l",
+   "middle_02_l",
+   "middle_01_l"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_middle.01.R",
+  "label": "Control Rig f_middle.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -361.9662780761719,
+   -2068.75244140625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_middle.03.R",
+   "f_middle.02.R",
+   "f_middle.01.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig middle_01_r",
+  "label": "Source Rig middle_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -66.50585174560547,
+   -2068.75244140625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "middle_03_r",
+   "middle_02_r",
+   "middle_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_index.01.L",
+  "label": "Control Rig f_index.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -356.7993469238281,
+   -2195.38720703125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_index.03.L",
+   "f_index.02.L",
+   "f_index.01.L"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig index_01_l",
+  "label": "Source Rig index_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -56.827842712402344,
+   -2195.38720703125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "index_03_l",
+   "index_02_l",
+   "index_01_l"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig f_index.01.R",
+  "label": "Control Rig f_index.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -349.29522705078125,
+   -2311.052490234375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "f_index.03.R",
+   "f_index.02.R",
+   "f_index.01.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig index_01_r",
+  "label": "Source Rig index_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -62.05046463012695,
+   -2308.878173828125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "index_03_r",
+   "index_02_r",
+   "index_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thumb.01.L",
+  "label": "Control Rig thumb.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -350.60089111328125,
+   -2447.154296875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thumb.03.L",
+   "thumb.02.L",
+   "thumb.01.L"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig thumb_01_l",
+  "label": "Source Rig thumb_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -63.35609436035156,
+   -2445.849853515625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "thumb_03_l",
+   "thumb_02_l",
+   "thumb_01_l"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig thumb.01.R",
+  "label": "Control Rig thumb.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -350.6009216308594,
+   -2562.8193359375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thumb.03.R",
+   "thumb.02.R",
+   "thumb.01.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig thumb_01_r",
+  "label": "Source Rig thumb_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -59.87437057495117,
+   -2564.558349609375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "thumb_03_r",
+   "thumb_02_r",
+   "thumb_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig upper_arm_tweak.R.001",
+  "label": "Control Rig upper_arm_tweak.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -354.4617614746094,
+   -2791.53515625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upper_arm_tweak.L.001",
+   "upper_arm_tweak.R.001"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig upperarm_twist_01_r",
+  "label": "Source Rig upperarm_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -58.077232360839844,
+   -2789.578125
+  ],
+  "width": 310.10198974609375,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "upperarm_twist_01_l",
+   "upperarm_twist_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig upper_arm_tweak.R.002",
+  "label": "Control Rig upper_arm_tweak.R.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -350.54473876953125,
+   -2888.067138671875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upper_arm_tweak.L.002",
+   "upper_arm_tweak.R.002"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig upperarm_twist_02_r",
+  "label": "Source Rig upperarm_twist_02_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -67.21691131591797,
+   -2889.37158203125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "upperarm_twist_02_l",
+   "upperarm_twist_02_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig hand_tweak.R",
+  "label": "Control Rig hand_tweak.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -357.0730285644531,
+   -3038.084228515625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "hand_tweak.L",
+   "hand_tweak.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig hand_r",
+  "label": "Source Rig hand_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -63.95277404785156,
+   -3036.779296875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "hand_l",
+   "hand_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig forearm_tweak.R.002",
+  "label": "Control Rig forearm_tweak.R.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -367.5182800292969,
+   -3212.885498046875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "forearm_tweak.L.002",
+   "forearm_tweak.R.002"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig lowerarm_twist_01_r",
+  "label": "Source Rig lowerarm_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -74.39806365966797,
+   -3214.8427734375
+  ],
+  "width": 276.47100830078125,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "lowerarm_twist_01_l",
+   "lowerarm_twist_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig forearm_tweak.R.001",
+  "label": "Control Rig forearm_tweak.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -330.073486328125,
+   -3381.75
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "forearm_tweak.L.001",
+   "forearm_tweak.R.001"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig lowerarm_twist_02_r",
+  "label": "Source Rig lowerarm_twist_02_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -43.387210845947266,
+   -3380.298095703125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "lowerarm_twist_02_l",
+   "lowerarm_twist_02_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig hand_fk.R",
+  "label": "Control Rig hand_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -326.7447814941406,
+   -3548.134765625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "hand_fk.L",
+   "hand_fk.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig hand_r.001",
+  "label": "Source Rig hand_r.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -43.250946044921875,
+   -3546.701904296875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "hand_l",
+   "hand_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig forearm_fk.R",
+  "label": "Control Rig forearm_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -327.150390625,
+   -3720.041259765625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "forearm_fk.L",
+   "forearm_fk.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig lowerarm_r",
+  "label": "Source Rig lowerarm_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -37.99358367919922,
+   -3719.0859375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "lowerarm_l",
+   "lowerarm_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig upper_arm_tweak.R",
+  "label": "Control Rig upper_arm_tweak.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -341.4887390136719,
+   -3884.30712890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upper_arm_tweak.L",
+   "upper_arm_tweak.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig upperarm_twist_01_r.002",
+  "label": "Source Rig upperarm_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -64.9507064819336,
+   -3883.019775390625
+  ],
+  "width": 310.10198974609375,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "upperarm_twist_01_l",
+   "upperarm_twist_01_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig upper_arm_fk.R",
+  "label": "Control Rig upper_arm_fk.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -338.63885498046875,
+   -4074.45166015625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upper_arm_fk.L",
+   "upper_arm_fk.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig upperarm_r",
+  "label": "Source Rig upperarm_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -4.193665504455566,
+   -4073.799560546875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "upperarm_l",
+   "upperarm_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig hand_ik.R",
+  "label": "Control Rig hand_ik.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -349.4568176269531,
+   -4358.587890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "hand_ik.L",
+   "hand_ik.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig ik_hand_r",
+  "label": "Source Rig ik_hand_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   7.013830184936523,
+   -4358.58740234375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "ik_hand_l",
+   "ik_hand_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Control Rig foot_ik.R",
+  "label": "Control Rig foot_ik.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -354.0269775390625,
+   -4543.83935546875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "foot_ik.L",
+   "foot_ik.R"
+  ],
+  "mode": "FK_TO_SOURCE"
+ },
+ {
+  "name": "Source Rig ik_foot_r",
+  "label": "Source Rig ik_foot_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   7.013830184936523,
+   -4539.27294921875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "ik_foot_l",
+   "ik_foot_r"
+  ],
+  "outputs": [],
+  "mode": "FK_TO_SOURCE"
+ }
+]
