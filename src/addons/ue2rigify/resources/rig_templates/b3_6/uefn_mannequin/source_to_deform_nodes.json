@@ -1,0 +1,1978 @@
+[
+ {
+  "name": "root",
+  "label": "root",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -613.6795043945312,
+   1205.2103271484375
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "object"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig root",
+  "label": "Control Rig root",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -364.892822265625,
+   1206.1993408203125
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "root"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig head",
+  "label": "Source Rig head",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -626.1997680664062,
+   1057.1795654296875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "head"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.006",
+  "label": "Control Rig DEF-spine.006",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -376.18035888671875,
+   1057.1796875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.006"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig neck_01",
+  "label": "Source Rig neck_01",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -622.5762939453125,
+   936.5052490234375
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "neck_01"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.004",
+  "label": "Control Rig DEF-spine.004",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -401.54473876953125,
+   936.5052490234375
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.004"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig neck_02",
+  "label": "Source Rig neck_02",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -623.7841796875,
+   820.6578369140625
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "neck_02"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.005",
+  "label": "Control Rig DEF-spine.005",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -414.83074951171875,
+   821.8645629882812
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.005"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig clavicle_r",
+  "label": "Source Rig clavicle_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -676.3244018554688,
+   676.4519653320312
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "clavicle_l",
+   "clavicle_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-shoulder.R",
+  "label": "Control Rig DEF-shoulder.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -381.61553955078125,
+   675.2451782226562
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-shoulder.L",
+   "DEF-shoulder.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig spine_05",
+  "label": "Source Rig spine_05",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -650.3562622070312,
+   469.4952697753906
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_05"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.008",
+  "label": "Control Rig DEF-spine.008",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -407.79571533203125,
+   469.495361328125
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.008"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig spine_04",
+  "label": "Source Rig spine_04",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -648.1004638671875,
+   398.6346740722656
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_04"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.007",
+  "label": "Control Rig DEF-spine.007",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -407.743408203125,
+   397.42791748046875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.007"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig spine_03",
+  "label": "Source Rig spine_03",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -637.22998046875,
+   304.5085144042969
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_03"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.003",
+  "label": "Control Rig DEF-spine.003",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -393.24957275390625,
+   309.3356018066406
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.003"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig spine_02",
+  "label": "Source Rig spine_02",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -640.8534545898438,
+   217.6229248046875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_02"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.002",
+  "label": "Control Rig DEF-spine.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -377.5478515625,
+   221.24325561523438
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.002"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig spine_01",
+  "label": "Source Rig spine_01",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -638.4378051757812,
+   116.25646209716797
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "spine_01"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine.001",
+  "label": "Control Rig DEF-spine.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -387.21038818359375,
+   117.46312713623047
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine.001"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig pelvis",
+  "label": "Source Rig pelvis",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -642.0612182617188,
+   16.09661102294922
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "pelvis"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-spine",
+  "label": "Control Rig DEF-spine",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -404.11993408203125,
+   19.71685028076172
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-spine"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-shin.L.001",
+  "label": "Control Rig DEF-shin.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -669.7352905273438,
+   -206.96047973632812
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thigh_l",
+   "thigh_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-shin.L.002",
+  "label": "Control Rig DEF-shin.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -419.7156982421875,
+   -206.96051025390625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-thigh.L",
+   "DEF-thigh.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig calf_r",
+  "label": "Source Rig calf_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -678.1900634765625,
+   -316.77435302734375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "calf_l",
+   "calf_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-shin.R",
+  "label": "Control Rig DEF-shin.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -425.15093994140625,
+   -316.17095947265625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-shin.L",
+   "DEF-shin.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig ball_r",
+  "label": "Source Rig ball_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -680.4808959960938,
+   -473.456787109375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ball_l",
+   "ball_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-toe.R",
+  "label": "Control Rig DEF-toe.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -401.47344970703125,
+   -472.2500305175781
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-toe.L",
+   "DEF-toe.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig foot_r",
+  "label": "Source Rig foot_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -682.896484375,
+   -589.9076538085938
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "foot_l",
+   "foot_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-foot.R",
+  "label": "Control Rig DEF-foot.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -404.4930725097656,
+   -589.9077758789062
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-foot.L",
+   "DEF-foot.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig calf_twist_01_r",
+  "label": "Source Rig calf_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -692.549072265625,
+   -752.03076171875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "calf_twist_01_l",
+   "calf_twist_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-shin.R.002",
+  "label": "Control Rig DEF-shin.R.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -397.8399353027344,
+   -750.2206420898438
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-shin.L.002",
+   "DEF-shin.R.002"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig calf_twist_02_r",
+  "label": "Source Rig calf_twist_02_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -691.3412475585938,
+   -873.9120483398438
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "calf_twist_02_l",
+   "calf_twist_02_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-shin.R.001",
+  "label": "Control Rig DEF-shin.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -405.6908264160156,
+   -875.7222290039062
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-shin.L.001",
+   "DEF-shin.R.001"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig thigh_twist_01_r",
+  "label": "Source Rig thigh_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -686.5018920898438,
+   -1039.54638671875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thigh_twist_01_l",
+   "thigh_twist_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-thigh.R.001",
+  "label": "Control Rig DEF-thigh.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -397.2279357910156,
+   -1038.94287109375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-thigh.L.001",
+   "DEF-thigh.R.001"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig lowerarm_r",
+  "label": "Source Rig lowerarm_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -694.9546508789062,
+   -1198.0858154296875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "lowerarm_l",
+   "lowerarm_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-forearm.R",
+  "label": "Control Rig DEF-forearm.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -396.6220397949219,
+   -1195.67236328125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-forearm.L",
+   "DEF-forearm.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig thigh_r",
+  "label": "Source Rig thigh_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -693.8092041015625,
+   -1356.5272216796875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thigh_l",
+   "thigh_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-thigh.R",
+  "label": "Control Rig DEF-thigh.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -388.8333740234375,
+   -1354.71728515625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-thigh.L",
+   "DEF-thigh.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig pinky_01_l",
+  "label": "Source Rig pinky_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -673.6807861328125,
+   -1534.8900146484375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "pinky_03_l",
+   "pinky_02_l",
+   "pinky_01_l"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_pinky.01.L",
+  "label": "Control Rig DEF-f_pinky.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -378.5688781738281,
+   -1535.694580078125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_pinky.03.L",
+   "DEF-f_pinky.02.L",
+   "DEF-f_pinky.01.L"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig pinky_01_r",
+  "label": "Source Rig pinky_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -671.26513671875,
+   -1645.1060791015625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "pinky_03_r",
+   "pinky_02_r",
+   "pinky_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_pinky.01.R",
+  "label": "Control Rig DEF-f_pinky.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -366.4906005859375,
+   -1646.715087890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_pinky.03.R",
+   "DEF-f_pinky.02.R",
+   "DEF-f_pinky.01.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig ring_01_l",
+  "label": "Source Rig ring_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -658.008056640625,
+   -1867.3199462890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ring_03_l",
+   "ring_02_l",
+   "ring_01_l"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_ring.01.L",
+  "label": "Control Rig DEF-f_ring.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -371.75347900390625,
+   -1865.7108154296875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_ring.03.L",
+   "DEF-f_ring.02.L",
+   "DEF-f_ring.01.L"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig ring_01_r",
+  "label": "Source Rig ring_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -649.9558715820312,
+   -1998.452880859375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ring_03_r",
+   "ring_02_r",
+   "ring_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_ring.01.R",
+  "label": "Control Rig DEF-f_ring.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -364.10394287109375,
+   -2002.0731201171875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_ring.03.R",
+   "DEF-f_ring.02.R",
+   "DEF-f_ring.01.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig middle_01_l",
+  "label": "Source Rig middle_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -650.7308959960938,
+   -2182.88037109375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "middle_03_l",
+   "middle_02_l",
+   "middle_01_l"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_middle.01.L",
+  "label": "Control Rig DEF-f_middle.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -357.6319274902344,
+   -2182.47802734375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_middle.03.L",
+   "DEF-f_middle.02.L",
+   "DEF-f_middle.01.L"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig middle_01_r",
+  "label": "Source Rig middle_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -658.3804321289062,
+   -2303.554931640625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "middle_03_r",
+   "middle_02_r",
+   "middle_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_middle.01.R",
+  "label": "Control Rig DEF-f_middle.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -340.3171691894531,
+   -2300.739013671875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_middle.03.R",
+   "DEF-f_middle.02.R",
+   "DEF-f_middle.01.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig index_01_l",
+  "label": "Source Rig index_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -649.1420288085938,
+   -2515.289306640625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "index_03_l",
+   "index_02_l",
+   "index_01_l"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_index.01.L",
+  "label": "Control Rig DEF-f_index.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -356.4456787109375,
+   -2511.6689453125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_index.03.L",
+   "DEF-f_index.02.L",
+   "DEF-f_index.01.L"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig index_01_r",
+  "label": "Source Rig index_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -647.5316162109375,
+   -2645.215576171875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "index_03_r",
+   "index_02_r",
+   "index_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-f_index.01.R",
+  "label": "Control Rig DEF-f_index.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -344.77001953125,
+   -2644.0087890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-f_index.03.R",
+   "DEF-f_index.02.R",
+   "DEF-f_index.01.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig thumb_01_l",
+  "label": "Source Rig thumb_01_l",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -650.349853515625,
+   -2860.41845703125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thumb_03_l",
+   "thumb_02_l",
+   "thumb_01_l"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-thumb.01.L",
+  "label": "Control Rig DEF-thumb.01.L",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -335.1073913574219,
+   -2861.22314453125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-thumb.03.L",
+   "DEF-thumb.02.L",
+   "DEF-thumb.01.L"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig thumb_01_r",
+  "label": "Source Rig thumb_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -643.5054931640625,
+   -3006.032958984375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "thumb_03_r",
+   "thumb_02_r",
+   "thumb_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-thumb.01.R",
+  "label": "Control Rig DEF-thumb.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -323.8343811035156,
+   -3006.03271484375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-thumb.03.R",
+   "DEF-thumb.02.R",
+   "DEF-thumb.01.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig pinky_metacarpal_r",
+  "label": "Source Rig pinky_metacarpal_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -642.7376708984375,
+   -3187.518798828125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "pinky_metacarpal_l",
+   "pinky_metacarpal_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-palm.04.R",
+  "label": "Control Rig DEF-palm.04.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -341.9481201171875,
+   -3187.948486328125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-palm.04.L",
+   "DEF-palm.04.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig ring_metacarpal_r",
+  "label": "Source Rig ring_metacarpal_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -644.236328125,
+   -3271.605712890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ring_metacarpal_l",
+   "ring_metacarpal_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-palm.03.R",
+  "label": "Control Rig DEF-palm.03.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -348.6704406738281,
+   -3270.5732421875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-palm.03.L",
+   "DEF-palm.03.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig middle_metacarpal_r",
+  "label": "Source Rig middle_metacarpal_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -637.8878173828125,
+   -3368.987548828125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "middle_metacarpal_l",
+   "middle_metacarpal_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-palm.02.R",
+  "label": "Control Rig DEF-palm.02.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -346.0519104003906,
+   -3368.26171875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-palm.02.L",
+   "DEF-palm.02.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig index_metacarpal_r",
+  "label": "Source Rig index_metacarpal_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -635.890625,
+   -3455.935791015625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "index_metacarpal_l",
+   "index_metacarpal_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-palm.01.R",
+  "label": "Control Rig DEF-palm.01.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -345.49041748046875,
+   -3457.48486328125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-palm.01.L",
+   "DEF-palm.01.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig lowerarm_twist_01_r",
+  "label": "Source Rig lowerarm_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -650.8260498046875,
+   -3621.564208984375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "lowerarm_twist_01_l",
+   "lowerarm_twist_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-forearm.R.002",
+  "label": "Control Rig DEF-forearm.R.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -348.0242614746094,
+   -3623.11328125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-forearm.L.002",
+   "DEF-forearm.R.002"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig lowerarm_twist_02_r",
+  "label": "Source Rig lowerarm_twist_02_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -653.4096069335938,
+   -3764.053466796875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "lowerarm_twist_02_l",
+   "lowerarm_twist_02_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-forearm.R.001",
+  "label": "Control Rig DEF-forearm.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -355.775146484375,
+   -3760.95556640625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-forearm.L.001",
+   "DEF-forearm.R.001"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig hand_r",
+  "label": "Source Rig hand_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -640.00732421875,
+   -3951.6962890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "hand_l",
+   "hand_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-hand.R",
+  "label": "Control Rig DEF-hand.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -333.07171630859375,
+   -3952.212890625
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-hand.L",
+   "DEF-hand.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig upperarm_r",
+  "label": "Source Rig upperarm_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -653.8892822265625,
+   -4120.96142578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upperarm_l",
+   "upperarm_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-upper_arm.R",
+  "label": "Control Rig DEF-upper_arm.R",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -345.241455078125,
+   -4122.708984375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-upper_arm.L",
+   "DEF-upper_arm.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig upperarm_twist_01_r",
+  "label": "Source Rig upperarm_twist_01_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -655.7699584960938,
+   -4290.6552734375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upperarm_twist_01_l",
+   "upperarm_twist_01_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-upper_arm.R.001",
+  "label": "Control Rig DEF-upper_arm.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -335.6758728027344,
+   -4292.32958984375
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-upper_arm.L.001",
+   "DEF-upper_arm.R.001"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig upperarm_twist_02_r",
+  "label": "Source Rig upperarm_twist_02_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -662.9928588867188,
+   -4453.42578125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "upperarm_twist_02_l",
+   "upperarm_twist_02_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-upper_arm.R.002",
+  "label": "Control Rig DEF-upper_arm.R.002",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -344.0141296386719,
+   -4452.30908203125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-upper_arm.L.002",
+   "DEF-upper_arm.R.002"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-hand.R.001",
+  "label": "Control Rig DEF-hand.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -321.6926574707031,
+   -4616.6357421875
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-hand.L",
+   "DEF-hand.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-hand.R.002",
+  "label": "Control Rig DEF-hand.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -680.3355102539062,
+   -4614.40283203125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ik_hand_l",
+   "ik_hand_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig ik_hand_gun",
+  "label": "Source Rig ik_hand_gun",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -663.5765380859375,
+   -4763.98291015625
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ik_hand_gun"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-hand.R.003",
+  "label": "",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -322.0072937011719,
+   -4763.927734375
+  ],
+  "width": 140.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-hand.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Source Rig ik_foot_r",
+  "label": "Source Rig ik_foot_r",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -715.6161499023438,
+   -4959.12060546875
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [],
+  "outputs": [
+   "ik_foot_l",
+   "ik_foot_r"
+  ],
+  "mode": "SOURCE_TO_DEFORM"
+ },
+ {
+  "name": "Control Rig DEF-foot.R.001",
+  "label": "Control Rig DEF-foot.R.001",
+  "color": [
+   0.6079999804496765,
+   0.6079999804496765,
+   0.6079999804496765
+  ],
+  "use_custom_color": false,
+  "location": [
+   -364.23126220703125,
+   -4957.44580078125
+  ],
+  "width": 200.0,
+  "height": 100.0,
+  "type": "CUSTOM",
+  "inputs": [
+   "DEF-foot.L",
+   "DEF-foot.R"
+  ],
+  "outputs": [],
+  "mode": "SOURCE_TO_DEFORM"
+ }
+]
