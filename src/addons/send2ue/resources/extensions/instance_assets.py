@@ -136,10 +136,16 @@ class InstanceAssetsExtension(ExtensionBase):
                 UnrealTypes.SKELETAL_MESH
             ]:
                 scene_object = bpy.data.objects.get(asset_data['_mesh_object_name'])
-                unique_name = scene_object.name
-                location = list(scene_object.matrix_world.translation)
-                rotation = scene_object.rotation_euler
-                scale = scene_object.scale[:]
+                if scene_object.parent and scene_object.parent.type == 'EMPTY':
+                    unique_name = scene_object.parent.name
+                    location = list(scene_object.parent.matrix_world.translation)
+                    rotation = scene_object.parent.rotation_euler
+                    scale = scene_object.parent.scale[:]
+                else:
+                    unique_name = scene_object.name
+                    location = list(scene_object.matrix_world.translation)
+                    rotation = scene_object.rotation_euler
+                    scale = scene_object.scale[:]
 
             # anim sequences use the transforms of the first frame of the action
             if asset_type == UnrealTypes.ANIM_SEQUENCE:
