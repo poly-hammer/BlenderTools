@@ -40,9 +40,10 @@ class RPCFactory:
         :rtype: str
         """
         # run the function code
-        exec('\n'.join(code))
+        local_env = {}
+        exec('\n'.join(code), None, local_env)
         # get the function from the locals
-        function_instance = locals().copy().get(function_name)
+        function_instance = local_env.get(function_name)
         # get the doc strings from the function
         return function_instance.__doc__
 
