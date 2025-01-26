@@ -13,6 +13,8 @@ on:
       - 'ue2rigify/**/*'
       - 'tests/**/*'
       - '.github/workflows/**'
+    paths-ignore:
+      - '.github/workflows/docs.yml'
 
 permissions:
   contents: read
