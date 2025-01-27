@@ -62,7 +62,8 @@ class Ue2RigifyExtension(ExtensionBase):
         # sync the track values
         if self.use_ue2rigify and self.auto_sync_control_nla_to_source:
             bpy.context.scene.frame_set(0)
-            bpy.ops.ue2rigify.sync_rig_actions()
+            if bpy.context.scene.ue2rigify.source_rig:
+                bpy.ops.ue2rigify.sync_rig_actions()
 
     def post_operation(self, properties):
         """
