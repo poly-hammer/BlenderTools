@@ -65,6 +65,8 @@ class CombineAssetsExtension(ExtensionBase):
         """
         box = layout.box()
         dialog.draw_property(self, box, 'combine')
+        if self.combine == Options.CHILD_MESHES:
+            box.label(text="Meshes must be parented to an Empty to combine", icon="HELP")
 
     def pre_operation(self, properties):
         """
