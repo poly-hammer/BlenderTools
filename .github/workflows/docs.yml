@@ -56,6 +56,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Inject Google Site Verification Meta Tag
+        run: |
+          META_TAG='<meta name="google-site-verification" content="T7ucgrEv7BeYVTUvpVWeSi6hZdZUrcUfhsaAG5WcQ_A" />'
+          find ./site -name "*.html" -exec sudo sed -i "s|</head>|$META_TAG\n</head>|g" {} +
+
       - name: Upload Built Docs
         uses: actions/upload-pages-artifact@v3
         with:
