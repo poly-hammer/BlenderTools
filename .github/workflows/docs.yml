@@ -58,8 +58,9 @@ jobs:
 
       - name: Inject Google Site Verification Meta Tag
         run: |
-          META_TAG='<meta name="google-site-verification" content="T7ucgrEv7BeYVTUvpVWeSi6hZdZUrcUfhsaAG5WcQ_A" />'
-          find ./site -name "*.html" -exec sudo sed -i "s|</head>|$META_TAG\n</head>|g" {} +
+          META_GSV='<meta name="google-site-verification" content="T7ucgrEv7BeYVTUvpVWeSi6hZdZUrcUfhsaAG5WcQ_A" />'
+          META_KEYWORDS='<meta name="keywords" content="Send2UE, Send to Unreal, UE2Rigify, UE to Rigify, BlenderTools, Blender Tools, blender to unreal, import fbx to unreal, unreal engine fbx" />'
+          find ./site -name "index.html" -exec sudo sed -i "s|</head>|$META_GSV\n$META_KEYWORDS\n</head>|g" {} +
 
       - name: Upload Built Docs
         uses: actions/upload-pages-artifact@v3
