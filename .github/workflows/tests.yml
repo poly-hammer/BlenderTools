@@ -13,6 +13,7 @@ on:
       - 'ue2rigify/**/*'
       - 'tests/**/*'
       - '.github/workflows/**'
+      - '!.github/workflows/docs.yml'
 
 permissions:
   contents: read
