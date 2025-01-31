@@ -23,41 +23,41 @@ However there is a solution built into Rigify that can update the metarig when y
 
 >Requires Blender 3.6
 
-1. Open your exported template zip file and extract the metarig.py file to the following location in your Blender 3.6 install:
+- Open your exported template zip file and extract the metarig.py file to the following location in your Blender 3.6 install:
 
-`C:\Program Files\Blender Foundation\Blender 3.6\3.6\scripts\addons\rigify\metarigs`
+    `C:\Program Files\Blender Foundation\Blender 3.6\3.6\scripts\addons\rigify\metarigs`
 
-![1](./images/1.png)
+    ![1](./images/1.png)
 
-2. Rename metarig.py to something recognizable i.e.
+- Rename metarig.py to something recognizable i.e.
 `demometarig.py`
 
-3. Open Blender 3.6 and add your metarig to the scene
+- Open Blender 3.6 and add your metarig to the scene
 
-![2](./images/2.png)
+    ![2](./images/2.png)
 
-4. Create a new save, close Blender 3.6, and open the new save in Blender 4+
+- Create a new save, close Blender 3.6, and open the new save in Blender 4+
 
-5. Select the rig and open the Armature data tab. You should see Rigify tell you it needs to update to Collections. Click `Upgrade Metarig`
+- Select the rig and open the Armature data tab. You should see Rigify tell you it needs to update to Collections. Click `Upgrade Metarig`
 
-![3](./images/3.png)
+    ![3](./images/3.png)
 
-6. Switch to Edit Mode with the armature still selected. A Rigify menu should appear at the top. Click `Rigify > Encode Metarig`
+- Switch to Edit Mode with the armature still selected. A Rigify menu should appear at the top. Click `Rigify > Encode Metarig`
 
-![4](./images/4.png)
+    ![4](./images/4.png)
 
-7. Switch your Viewport to Text Editor and open the new metarig.py
+- Switch your Viewport to Text Editor and open the new metarig.py
 
-![5](./images/5.png)
+    ![5](./images/5.png)
 
-![6](./images/6.png)
+    ![6](./images/6.png)
 
-8. Save the file to Desktop keeping the name as `metarig.py` and replace the metarig file in your template zip with the new one.
+- Save the file to Desktop keeping the name as `metarig.py` and replace the metarig file in your template zip with the new one.
 
-![7](./images/7.png)
+    ![7](./images/7.png)
 
-9. Before attempting to import your template again, **you must delete the previous attempt from UE2Rigify's templates folder.** Default location can be found above.
+- Before attempting to import your template again, **you must delete the previous attempt from UE2Rigify's templates folder.** Default location can be found above.
 
-10. Restart Blender 4+ and import your template. It should now work as intended!
+- Restart Blender 4+ and import your template. It should now work as intended!
 
-![8](./images/8.png)
+    ![8](./images/8.png)
