@@ -1,0 +1,4 @@
+site_name: BlenderTools | Send2UE and UE2Rigify
+site_url: https://poly-hammer.github.io/BlenderTools/
+plugins:
+  - tags

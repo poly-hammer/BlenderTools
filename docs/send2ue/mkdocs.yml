@@ -1,4 +1,6 @@
+INHERIT: "../mkdocs.yml"
 site_name: send2ue
+site_url: https://poly-hammer.github.io/BlenderTools/send2ue/
 docs_dir: '.'
 nav:
   - Overview: "./index.md"

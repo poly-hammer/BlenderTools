@@ -1,4 +1,6 @@
+INHERIT: "../mkdocs.yml"
 site_name: ue2rigify
+site_url: https://poly-hammer.github.io/BlenderTools/ue2rigify/
 docs_dir: '.'
 nav:
   - Overview: "./index.md"
