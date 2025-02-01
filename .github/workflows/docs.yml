@@ -4,7 +4,7 @@ on:
   # Runs on pushes targeting the main branch
   push:
     branches: 
-      - "main"
+      - "docs-main"
     paths:
       - "docs/**/*"
 
