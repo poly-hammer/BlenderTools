@@ -34,6 +34,11 @@ def add_affixes():
                     mesh_object,
                     properties.extensions.affixes.static_mesh_name_affix
                 )
+        elif mesh_object.active_shape_key:
+            append_affix(
+                mesh_object,
+                properties.extensions.affixes.skeletal_mesh_name_affix
+            )
         else:
             append_affix(mesh_object, properties.extensions.affixes.static_mesh_name_affix)
         

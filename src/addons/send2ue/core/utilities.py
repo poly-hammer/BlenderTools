@@ -187,7 +187,8 @@ def get_mesh_unreal_type(mesh_object):
     """
     has_parent_rig = mesh_object.parent and mesh_object.parent.type == BlenderTypes.SKELETON
     rig = get_armature_modifier_rig_object(mesh_object)
-    if has_parent_rig or rig:
+    has_shapekey = mesh_object.active_shape_key
+    if has_parent_rig or rig or has_shapekey:
         return UnrealTypes.SKELETAL_MESH
     return UnrealTypes.STATIC_MESH
 
