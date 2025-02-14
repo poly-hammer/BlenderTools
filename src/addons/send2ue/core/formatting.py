@@ -111,6 +111,12 @@ def auto_format_unreal_folder_path(name, properties):
             name,
             error_message
         )
+    elif not formatted_value.startswith('/'):
+        error_message = 'Path must have a leading forward slash. i.e. "/Game/"'
+        set_property_error_message(
+            name,
+            error_message
+        )
     elif not len(formatted_value.split('/')) >= 2:
         error_message = 'Please specify at least a root folder location.'
         set_property_error_message(
