@@ -204,7 +204,10 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
         """
         game_path = utilities.get_import_path(properties, asset_type)
         sub_path = self.get_collections_as_path(scene_object, properties)
-        import_path = f'{game_path}{sub_path}/'
+        if sub_path:
+            import_path = f'{game_path}{sub_path}/'
+        else:
+            import_path = f'{game_path}'
         return import_path
 
     def get_collections_as_path(self, scene_object, properties):
@@ -219,10 +222,12 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
         if self.use_collections_as_folders and len(scene_object.users_collection) > 0:
             parent_collection = scene_object.users_collection[0]
             parent_collection_name = utilities.get_asset_name(parent_collection.name, properties)
-            parent_names.append(parent_collection_name)
-            self.set_parent_collection_names(parent_collection, parent_names, properties)
-            parent_names.reverse()
-            return '/'.join(parent_names).replace(f'{ToolInfo.EXPORT_COLLECTION.value}/', '')
+            if parent_collection_name != "Export":
+                parent_names.append(parent_collection_name)
+            if len(parent_names) > 0:    
+                self.set_parent_collection_names(parent_collection, parent_names, properties)
+                parent_names.reverse()
+                return '/'.join(parent_names).replace(f'{ToolInfo.EXPORT_COLLECTION.value}/', '')
 
         return ''
 
@@ -238,7 +243,8 @@ class UseCollectionsAsFoldersExtension(ExtensionBase):
         for parent_collection in bpy.data.collections:
             if collection.name in parent_collection.children.keys():
                 parent_collection_name = utilities.get_asset_name(parent_collection.name, properties)
-                parent_names.append(parent_collection_name)
+                if parent_collection_name != "Export":
+                    parent_names.append(parent_collection_name)
                 self.set_parent_collection_names(parent_collection, parent_names, properties)
                 return None
 
