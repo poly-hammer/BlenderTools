@@ -336,6 +336,16 @@ class ValidationManager:
                         )
                     )
                     return False
+        
+        if self.properties.validate_project_settings:
+            if not UnrealRemoteCalls.is_using_legacy_fbx_importer():
+                utilities.report_error(
+                    "The Legacy FBX Importer must be used instead of Scene Interchange. Please run this command in the "
+                    "Unreal Editor: Interchange.FeatureFlags.Import.FBX False. Otherwise, persist this in the project's "
+                    "DefaultEngine.ini file."
+                )
+                return False
+
         return True
 
     # TODO: temporary validation before lods support for groom is added
