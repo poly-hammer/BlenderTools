@@ -47,6 +47,15 @@ Once you have enabled the plugins and project settings, you'll be prompted to re
 
 Search for "python" and then enable `remote execution` and set the Multicast bind address to `0.0.0.0` if you are not using a Windows machine, otherwise leave this set to `127.0.0.1`. Now Send to Unreal will work with your new Unreal project.
 
+!!! note
+
+    For Unreal 5.5 and higher, the default FBX Importer should be set to use the Legacy FBX Importer. This can be done by changing the project's `DefaultEngine.ini` file to contain.
+    ```ini
+    [ConsoleVariables]
+    Interchange.FeatureFlags.Import.FBX=False
+    ```
+
+
 ![8](./images/8.png)
 
 Another thing that is useful to enable under `Edit > Editor Preferences`
