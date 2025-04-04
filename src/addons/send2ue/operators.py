@@ -18,7 +18,8 @@ class Send2Ue(bpy.types.Operator):
     bl_idname = "wm.send2ue"
     bl_label = "Push Assets"
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.timer = None
         self.escape = False
         self.done = False
