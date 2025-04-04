@@ -80,6 +80,17 @@ def get_operator_class_by_bl_idname(bl_idname):
     context, name = bl_idname.split('.')
     return getattr(bpy.types, f'{context.upper()}_OT_{name}', None)
 
+def find_lod_gflags(string):
+    global_flags = r"\(\?[xims]*\)"
+    matches =  re.findall(global_flags, string)
+    
+    return matches
+
+def strip_lod_gflags(string, matches):
+    for match in matches:
+        string = string.replace(match, "")
+    
+    return string
 
 def get_lod0_name(asset_name, properties):
     """
@@ -833,16 +844,19 @@ def is_collision_of(asset_name, mesh_object_name, properties):
     # note we strip whitespace out of the collision name since whitespace is already striped out of the asset name
     # https://github.com/EpicGamesExt/BlenderTools/issues/397#issuecomment-1333982590
     mesh_object_name = mesh_object_name.strip()
-
-    # fixes error re.error: global flags not at the start of the expression
-    lod_regex = properties.lod_regex.replace('(?i)', '')
+    
+    # strip global regex flags
+    matches = find_lod_gflags(properties.lod_regex)
+    lod_regex = strip_lod_gflags(properties.lod_regex, matches)
+    match_prefix = ''.join(matches)
 
     return bool(
         re.fullmatch(
             r"U(BX|CP|SP|CX)_" + asset_name + r"(_\d+)?",
             mesh_object_name
         ) or re.fullmatch(
-            r"(?i)U(BX|CP|SP|CX)_" + asset_name + rf"{lod_regex}(_\d+)?", mesh_object_name
+            match_prefix + r"U(BX|CP|SP|CX)_" + asset_name + rf"{lod_regex}(_\d+)?",
+            mesh_object_name
         )
     )
 
