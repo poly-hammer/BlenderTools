@@ -1104,7 +1104,7 @@ class UnrealRemoteCalls:
     
     @staticmethod
     def is_using_legacy_fbx_importer():
-        if float(unreal.SystemLibrary.get_engine_version().split('-')[-1]) >= 5.5:
+        if float(unreal.SystemLibrary.get_engine_version().split('-')[0].rsplit('.',1)[0]) >= 5.5:
             value = unreal.SystemLibrary.get_console_variable_string_value(r'Interchange.FeatureFlags.Import.FBX')
             return value.lower() in ['false', '0']
         else:
