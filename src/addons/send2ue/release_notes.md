@@ -1,6 +1,6 @@
 ## Patch Changes
 * Fixed unreal connection error when sending to disk
-  * [142](https://github.com/poly-hammer/BlenderTools/pull/142)
+  * [148](https://github.com/poly-hammer/BlenderTools/pull/148)
 
 ## Special Thanks
 
