@@ -337,7 +337,7 @@ class ValidationManager:
                     )
                     return False
         
-        if self.properties.validate_project_settings:
+        if self.properties.validate_project_settings and self.properties.path_mode != PathModes.SEND_TO_DISK.value:
             if not UnrealRemoteCalls.is_using_legacy_fbx_importer():
                 utilities.report_error(
                     "The Legacy FBX Importer must be used instead of Scene Interchange. Please run this command in the "
