@@ -1,8 +1,9 @@
 ## Patch Changes
-* Fixed unreal connection error when sending to disk
-  * [148](https://github.com/poly-hammer/BlenderTools/pull/148)
+* Fixed traceback error (missing comma)
+  * [152](https://github.com/poly-hammer/BlenderTools/pull/152)
 
 ## Special Thanks
+@Kamushekp
 
 ## Tests Passing On
 * Blender `3.6`, `4.2` (installed from blender.org)
