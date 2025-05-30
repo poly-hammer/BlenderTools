@@ -113,12 +113,12 @@ def append_affix(scene_object, affix, is_image=False):
     if affix.endswith("_"):
         if scene_object.name.startswith(affix):
             return  # Do not add prefix when its already present
-        scene_object.name = affix + asset_name + ext
+        scene_object.rename(affix + asset_name + ext)
     # Suffix
     else:
         if scene_object.name.endswith(affix):
             return  # Do not add suffix when its already present
-        scene_object.name = asset_name + affix + ext
+        scene_object.rename(asset_name + affix + ext)
 
     return scene_object.name
 
@@ -138,11 +138,11 @@ def discard_affix(scene_object, affix, is_image=False):
     # Prefix
     if affix.endswith("_"):
         if scene_object.name.startswith(affix):
-            scene_object.name = asset_name[len(affix):] + ext
+            scene_object.rename(asset_name[len(affix):] + ext)
     # Suffix
     else:
         if scene_object.name.endswith(affix):
-            scene_object.name = asset_name[:-len(affix)] + ext
+            scene_object.rename(asset_name[:-len(affix)] + ext)
 
 
 def get_texture_images(mesh_object):
