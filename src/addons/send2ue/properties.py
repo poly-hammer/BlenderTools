@@ -23,6 +23,11 @@ class Send2UeAddonProperties:
         default=True,
         description=f"This automatically creates the pre-defined collection (Export)"
     )
+    quick_access_button: bpy.props.BoolProperty(
+        name="Enable quick access push button",
+        default=True,
+        description="Adds a Push Assets button next to the Pipeline menu"
+    )
     # ------------- Remote Execution settings ------------------
     rpc_response_timeout: bpy.props.IntProperty(
         name="RPC Response Timeout",
