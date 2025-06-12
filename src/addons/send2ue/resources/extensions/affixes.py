@@ -97,6 +97,24 @@ def save_image_filepath(image):
     path, filename = os.path.split(image.filepath_from_user())
     AffixesExtension.images_original_paths.append(path)
 
+def safe_rename(scene_object, new_name):
+    if bpy.app.version[0] >= 4 and bpy.app.version[1] >= 3:
+        # v4.3 introduced new API for mutating object names
+        scene_object.rename(new_name)
+    else:
+        # v4.2.x and earlier
+        try:
+            scene_object.name = new_name
+        except AttributeError:
+            if bpy.app.version[0] >= 4:
+                # workaround for v4.0 - v4.2.x
+                # (v4.0 blocks renames for objs in linked files but didn't introduce an alternative API until v4.3).
+                utilities.report_error('WARNING', f'Failed to rename read-only object "{scene_object.name}" to "{new_name}"', False)
+            else:
+                # v3.x or earlier, raise as ususal
+                raise
+
+
 def append_affix(scene_object, affix, is_image=False):
     """
     Appends the affix to the object.
@@ -113,12 +131,12 @@ def append_affix(scene_object, affix, is_image=False):
     if affix.endswith("_"):
         if scene_object.name.startswith(affix):
             return  # Do not add prefix when its already present
-        scene_object.rename(affix + asset_name + ext)
+        safe_rename(scene_object, affix + asset_name + ext)
     # Suffix
     else:
         if scene_object.name.endswith(affix):
             return  # Do not add suffix when its already present
-        scene_object.rename(asset_name + affix + ext)
+        safe_rename(scene_object, asset_name + affix + ext)
 
     return scene_object.name
 
@@ -138,11 +156,11 @@ def discard_affix(scene_object, affix, is_image=False):
     # Prefix
     if affix.endswith("_"):
         if scene_object.name.startswith(affix):
-            scene_object.rename(asset_name[len(affix):] + ext)
+            safe_rename(scene_object, asset_name[len(affix):] + ext)
     # Suffix
     else:
         if scene_object.name.endswith(affix):
-            scene_object.rename(asset_name[:-len(affix)] + ext)
+            safe_rename(scene_object, asset_name[:-len(affix)] + ext)
 
 
 def get_texture_images(mesh_object):
