@@ -25,7 +25,7 @@ class Send2UeAddonProperties:
     )
     quick_access_button: bpy.props.BoolProperty(
         name="Enable quick access push button",
-        default=True,
+        default=False,
         description="Adds a Push Assets button next to the Pipeline menu"
     )
     # ------------- Remote Execution settings ------------------
