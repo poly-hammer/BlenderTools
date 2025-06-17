@@ -63,7 +63,7 @@ jobs:
           
 
       - name: Publish ${{ inputs.title }} Report
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         # always run even if the previous step fails
         if: success() || failure()
         with:
