@@ -55,6 +55,20 @@ class TOPBAR_MT_Pipeline(bpy.types.Menu):
     def draw(self, context):
         pass
 
+def quick_access(self, context):
+    self.layout.operator('wm.send2ue')
+
+def add_quick_access_button():
+    try:
+        bpy.types.TOPBAR_MT_editor_menus.remove(quick_access)
+    finally:
+        bpy.types.TOPBAR_MT_editor_menus.append(quick_access)
+
+def remove_quick_access_button():
+    try:
+        bpy.types.TOPBAR_MT_editor_menus.remove(quick_access)
+    finally:
+        pass
 
 def pipeline_menu(self, context):
     """

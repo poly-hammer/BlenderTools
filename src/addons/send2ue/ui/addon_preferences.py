@@ -114,6 +114,8 @@ class SendToUnrealPreferences(Send2UeAddonProperties, bpy.types.AddonPreferences
         :param context: The context of this interface.
         """
         row = self.layout.row()
+        row.prop(self, 'quick_access_button')
+        row = self.layout.row()
         row.prop(self, 'automatically_create_collections')
         row = self.layout.row()
         row.label(text='RPC Response Timeout')
