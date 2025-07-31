@@ -1131,6 +1131,9 @@ def setup_project(*args):
     if not os.environ.get('SEND2UE_HIDE_PIPELINE_MENU'):
         header_menu.add_pipeline_menu()
 
+    # create the quick access button
+    if addon.preferences.quick_access_button:
+        header_menu.add_quick_access_button()
 
 def draw_error_message(self, context):
     """
