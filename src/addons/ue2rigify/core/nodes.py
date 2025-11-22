@@ -523,6 +523,9 @@ def update_node_tree(node_tree):
 
     if remove_socket_links_to_null_bones(properties):
         return None
+    
+    if not node_tree:
+        return None
 
     # if the check for updates variable is true
     if properties.check_node_tree_for_updates:

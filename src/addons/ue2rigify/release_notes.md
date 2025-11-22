@@ -1,6 +1,6 @@
 ## Patch Changes
-* Added template for UEFN Mannequin
-  * [111](https://github.com/poly-hammer/BlenderTools/pull/111)
+* Fixed addon preferences setter/getters to be compatible with Blender 5.0
+  * [174](https://github.com/poly-hammer/BlenderTools/issues/174)
 
 ## Special Thanks
 * @JoshQuake

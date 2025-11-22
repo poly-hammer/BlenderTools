@@ -9,28 +9,14 @@ class Ue2RigifyAddonPreferences(bpy.types.AddonPreferences):
     This class subclasses the AddonPreferences class to create the addon preferences interface.
     """
     bl_idname = __package__
-    
-    def get_custom_location(self):
-        # create key if doesn't exist then return
-        try:
-            self['custom_template_path']
-        except:
-            self['custom_template_path'] = ''
-        return self['custom_template_path']
-
-    def set_custom_location(self, value):
-        self['custom_template_path'] = value
-        # Create default templates at custom_rig_template_path
-        templates.copy_default_templates()
 
     custom_rig_template_path: bpy.props.StringProperty(
         name='Custom Templates folder',
         description='The location where your rig templates will be stored, including default templates. Defaults to Temp folder if empty',
         subtype='DIR_PATH',
         default='',
-        get=get_custom_location,
-        set=set_custom_location
-    )
+        update=lambda self, context: templates.copy_default_templates()
+    ) # type: ignore
 
     def draw(self, context):
         """
