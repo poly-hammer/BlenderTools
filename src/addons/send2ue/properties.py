@@ -21,13 +21,13 @@ class Send2UeAddonProperties:
     automatically_create_collections: bpy.props.BoolProperty(
         name="Automatically create pre-defined collections",
         default=True,
-        description=f"This automatically creates the pre-defined collection (Export)"
-    )
+        description="This automatically creates the pre-defined collection (Export)"
+    ) # type: ignore
     quick_access_button: bpy.props.BoolProperty(
         name="Enable quick access push button",
         default=False,
         description="Adds a Push Assets button next to the Pipeline menu"
-    )
+    ) # type: ignore
     # ------------- Remote Execution settings ------------------
     rpc_response_timeout: bpy.props.IntProperty(
         name="RPC Response Timeout",
@@ -39,7 +39,11 @@ class Send2UeAddonProperties:
         ),
         set=settings.set_rpc_response_timeout,
         get=settings.get_rpc_response_timeout
-    )
+    ) # type: ignore
+    # the actual stored value for the rpc_response_timeout property is stored here. This allows it to be persistent
+    # across sessions without needing to save it in the blend file, but still allows us to override the get/set methods
+    # for the original rpc_response_timeout property. 
+    rpc_response_timeout_proxy_value: bpy.props.IntProperty(default=60) # type: ignore
     multicast_ttl: bpy.props.IntProperty(
         name="Multicast TTL",
         default=0,
@@ -47,7 +51,7 @@ class Send2UeAddonProperties:
             "Limits packet propagation for multicast connections. 0 restricts to local computer, 1 restricts to "
             "local network. Default '0'"
         )
-    )
+    ) # type: ignore
     multicast_group_endpoint: bpy.props.StringProperty(
         name="Multicast Group Endpoint",
         default="239.0.0.1:6766",
@@ -55,7 +59,7 @@ class Send2UeAddonProperties:
             "The multicast group endpoint that the UDP multicast socket should join. Must match setting "
             "in Unreal."
         )
-    )
+    ) # type: ignore
     command_endpoint: bpy.props.StringProperty(
         name="Command Endpoint",
         default="127.0.0.1:6776" if sys.platform == 'win32' else "0.0.0.0:6776",
@@ -63,7 +67,7 @@ class Send2UeAddonProperties:
             "IP for UDP multicast to bind to and TCP command connection hosted by this client. "
             "Must match setting in Unreal."
         )
-    )
+    ) # type: ignore
 
     extension_folder_list: bpy.props.CollectionProperty(type=ExtensionFolder) # type: ignore
     extension_folder_list_active_index: bpy.props.IntProperty() # type: ignore
@@ -84,26 +88,26 @@ class Send2UeWindowMangerProperties(bpy.types.PropertyGroup):
             'Holds the current asset id. This can be used in an extension method to access and modify specific '
             'asset data'
         )
-    )
+    ) # type: ignore
     # ----------- read/write dictionaries -----------
     property_errors = {}
     section_collapse_states = {}
 
     # ----------- read/write variables -----------
-    show_animation_settings: bpy.props.BoolProperty(default=False)
-    show_fbx_export_settings: bpy.props.BoolProperty(default=False)
-    show_abc_export_settings: bpy.props.BoolProperty(default=False)
-    show_fbx_import_settings: bpy.props.BoolProperty(default=False)
-    show_abc_import_settings: bpy.props.BoolProperty(default=False)
-    show_lod_settings: bpy.props.BoolProperty(default=False)
-    show_editor_library_settings: bpy.props.BoolProperty(default=False)
-    show_export_extensions: bpy.props.BoolProperty(default=False)
-    show_import_extensions: bpy.props.BoolProperty(default=False)
-    show_validation_extensions: bpy.props.BoolProperty(default=False)
+    show_animation_settings: bpy.props.BoolProperty(default=False) # type: ignore   
+    show_fbx_export_settings: bpy.props.BoolProperty(default=False) # type: ignore
+    show_abc_export_settings: bpy.props.BoolProperty(default=False) # type: ignore
+    show_fbx_import_settings: bpy.props.BoolProperty(default=False) # type: ignore
+    show_abc_import_settings: bpy.props.BoolProperty(default=False) # type: ignore
+    show_lod_settings: bpy.props.BoolProperty(default=False) # type: ignore
+    show_editor_library_settings: bpy.props.BoolProperty(default=False) # type: ignore
+    show_export_extensions: bpy.props.BoolProperty(default=False) # type: ignore
+    show_import_extensions: bpy.props.BoolProperty(default=False) # type: ignore
+    show_validation_extensions: bpy.props.BoolProperty(default=False) # type: ignore
 
     # this stores the error messages
-    error_message: bpy.props.StringProperty(default='')
-    error_message_details: bpy.props.StringProperty(default='')
+    error_message: bpy.props.StringProperty(default='') # type: ignore
+    error_message_details: bpy.props.StringProperty(default='') # type: ignore
 
     # import dialog interface properties
     source_application: bpy.props.EnumProperty(
@@ -114,10 +118,10 @@ class Send2UeWindowMangerProperties(bpy.types.PropertyGroup):
             ('ue5', 'Unreal Engine 5', '', '', 1)
         ],
         default="ue5",
-    )
+    ) # type: ignore
 
-    path_validation: bpy.props.BoolProperty(default=True)
-    progress_label: bpy.props.StringProperty()
+    path_validation: bpy.props.BoolProperty(default=True) # type: ignore
+    progress_label: bpy.props.StringProperty() # type: ignore
     progress: bpy.props.FloatProperty(
         name="Progress",
         subtype="PERCENTAGE",
@@ -125,7 +129,7 @@ class Send2UeWindowMangerProperties(bpy.types.PropertyGroup):
         soft_max=100,
         precision=0,
         default=0
-    )
+    ) # type: ignore
 
 
 def get_scene_property_class():
@@ -148,14 +152,14 @@ def get_scene_property_class():
                 'This is the version of the template format. As updates are made, variable name might change, '
                 'so this keeps track of the expected variable names'
             )
-        )
+        ) # type: ignore
         active_settings_template: bpy.props.EnumProperty(
             name="Setting Template",
             items=settings.populate_settings_template_dropdown,
             options={'ANIMATABLE'},
             description="Select which settings template you want to load",
             update=settings.set_active_template
-        )
+        ) # type: ignore
         tab: bpy.props.EnumProperty(
             items=[
                 ('paths', 'Paths', 'Paths', '', 0),
@@ -165,7 +169,7 @@ def get_scene_property_class():
             ],
             default="paths",
             description="Choose which section of the settings to view"
-        )
+        ) # type: ignore
         path_mode: bpy.props.EnumProperty(
             name='Path Mode',
             items=[
@@ -203,7 +207,7 @@ def get_scene_property_class():
             ],
             default=PathModes.SEND_TO_PROJECT.value,
             description="Select which type of paths you want to export to"
-        )
+        ) # type: ignore
         unreal_mesh_folder_path: bpy.props.StringProperty(
             name="Mesh Folder (Unreal)",
             default=r"/Game/untitled_category/untitled_asset/",
@@ -212,7 +216,7 @@ def get_scene_property_class():
                 "This is the mesh import path. All your static and skeletal meshes will be imported to this location in"
                 " your open unreal project"
             )
-        )
+        ) # type: ignore
         unreal_animation_folder_path: bpy.props.StringProperty(
             name="Animation Folder (Unreal)",
             default=r"/Game/untitled_category/untitled_asset/animations/",
@@ -221,7 +225,7 @@ def get_scene_property_class():
                 "This is the animation import path. All your actions that are in an Armature object’s NLA strips will "
                 "be imported to this location in your open Unreal Project"
             )
-        )
+        ) # type: ignore
         unreal_groom_folder_path: bpy.props.StringProperty(
             name="Groom Folder (Unreal)",
             default=r"/Game/untitled_category/untitled_asset/groom/",
@@ -230,7 +234,7 @@ def get_scene_property_class():
                 "This is the groom import path. All your Curves objects and hair particle systems will be imported "
                 "to this location in your open Unreal Project"
             )
-        )
+        ) # type: ignore
         unreal_skeleton_asset_path: bpy.props.StringProperty(
             name="Skeleton Asset (Unreal)",
             default=r"",
@@ -239,7 +243,7 @@ def get_scene_property_class():
                 "This is the direct path to the Skeleton you want to import animation on. You can get this path by "
                 "right-clicking on the skeleton asset in Unreal and selecting ‘Copy Reference’"
             )
-        )
+        ) # type: ignore
         unreal_physics_asset_path: bpy.props.StringProperty(
             name="Physics Asset (Unreal)",
             default=r"",
@@ -248,7 +252,7 @@ def get_scene_property_class():
                 "This is the direct path to the physics asset you want to use. You can get this path by "
                 "right-clicking on the physics asset in Unreal and selecting ‘Copy Reference’"
             )
-        )
+        ) # type: ignore
         disk_mesh_folder_path: bpy.props.StringProperty(
             name="Mesh Folder (Disk)",
             default=os.path.expanduser('~'),
@@ -258,7 +262,7 @@ def get_scene_property_class():
                 "meshes will be exported to this location. The file names will match the name of the mesh object"
                 " in Blender."
             )
-        )
+        ) # type: ignore
         disk_animation_folder_path: bpy.props.StringProperty(
             name="Animation Folder (Disk)",
             default=os.path.expanduser('~'),
@@ -268,7 +272,7 @@ def get_scene_property_class():
                 "are in an Armature object’s NLA strips will be exported to this location. The file names will match the "
                 "action names in Blender"
             )
-        )
+        ) # type: ignore
         disk_groom_folder_path: bpy.props.StringProperty(
             name="Groom Folder (Disk)",
             default=os.path.expanduser('~'),
@@ -277,7 +281,7 @@ def get_scene_property_class():
                 "This is the path to the folder where your curves objects and particle systems will be exported to on "
                 "disk. The file names will match either the name of the curves object or that of the particle system."
             )
-        )
+        ) # type: ignore
         export_all_actions: bpy.props.BoolProperty(
             name="Export all actions",
             default=True,
@@ -285,7 +289,7 @@ def get_scene_property_class():
                 "This setting ensures that regardless of the mute values or the solo value (star) on your NLA tracks, your "
                 "actions will get exported. It does this by un-muting all NLA tracks before the FBX export"
             )
-        )
+        ) # type: ignore
         # TODO validate this to prevent unreal error multiple roots found
         export_object_name_as_root: bpy.props.BoolProperty(
             name="Export object name as root bone",
@@ -294,7 +298,7 @@ def get_scene_property_class():
                 "If true, this uses the armature object's name in blender as the root bone name in Unreal, otherwise "
                 "the first bone in the armature hierarchy is used as the root bone in unreal."
             )
-        )
+        ) # type: ignore
         export_custom_root_name: bpy.props.StringProperty(
             name="Custom root bone name",
             default="",
@@ -302,14 +306,14 @@ def get_scene_property_class():
                 "If specified, this adds a root bone by this name in Unreal. This overrides the "
                 "\"Export object name as root bone\" setting."
             )
-        )
+        ) # type: ignore
         export_custom_property_fcurves: bpy.props.BoolProperty(
             name="Export custom property fcurves",
             default=True,
             description=(
                 "When enabled, this will export any object's custom properties that are in the action fcurves"
             )
-        )
+        ) # type: ignore
         auto_stash_active_action: bpy.props.BoolProperty(
             name="Auto stash active action",
             default=True,
@@ -318,7 +322,7 @@ def get_scene_property_class():
                 "strips. With this option turned on you can start animating on an object and export it and not have to "
                 "manually edit NLA strips."
             )
-        )
+        ) # type: ignore
         use_object_origin: bpy.props.BoolProperty(
             name="Use object origin",
             default=False,
@@ -326,38 +330,38 @@ def get_scene_property_class():
                 "This forces the unreal asset to use the blender object origin instead of the blender scene's world"
                 " origin"
             )
-        )
+        ) # type: ignore
         import_meshes: bpy.props.BoolProperty(
             name="Meshes",
             default=True,
             description="Whether or not to import the meshes from the FBX file"
-        )
+        ) # type: ignore
         import_materials_and_textures: bpy.props.BoolProperty(
             name="Materials and Textures",
             default=True,
             description="Whether or not to import the materials and textures from the FBX file"
-        )
+        ) # type: ignore
         import_animations: bpy.props.BoolProperty(
             name="Animations",
             default=True,
             description="Whether or not to import the animation from the FBX file"
-        )
+        ) # type: ignore
         import_grooms: bpy.props.BoolProperty(
             name="Grooms",
             default=True,
             description="Whether or not to import groom assets"
-        )
+        ) # type: ignore
         advanced_ui_import: bpy.props.BoolProperty(
             name="Launch Import UI",
             default=False,
             description="When enabled this option launches the import UI in Unreal"
-        )
+        ) # type: ignore
         # LOD settings
         import_lods: bpy.props.BoolProperty(
             name="LODs",
             default=False,
             description="Whether or not to export the custom LODs"
-        )
+        ) # type: ignore
         lod_regex: bpy.props.StringProperty(
             name="LOD Regex",
             default=r"(?i)(_LOD\d).*",
@@ -366,7 +370,7 @@ def get_scene_property_class():
                 "be used as the asset name. The first matched group's last character should be the LOD index."
                 "Global modifier flags will NOT work in 4.0+. For example: (?i)"
             )
-        )
+        ) # type: ignore
         unreal_skeletal_mesh_lod_settings_path: bpy.props.StringProperty(
             name="LOD Settings (Unreal)",
             default=r"",
@@ -375,14 +379,14 @@ def get_scene_property_class():
                 "This is the direct path to the LOD settings data asset in your unreal project. You can get this path "
                 "by right-clicking on the LOD settings data asset in Unreal and selecting 'Copy Reference'"
             )
-        )
+        ) # type: ignore
         validate_scene_scale: bpy.props.BoolProperty(
             name="Check scene scale",
             default=True,
             description=(
                 "This checks that the scene scale is set to 1"
             )
-        )
+        ) # type: ignore
         validate_time_units: bpy.props.EnumProperty(
             name="Check scene frame rate",
             items=[
@@ -466,7 +470,7 @@ def get_scene_property_class():
             ],
             default='off',
             description="This checks the scene time units and ensures they are set to the specified value"
-        )
+        ) # type: ignore
 
         validate_armature_transforms: bpy.props.BoolProperty(
             name="Check armatures for un-applied transforms",
@@ -474,7 +478,7 @@ def get_scene_property_class():
             description=(
                 "If an armature object has un-applied transforms a message is thrown to the user"
             )
-        )
+        ) # type: ignore
         validate_materials: bpy.props.BoolProperty(
             name="Check if asset has unused materials",
             default=False,
@@ -483,7 +487,7 @@ def get_scene_property_class():
                 "assigned to a vertex on the mesh object. If there is a unused material, then an error message is thrown "
                 "to the user"
             )
-        )
+        ) # type: ignore
         validate_textures: bpy.props.BoolProperty(
             name="Check texture references",
             default=False,
@@ -491,7 +495,7 @@ def get_scene_property_class():
                 "If a texture referenced in an object’s material can not be found in the blend file data than a error "
                 "message is thrown to the user"
             )
-        )
+        ) # type: ignore
         validate_paths: bpy.props.BoolProperty(
             name="Check paths",
             default=True,
@@ -499,7 +503,7 @@ def get_scene_property_class():
                 "This checks the export and import paths and makes sure they are valid before preforming "
                 "the operation"
             )
-        )
+        ) # type: ignore
         validate_project_settings: bpy.props.BoolProperty(
             name="Check project settings",
             default=True,
@@ -507,7 +511,7 @@ def get_scene_property_class():
                 "This checks whether the required unreal project settings are in place before performing "
                 "the operation"
             )
-        )
+        ) # type: ignore
         validate_object_names: bpy.props.BoolProperty(
             name="Check blender object names",
             default=False,
@@ -515,17 +519,17 @@ def get_scene_property_class():
                 "This checks whether object names in the Export folder contain any special characters "
                 "that unreal does not accept"
             )
-        )
+        ) # type: ignore
         validate_meshes_for_vertex_groups: bpy.props.BoolProperty(
             name="Check meshes for vertex groups",
             default=True,
             description="This checks that a mesh with an armature modifier has vertex groups"
-        )
+        ) # type: ignore
         validate_unreal_plugins: bpy.props.BoolProperty(
             name="Check Unreal has required plugins",
             default=True,
             description="Disable only if you know Groom plugin is enabled but still get an error"
-        )
+        ) # type: ignore
 
     return Send2UeSceneProperties
 

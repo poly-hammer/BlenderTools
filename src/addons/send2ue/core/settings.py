@@ -213,7 +213,7 @@ def get_rpc_response_timeout(self):
     """
     Overrides getter method for the rpc_response_timeout property.
     """
-    return self.get('rpc_response_timeout', 60)
+    return self.rpc_response_timeout_proxy_value
 
 
 def set_property_group_with_dictionary(property_group, data):
@@ -252,7 +252,7 @@ def set_rpc_response_timeout(self, value):
     if unreal.is_connected():
         unreal.set_rpc_env('RPC_TIME_OUT', value)
     os.environ['RPC_TIME_OUT'] = str(value)
-    self['rpc_response_timeout'] = value
+    self.rpc_response_timeout_proxy_value = value
 
 
 def set_active_template(self=None, context=None):
