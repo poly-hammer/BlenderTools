@@ -436,6 +436,18 @@ def get_asset_name(asset_name, properties, lod=False):
 
     return asset_name
 
+def get_socket_name(asset_name):
+    """
+    Takes a given asset name and removes the prefix SOCKET_ and other non-alpha numeric characters
+    that unreal won't except, and allows the same socket name on multiple objects to export correctly.
+
+    :param str asset_name: The original name of the socket asset to export.
+    :return str: The formatted name of the socket asset to export.
+    """
+    socket_name = re.sub(rf"{RegexPresets.INVALID_SOCKET_CHARACTERS}|\.\d+$|{PreFixToken.SOCKET.value}_", "", asset_name)
+
+    return socket_name
+
 
 def get_parent_collection(scene_object, collection):
     """

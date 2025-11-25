@@ -1,9 +1,9 @@
 ## Patch Changes
-* Fixed addon preferences setter/getters to be compatible with Blender 5.0
-  * [174](https://github.com/poly-hammer/BlenderTools/issues/174)
+* Lowered aggressiveness of socket names
+  * [173](https://github.com/poly-hammer/BlenderTools/issues/173)
 
 ## Special Thanks
-@kelitraynaud
+@Daerst
 
 ## Tests Passing On
 * Blender `3.6`, `4.2` (installed from blender.org)
