@@ -193,7 +193,7 @@ def get_asset_sockets(asset_name, properties):
     if mesh_object:
         for child in mesh_object.children:
             if child.type == 'EMPTY' and child.name.startswith(f'{PreFixToken.SOCKET.value}_'):
-                name = utilities.get_asset_name(child.name.replace(f'{PreFixToken.SOCKET.value}_', '').split('.',1)[0], properties)
+                name = utilities.get_socket_name(child.name)
                 relative_location = utilities.convert_blender_to_unreal_location(
                     child.matrix_local.translation
                 )
