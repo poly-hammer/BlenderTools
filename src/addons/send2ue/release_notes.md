@@ -1,6 +1,6 @@
 ## Patch Changes
-* Fixed addon preferences setter/getters to be compatible with Blender 5.0
-  * [174](https://github.com/poly-hammer/BlenderTools/issues/174)
+* Fixed mesh instances being placed in level
+  * [171](https://github.com/poly-hammer/BlenderTools/issues/171)
 
 ## Special Thanks
 @kelitraynaud
