@@ -2,6 +2,7 @@
 
 import bpy
 import os
+import re
 from send2ue.constants import UnrealTypes
 from send2ue.core.extension import ExtensionBase
 from send2ue.core.utilities import (
@@ -169,8 +170,14 @@ class InstanceAssetsExtension(ExtensionBase):
                             break
 
             if unique_name:
+                asset_path = ''
+                if not asset_data['skip']:
+                    asset_path = asset_data['asset_path']
+                else:
+                    asset_path = re.sub(r'_\d+$', "",asset_data['asset_path'])
+                    
                 make_remote(UnrealCalls).instance_asset(
-                    asset_data['asset_path'],
+                    asset_path,
                     convert_blender_to_unreal_location(location),
                     convert_blender_rotation_to_unreal_rotation(rotation),
                     scale,
