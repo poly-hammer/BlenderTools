@@ -444,7 +444,7 @@ def get_socket_name(asset_name):
     :param str asset_name: The original name of the socket asset to export.
     :return str: The formatted name of the socket asset to export.
     """
-    socket_name = re.sub('\.\d+$', '', re.sub(RegexPresets.INVALID_SOCKET_CHARACTERS, "", asset_name.replace(f'{PreFixToken.SOCKET.value}_', '')) )
+    socket_name = re.sub(rf"{RegexPresets.INVALID_SOCKET_CHARACTERS}|\.\d+$|{PreFixToken.SOCKET.value}_", "", asset_name)
 
     return socket_name
 
