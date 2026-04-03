@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import ast
 import logging
 import types
 import inspect
@@ -30,21 +31,68 @@ class RPCFactory:
         self.default_imports = default_imports or []
 
     @staticmethod
-    def _get_docstring(code, function_name):
+    def _is_docstring_node(node):
         """
-        Gets the docstring value from the functions code.
+        Checks whether the given AST node is a docstring expression.
+        """
+        if not isinstance(node, ast.Expr):
+            return False
 
-        :param list code: A list of code lines.
-        :param str function_name: The name of the function.
-        :returns: The docstring text.
-        :rtype: str
+        if isinstance(node.value, ast.Constant):
+            return isinstance(node.value.value, str)
+
+        return isinstance(node.value, ast.Str)
+
+    @staticmethod
+    def _remove_function_docstring(code, function_name):
         """
-        # run the function code
-        exec('\n'.join(code))
-        # get the function from the locals
-        function_instance = locals().copy().get(function_name)
-        # get the doc strings from the function
-        return function_instance.__doc__
+        Removes the docstring expression from the given function source code.
+
+        :param str code: The source code that contains the function.
+        :param str function_name: The name of the function to strip.
+        :return str: The source code without the function docstring.
+        """
+        try:
+            syntax_tree = ast.parse(code)
+        except SyntaxError:
+            return code
+
+        function_node = None
+        for node in syntax_tree.body:
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name == function_name:
+                function_node = node
+                break
+
+        if not function_node or not function_node.body:
+            return code
+
+        docstring_node = function_node.body[0]
+        if not RPCFactory._is_docstring_node(docstring_node):
+            return code
+
+        if not hasattr(docstring_node, 'end_lineno') or docstring_node.end_lineno is None:
+            return code
+
+        code_lines = code.splitlines(keepends=True)
+        start_line = docstring_node.lineno - 1
+        end_line = docstring_node.end_lineno - 1
+
+        if start_line >= len(code_lines) or end_line >= len(code_lines):
+            return code
+
+        if start_line == end_line:
+            code_lines[start_line] = (
+                code_lines[start_line][:docstring_node.col_offset] +
+                code_lines[start_line][docstring_node.end_col_offset:]
+            )
+        else:
+            code_lines[start_line] = (
+                code_lines[start_line][:docstring_node.col_offset] +
+                code_lines[end_line][docstring_node.end_col_offset:]
+            )
+            del code_lines[start_line + 1:end_line + 1]
+
+        return ''.join(code_lines)
 
     @staticmethod
     def _save_execution_history(code, function, args):
@@ -143,20 +191,16 @@ class RPCFactory:
         :param callable function: A callable.
         :return str: The code of the callable.
         """
-        code = textwrap.dedent(inspect.getsource(function)).split('\n')
-        code = [line for line in code if not line.startswith(('@', '#'))]
-
-        # get the docstring from the code
-        doc_string = self._get_docstring(code, function.__name__)
+        code = textwrap.dedent(inspect.getsource(function))
+        code = code.replace('\r\n', '\n').replace('\r', '\n')
+        code = self._remove_function_docstring(code, function.__name__)
+        code = [line for line in code.split('\n') if not line.startswith(('@', '#'))]
+        # Run a second pass after filtering lines to avoid leaking docstring fragments.
+        code = self._remove_function_docstring('\n'.join(code), function.__name__).split('\n')
 
         # get import code and insert them inside the function
         import_code = self._get_callstack_references(code, function)
         code.insert(1, import_code)
-
-        # remove the doc string
-        if doc_string:
-            code = '\n'.join(code).replace(doc_string, '')
-            code = [line for line in code.split('\n') if not all([char == '"' or char == "'" for char in line.strip()])]
 
         return code
 
