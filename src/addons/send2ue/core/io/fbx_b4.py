@@ -466,8 +466,9 @@ def export(**keywords):
             if bpy.context.scene.send2ue.use_object_origin:
                 loc = Vector((0, 0, 0))
 
-        elif ob_obj.type == 'Ellipsis':
-            loc = Vector((loc[0] * SCALE_FACTOR, loc[1] * SCALE_FACTOR, loc[2] * SCALE_FACTOR))
+        elif ob_obj.type == 'EMPTY':
+            if bpy.context.scene.send2ue.use_object_origin:
+                loc = Vector((0, 0, 0))
         elif ob_obj.type == 'MESH':
             # centers mesh object by their object origin
             if bpy.context.scene.send2ue.use_object_origin:
@@ -486,13 +487,66 @@ def export(**keywords):
                     # https://github.com/EpicGamesExt/BlenderTools/issues/627
                     empty_object_name = asset_data.get('empty_object_name')
                     if empty_object_name:
-                        empty_object = bpy.data.objects.get(empty_object_name)
-                        empty_world_location = empty_object.matrix_world.to_translation()
-                        loc = Vector((
-                            (object_world_location[0] - empty_world_location[0]) * SCALE_FACTOR,
-                            (object_world_location[1] - empty_world_location[1]) * SCALE_FACTOR,
-                            (object_world_location[2] - empty_world_location[2]) * SCALE_FACTOR
-                        ))
+                        # Check if this is a collision mesh (UBX_, UCP_, USP_, UCX_)
+                        _is_collision = any(
+                            current_object.name.startswith(token + '_')
+                            for token in ('UBX', 'UCP', 'USP', 'UCX')
+                        )
+                        if _is_collision:
+                            import math
+                            _gm = scene_data.settings.global_matrix
+                            empty_object = bpy.data.objects.get(empty_object_name)
+                            _parent_is_empty = (
+                                ob_obj.parent and ob_obj.parent.name == empty_object_name
+                            )
+                            if ob_obj.parent and not _parent_is_empty:
+                                # Child collision (parented to visual mesh, grandchild
+                                # of EMPTY): fbx_object_tx is contaminated because
+                                # fbx_object_matrix's parent correction (lines 1790-1796
+                                # in fbx_utils.py) uses matrix_local which contains
+                                # EMPTY_world^-1 via matrix_parent_inverse. The EMPTY's
+                                # non-uniform display scale leaks into loc/rot/scale.
+                                # Compute clean local transform using matrix_world
+                                # (where EMPTY's influence is fully cancelled) via
+                                # global_space=True which takes the clean is_global path.
+                                _desired_fbx = ob_obj.fbx_object_matrix(scene_data, global_space=True)
+                                _par_world = ob_obj.parent.fbx_object_matrix(
+                                    scene_data, global_space=True
+                                )
+                                _local = _par_world.inverted_safe() @ _desired_fbx
+                                _l, _r, _s = _local.decompose()
+                                loc = Vector(_l)
+                                rot = tuple(math.degrees(a) for a in _r.to_euler('XYZ'))
+                                scale = Vector(_s)
+                            else:
+                                # Root collision (parented to EMPTY or no parent):
+                                # fbx_object_tx IS clean here because the EMPTY is not
+                                # in the export set, so fbx_object_matrix takes the
+                                # is_global path which uses matrix_world (clean).
+                                # Just adjust loc to be EMPTY-relative.
+                                _empty_fbx_pos = _gm @ empty_object.matrix_world.to_translation()
+                                loc = Vector((
+                                    loc[0] - _empty_fbx_pos[0],
+                                    loc[1] - _empty_fbx_pos[1],
+                                    loc[2] - _empty_fbx_pos[2]
+                                ))
+                                # scale from fbx_object_tx already includes
+                                # the unit conversion (100x from global_matrix)
+                                # for root nodes. No additional factor needed.
+                        else:
+                            # Non-collision visual meshes: root FBX nodes with
+                            # correct fbx_object_tx world transforms. Adjust loc
+                            # to center the combined mesh around the EMPTY's
+                            # position (ignoring EMPTY rot/scale which are for
+                            # display only).
+                            empty_object = bpy.data.objects.get(empty_object_name)
+                            _gm = scene_data.settings.global_matrix
+                            _empty_fbx_pos = _gm @ empty_object.matrix_world.to_translation()
+                            loc = Vector((
+                                loc[0] - _empty_fbx_pos[0],
+                                loc[1] - _empty_fbx_pos[1],
+                                loc[2] - _empty_fbx_pos[2]
+                            ))
                     else:
                         asset_world_location = asset_object.matrix_world.to_translation()
                         loc = Vector((
