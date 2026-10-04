@@ -1,4 +1,5 @@
 import os
+import sys
 import bpy
 import numpy as np
 from ..utilities import report_error
@@ -21,11 +22,13 @@ def export(**keywords):
     addons = {os.path.basename(os.path.dirname(module.__file__)): module.__file__ for module in addon_utils.modules()}
     addon_folder_path = os.path.dirname(addons.get('io_scene_fbx'))
 
-    # this load the io_scene_fbx module from the blender FBX addon
-    try:
-        SourceFileLoader('io_scene_fbx', os.path.join(addon_folder_path, '__init__.py')).load_module()
-    except RuntimeError as error:
-        print(error)
+    # Reuse an existing module: reloading it replaces registered operator
+    # classes and prevents Blender's FBX add-on from unregistering cleanly.
+    if 'io_scene_fbx' not in sys.modules:
+        try:
+            SourceFileLoader('io_scene_fbx', os.path.join(addon_folder_path, '__init__.py')).load_module()
+        except RuntimeError as error:
+            print(error)
 
     import io_scene_fbx.export_fbx_bin as export_fbx_bin
     from io_scene_fbx.export_fbx_bin import (

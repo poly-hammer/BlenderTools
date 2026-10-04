@@ -121,7 +121,7 @@ def export_alembic_file(file_path, export_settings):
     )
 
 
-def export_custom_property_fcurves(action_name, properties):
+def export_custom_property_fcurves(action_name, properties, rig_object=None):
     """
     Exports custom property fcurves to a file.
 
@@ -132,8 +132,9 @@ def export_custom_property_fcurves(action_name, properties):
     file_path = bpy.context.window_manager.send2ue.asset_data[asset_id]['file_path']
 
     fcurve_file_path = None
-    fcurve_data = utilities.get_custom_property_fcurve_data(action_name)
-    if fcurve_data and properties.export_custom_property_fcurves:
+    fcurve_data = (utilities.get_custom_property_fcurve_data(action_name, rig_object)
+                   if properties.export_custom_property_fcurves else {})
+    if fcurve_data:
         file_path, file_extension = os.path.splitext(file_path)
         fcurve_file_path = ToolInfo.FCURVE_FILE.value.format(file_path=file_path)
         if fcurve_data:
@@ -278,7 +279,7 @@ def export_animation(asset_id, rig_object, action_name, properties):
     export_file(properties)
 
     # export custom property fcurves
-    export_custom_property_fcurves(action_name, properties)
+    export_custom_property_fcurves(action_name, properties, rig_object)
 
     # ensure the rigs are in rest position before setting the mute values
     utilities.clear_pose(rig_object)
