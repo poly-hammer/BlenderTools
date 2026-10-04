@@ -204,7 +204,51 @@ def get_mesh_unreal_type(mesh_object):
     return UnrealTypes.STATIC_MESH
 
 
-def get_custom_property_fcurve_data(action_name):
+def iter_action_fcurve_collections(action, scene_object=None):
+    """Yield curve collections for legacy actions or modern action slots.
+
+    With an object, use the slots bound to that object's active action or NLA
+    strips. An unbound single-slot action is usable for imported clips; an
+    ambiguous multi-slot action must not edit another object's animation.
+    """
+    if action is None:
+        return
+    legacy_curves = getattr(action, 'fcurves', None)
+    if legacy_curves is not None:
+        yield legacy_curves
+        return
+
+    slots = list(getattr(action, 'slots', ()))
+    if scene_object is not None:
+        animation_data = scene_object.animation_data
+        bound_handles = set()
+        if animation_data:
+            if animation_data.action == action and animation_data.action_slot:
+                bound_handles.add(animation_data.action_slot.handle)
+            for track in animation_data.nla_tracks:
+                for strip in track.strips:
+                    if strip.action == action and strip.action_slot:
+                        bound_handles.add(strip.action_slot.handle)
+        if bound_handles:
+            slots = [slot for slot in slots if slot.handle in bound_handles]
+        elif len(slots) != 1:
+            slots = []
+
+    for layer in getattr(action, 'layers', ()):
+        for strip in layer.strips:
+            for slot in slots:
+                channelbag = strip.channelbag(slot)
+                if channelbag is not None:
+                    yield channelbag.fcurves
+
+
+def iter_action_fcurves(action, scene_object=None):
+    """Iterate curves without relying on the removed Action.fcurves API."""
+    for curves in iter_action_fcurve_collections(action, scene_object):
+        yield from curves
+
+
+def get_custom_property_fcurve_data(action_name, scene_object=None):
     """
     Gets the names and key frame points of object custom property values from the fcurves.
 
@@ -215,7 +259,7 @@ def get_custom_property_fcurve_data(action_name):
     action = bpy.data.actions.get(action_name)
     frame_rate = bpy.context.scene.render.fps
     if action:
-        for fcurve in action.fcurves:
+        for fcurve in iter_action_fcurves(action, scene_object):
             if fcurve.data_path.startswith('["') and fcurve.data_path.endswith('"]'):
                 name = fcurve.data_path.strip('["').strip('"]')
                 data[name] = [[(point.co[0] - 1) / frame_rate, point.co[1]] for point in fcurve.keyframe_points]
@@ -904,9 +948,10 @@ def remove_object_scale_keyframes(actions):
     :param list actions: A list of action objects.
     """
     for action in actions:
-        for fcurve in action.fcurves:
-            if fcurve.data_path == 'scale':
-                action.fcurves.remove(fcurve)
+        for curves in iter_action_fcurve_collections(action):
+            for fcurve in list(curves):
+                if fcurve.data_path == 'scale':
+                    curves.remove(fcurve)
 
 
 def remove_from_disk(path, directory=False):
@@ -1458,7 +1503,7 @@ def round_keyframes(actions):
     :param list actions: A list of action objects.
     """
     for action in actions:
-        for fcurve in action.fcurves:
+        for fcurve in iter_action_fcurves(action):
             for keyframe_point in fcurve.keyframe_points:
                 keyframe_point.co[0] = round(keyframe_point.co[0])
 
@@ -1568,7 +1613,8 @@ def scale_object_actions(unordered_objects, actions, scale_factor):
             # iterate over any imported actions first this time...
             for action in actions:
                 # iterate through the location curves
-                for fcurve in [fcurve for fcurve in action.fcurves if fcurve.data_path.endswith('location')]:
+                for fcurve in [fcurve for fcurve in iter_action_fcurves(action, ordered_object)
+                               if fcurve.data_path.endswith('location')]:
                     # the location fcurve of the object
                     if fcurve.data_path == 'location':
                         for keyframe_point in fcurve.keyframe_points:

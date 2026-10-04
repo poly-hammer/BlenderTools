@@ -8,7 +8,8 @@ from send2ue.core.utilities import (
     convert_blender_rotation_to_unreal_rotation,
     convert_blender_to_unreal_location,
     get_armature_modifier_rig_object,
-    get_asset_name
+    get_asset_name,
+    iter_action_fcurves
 )
 from send2ue.dependencies.unreal import UnrealRemoteCalls as UnrealCalls
 from send2ue.dependencies.rpc.factory import make_remote
@@ -160,7 +161,7 @@ class InstanceAssetsExtension(ExtensionBase):
 
                 # otherwise the if location is in the action curves, that first frame determines
                 # the actors location in the level
-                for fcurve in action.fcurves:
+                for fcurve in iter_action_fcurves(action, scene_object):
                     for keyframe in fcurve.keyframe_points:
                         if fcurve.data_path == 'location':
                             # only get the value from the start frame

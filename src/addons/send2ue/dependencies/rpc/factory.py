@@ -1,4 +1,5 @@
 import os
+import ast
 import re
 import sys
 import logging
@@ -114,7 +115,7 @@ class RPCFactory:
                 if line.startswith('def '):
                     continue
 
-                if key in re.split('\.|\(| ', line.strip()):
+                if key in re.split(r'\.|\(| ', line.strip()):
                     if os.path.basename(self.file_path) == '__init__.py':
                         base_name = os.path.basename(os.path.dirname(self.file_path))
                     else:
@@ -143,20 +144,23 @@ class RPCFactory:
         :param callable function: A callable.
         :return str: The code of the callable.
         """
-        code = textwrap.dedent(inspect.getsource(function)).split('\n')
-        code = [line for line in code if not line.startswith(('@', '#'))]
-
-        # get the docstring from the code
-        doc_string = self._get_docstring(code, function.__name__)
+        # Python 3.13 normalizes compiled docstring indentation, so replacing
+        # function.__doc__ in the original source no longer removes it reliably.
+        # Remove the actual syntax node, preserving identical strings in the body.
+        syntax = ast.parse(textwrap.dedent(inspect.getsource(function)))
+        function_node = syntax.body[0]
+        function_node.decorator_list = []
+        if (function_node.body and isinstance(function_node.body[0], ast.Expr)
+                and isinstance(function_node.body[0].value, ast.Constant)
+                and isinstance(function_node.body[0].value.value, str)):
+            function_node.body.pop(0)
+        if not function_node.body:
+            function_node.body.append(ast.Pass())
+        code = ast.unparse(ast.fix_missing_locations(function_node)).split('\n')
 
         # get import code and insert them inside the function
         import_code = self._get_callstack_references(code, function)
         code.insert(1, import_code)
-
-        # remove the doc string
-        if doc_string:
-            code = '\n'.join(code).replace(doc_string, '')
-            code = [line for line in code.split('\n') if not all([char == '"' or char == "'" for char in line.strip()])]
 
         return code
 
