@@ -29,6 +29,7 @@ class Send2Ue(bpy.types.Operator):
     bl_idname = "wm.send2ue"
     bl_label = "Push Assets"
     workstation_phase_id: bpy.props.StringProperty(default='', options={'HIDDEN', 'SKIP_SAVE'})
+    workstation_deferred_handoff: bpy.props.StringProperty(default='', options={'HIDDEN', 'SKIP_SAVE'})
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -95,6 +96,8 @@ class Send2Ue(bpy.types.Operator):
 
                     # run the function
                     function(*args, **kwargs)
+                    if operation is not None and operation.deferred:
+                        operation.exported_count += 1
                 except Exception as error:
                     self.escape_operation(context, error=error)
                     if os.environ.get('SEND2UE_DEV'):
@@ -108,7 +111,9 @@ class Send2Ue(bpy.types.Operator):
                 bpy.context.workspace.status_text_set_internal(None)
                 try:
                     # Cancellation cleanup must not launch more remote mutations.
-                    if getattr(self, '_wq_operation', None) is None and getattr(self, 'workstation_phase_id', ''):
+                    operation = getattr(self, '_wq_operation', None)
+                    if ((operation is None and getattr(self, 'workstation_phase_id', ''))
+                            or (operation is not None and operation.deferred)):
                         with unreal.record_commands():
                             self.post_operation()
                     else:
@@ -189,7 +194,16 @@ class Send2Ue(bpy.types.Operator):
                     function, args, kwargs, message, asset_id, attribute = self.execution_queue.get()
                     context.window_manager.send2ue.asset_id = asset_id
                     function(*args, **kwargs)
-                self.post_operation()
+                    if operation is not None and operation.deferred:
+                        operation.exported_count += 1
+                operation = getattr(self, '_wq_operation', None)
+                if operation is not None and operation.deferred:
+                    # Batch owns the later RPC import and durable dependencies.
+                    # Run local cleanup/hooks without dispatching remote saves.
+                    with unreal.record_commands():
+                        self.post_operation()
+                else:
+                    self.post_operation()
                 self._complete_coordinated()
             except BaseException as error:
                 self.escape_operation(context, error=error)
@@ -202,17 +216,27 @@ class Send2Ue(bpy.types.Operator):
         self._wq_operation = coordination.begin_operation(
             getattr(self, 'workstation_phase_id', ''), bpy.app.driver_namespace,
             str(bpy.data.filepath or ''),
+            deferred_handoff=getattr(self, 'workstation_deferred_handoff', ''),
         )
         coordination.require_preparation_scopes(bpy.context.scene.send2ue)
 
     def _validate_coordinated_jobs(self, properties):
         if getattr(self, '_wq_operation', None) is not None:
+            if self._wq_operation.deferred:
+                with self.execution_queue.mutex:
+                    jobs = list(self.execution_queue.queue)
+                coordination.validate_export_jobs(self._wq_operation, jobs, properties.path_mode)
+                return
             if properties.path_mode == 'send_to_disk' or self.execution_queue.empty():
                 raise RuntimeError('The coordinated Send2UE request produced no native Unreal import jobs')
 
     def _complete_coordinated(self):
         operation = getattr(self, '_wq_operation', None)
         if operation is not None:
+            if operation.deferred:
+                operation.finish_export(bpy.context.window_manager.send2ue.asset_data)
+                self._wq_operation = None
+                return
             if not getattr(operation, 'imported_count', 0):
                 raise RuntimeError('No native Unreal import result was verified for this coordinated request')
             operation.complete()
