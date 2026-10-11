@@ -3,6 +3,7 @@ import ast
 import contextlib
 import importlib.util
 import io
+import json
 import os
 from pathlib import Path
 import queue
@@ -132,6 +133,57 @@ class NativeCoordinationTests(unittest.TestCase):
             foreign.__file__ = str(Path(directory, "foreign.py"))
             with mock.patch.dict(os.environ, {"WORKSTATION_QUEUE_REPO": directory}), mock.patch.dict(sys.modules, {"queue_store": foreign}), self.assertRaisesRegex(RuntimeError, "another installation"):
                 COORD.load_bridge()
+
+    def deferred_metadata(self):
+        return dict(phase_id="phase", ticket_id="ticket", provider="Codex",
+                    session_id="fixture-owner", resource=COORD.RESOURCE,
+                    pipeline=COORD.BATCH_PIPELINE, request_id="same-native-request",
+                    target="C:/root.blend", project=COORD.RESOURCE,
+                    action=COORD.BATCH_ACTION)
+
+    def test_deferred_provider_reuses_binding_and_export_never_completes_phase(self):
+        metadata = self.deferred_metadata()
+        op = COORD.begin_operation("phase", self.namespace, "C:/provider.blend",
+                                   deferred_handoff=json.dumps(metadata))
+        self.bridge.bind_handoff.assert_not_called()
+        self.bridge.require_scopes.assert_called_once_with("phase", ["source:C:/provider.blend"])
+        with self.assertRaisesRegex(RuntimeError, "cannot complete"):
+            op.complete()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory, "Prop.fbx")
+            path.write_bytes(b"native FBX bytes")
+            op.exported_count = 1
+            receipt = op.finish_export({"id": {"file_path": str(path)}})
+        self.assertEqual(receipt["metadata"], metadata)
+        self.assertEqual(receipt["source_blend"], "C:/provider.blend")
+        self.assertEqual(receipt["stage"], "exported_pending_unreal")
+        self.assertFalse(receipt["phase_completed"])
+        self.assertEqual(receipt["exported_files"][0]["bytes"], 16)
+        self.assertEqual(self.namespace, {COORD.DEFERRED_RECEIPT_KEY: receipt})
+        self.bridge.complete_handoff.assert_not_called()
+
+    def test_deferred_metadata_binding_or_outputs_must_be_exact(self):
+        metadata = self.deferred_metadata()
+        for override in ({"phase_id": "other"}, {"action": "manual"},
+                         {"project": "unreal:Other"}, {"owner_token": "forbidden"}):
+            with self.assertRaisesRegex(RuntimeError, "exact native"):
+                COORD.begin_operation("phase", self.namespace, "C:/provider.blend",
+                    deferred_handoff=json.dumps({**metadata, **override}))
+        self.bridge.can_execute_handoff.return_value = False
+        with self.assertRaisesRegex(RuntimeError, "exact binding"):
+            COORD.begin_operation("phase", self.namespace, "C:/provider.blend",
+                                  deferred_handoff=json.dumps(metadata))
+        self.bridge.can_execute_handoff.return_value = True
+        op = COORD.begin_operation("phase", self.namespace, "C:/provider.blend",
+                                   deferred_handoff=json.dumps(metadata))
+        with self.assertRaisesRegex(RuntimeError, "No native Batch"):
+            op.finish_export({})
+        op.exported_count = 1
+        with self.assertRaises(FileNotFoundError):
+            op.finish_export({"id": {"file_path": "does_not_exist.fbx"}})
+        self.assertIs(self.namespace[COORD.NAMESPACE_KEY], op)
+        self.assertNotIn(COORD.DEFERRED_RECEIPT_KEY, self.namespace)
+        self.bridge.complete_handoff.assert_not_called()
 
 
 class NativeRemoteReceiptTests(unittest.TestCase):
@@ -290,6 +342,51 @@ class NativeOperatorTests(unittest.TestCase):
         self.assertEqual(self.op.modal(self.context, types.SimpleNamespace(type="TIMER")), {"FINISHED"})
         self.op.post_operation.assert_called_once()
         self.bridge.complete_handoff.assert_called_once()
+
+    def configure_deferred(self):
+        metadata = NativeCoordinationTests.deferred_metadata(self)
+        self.op.workstation_deferred_handoff = json.dumps(metadata)
+        self.bpy.context.scene.send2ue.path_mode = "send_to_disk"
+        return metadata
+
+    def test_deferred_native_export_and_cleanup_receipt_wait_for_rpc_ingest(self):
+        metadata = self.configure_deferred()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory, "Prop.fbx")
+            def export_mesh():
+                path.write_bytes(b"native FBX")
+            export_mesh.__module__ = "send2ue.core.export"
+            self.enqueue(export_mesh)
+            self.bpy.context.window_manager.send2ue.asset_data = {"asset": {"file_path": str(path)}}
+            self.assertEqual(self.op.execute(self.context), {"FINISHED"})
+        receipt = self.namespace[COORD.DEFERRED_RECEIPT_KEY]
+        self.assertEqual(receipt["metadata"], metadata)
+        self.assertEqual(receipt["native_export_jobs"], 1)
+        self.assertNotIn(COORD.NAMESPACE_KEY, self.namespace)
+        self.bridge.complete_handoff.assert_not_called()
+        self.bridge.bind_handoff.assert_not_called()
+
+    def test_deferred_export_refuses_queued_imports_before_execution(self):
+        self.configure_deferred()
+        native_import = mock.Mock()
+        self.enqueue(native_import)
+        with self.assertRaisesRegex(RuntimeError, "cannot run native Unreal import"):
+            self.op.execute(self.context)
+        native_import.assert_not_called()
+        self.bridge.complete_handoff.assert_not_called()
+        self.bridge.fail_handoff.assert_called_once()
+
+    def test_deferred_file_failure_leaves_recovery_reservation(self):
+        self.configure_deferred()
+        def export_mesh():
+            raise RuntimeError("native FBX write failed")
+        export_mesh.__module__ = "send2ue.core.export"
+        self.enqueue(export_mesh)
+        with self.assertRaisesRegex(RuntimeError, "native FBX write failed"):
+            self.op.execute(self.context)
+        self.assertNotIn(COORD.DEFERRED_RECEIPT_KEY, self.namespace)
+        self.bridge.complete_handoff.assert_not_called()
+        self.bridge.fail_handoff.assert_called_once()
 
 
 class NativeIngestTests(unittest.TestCase):

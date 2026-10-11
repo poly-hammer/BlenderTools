@@ -4,6 +4,9 @@ No phase means the existing manual pipeline. This module never admits a phase,
 starts a chat, takes another owner's scope, or stores an owner token in Blender.
 """
 import importlib.util
+import hashlib
+import json
+import ntpath
 import os
 from pathlib import Path
 import sys
@@ -11,7 +14,12 @@ import time
 import uuid
 
 NAMESPACE_KEY = "send2ue_workstation_operation"
+DEFERRED_RECEIPT_KEY = "send2ue_workstation_deferred_export_receipt"
 RESOURCE = "unreal:MyProject2"
+BATCH_PIPELINE = "speedtree_batch_send2ue"
+BATCH_ACTION = "send2ue_manifest_export_rpc_ingest"
+HANDOFF_FIELDS = ("phase_id", "ticket_id", "provider", "session_id", "resource",
+                  "pipeline", "request_id", "target")
 _BRIDGE = None
 
 
@@ -47,13 +55,16 @@ def current_operation(namespace=None):
 
 
 class NativeOperation:
-    def __init__(self, bridge, metadata, namespace):
+    def __init__(self, bridge, metadata, namespace, deferred=False, source=""):
         self.bridge = bridge
         self.metadata = metadata
         self.namespace = namespace
         self.last_heartbeat = time.monotonic()
         self.closed = False
         self.imported_count = 0
+        self.deferred = deferred
+        self.source = source
+        self.exported_count = 0
 
     def check(self):
         if self.closed or not self.bridge.can_execute_handoff(self.metadata):
@@ -77,6 +88,8 @@ class NativeOperation:
 
     def complete(self):
         # The caller invokes this only after every native job and final save.
+        if self.deferred:
+            raise RuntimeError("Batch disk export cannot complete the Unreal work phase")
         if not self.bridge.complete_handoff(self.metadata, self.metadata["request_id"], self.metadata["target"]):
             raise RuntimeError("Native completion could not be reconciled with the exact work phase request")
         self.detach()
@@ -87,13 +100,78 @@ class NativeOperation:
         finally:
             self.detach()
 
+    def finish_export(self, asset_data):
+        """Attest this native disk export while retaining its exact phase binding."""
+        self.check()
+        if not self.deferred or not self.exported_count:
+            raise RuntimeError("No native Batch export jobs completed")
+        paths = set()
+        for data in asset_data.values():
+            if data.get("skip"):
+                continue
+            if not data.get("file_path"):
+                raise RuntimeError("Native Batch export has no exact output path")
+            paths.add(str(data["file_path"]))
+            paths.update(str(path) for path in (data.get("lods") or {}).values())
+            if data.get("fcurve_file_path"):
+                paths.add(str(data["fcurve_file_path"]))
+        if not paths:
+            raise RuntimeError("Native Batch export produced no files")
+        files = []
+        for raw_path in sorted(paths):
+            path = Path(raw_path).resolve()
+            digest = hashlib.sha256()
+            with path.open("rb") as handle:
+                for block in iter(lambda: handle.read(1024 * 1024), b""):
+                    digest.update(block)
+            size = path.stat().st_size
+            if not size:
+                raise RuntimeError("Native Batch export produced an empty file: " + str(path))
+            files.append(dict(path=str(path), bytes=size, sha256=digest.hexdigest()))
+        receipt = dict(metadata=dict(self.metadata), source_blend=self.source,
+                       exported_files=files, native_export_jobs=self.exported_count,
+                       stage="exported_pending_unreal", phase_completed=False)
+        self.namespace[DEFERRED_RECEIPT_KEY] = receipt
+        self.detach()
+        return receipt
 
-def begin_operation(phase_id, namespace, target, pipeline="send2ue"):
+
+def begin_operation(phase_id, namespace, target, pipeline="send2ue", deferred_handoff=""):
     if namespace.get(NAMESPACE_KEY) is not None:
         raise RuntimeError("Another coordinated Unreal operation is already running in this Blender session")
-    if not phase_id:
+    if not phase_id and not deferred_handoff:
         return None
     bridge = load_bridge()
+    if deferred_handoff:
+        if not phase_id:
+            raise RuntimeError("Deferred Batch handoff requires its admitted phase ID")
+        try:
+            metadata = json.loads(deferred_handoff)
+        except (TypeError, ValueError) as error:
+            raise RuntimeError("Deferred Batch handoff metadata is invalid") from error
+        if (not isinstance(metadata, dict)
+                or any(not isinstance(metadata.get(key), str) or not metadata[key]
+                       for key in HANDOFF_FIELDS)
+                or metadata["phase_id"] != phase_id
+                or metadata["resource"].casefold() != RESOURCE.casefold()
+                or metadata["pipeline"] != BATCH_PIPELINE
+                or metadata.get("project") != RESOURCE
+                or metadata.get("action") != BATCH_ACTION
+                or any("token" in key.casefold() for key in metadata)):
+            raise RuntimeError("Deferred Batch handoff does not match its exact native request")
+        if not target:
+            raise RuntimeError("Deferred Batch handoff requires an existing Blender source path")
+        # The final target can own multiple provider files. Their actual source
+        # scope is checked individually without replacing the existing binding.
+        bridge.require_active_phase(phase_id, RESOURCE)
+        if not bridge.can_execute_handoff(metadata):
+            raise RuntimeError("Deferred Batch handoff has no executable exact binding")
+        source = ntpath.normpath(target).replace("\\", "/")
+        bridge.require_scopes(phase_id, ["source:" + source])
+        namespace.pop(DEFERRED_RECEIPT_KEY, None)
+        operation = NativeOperation(bridge, metadata, namespace, deferred=True, source=source)
+        namespace[NAMESPACE_KEY] = operation
+        return operation
     bridge.require_active_phase(phase_id, RESOURCE)
     metadata = bridge.bind_handoff(phase_id, pipeline, str(uuid.uuid4()), target)
     operation = NativeOperation(bridge, metadata, namespace)
@@ -104,6 +182,17 @@ def begin_operation(phase_id, namespace, target, pipeline="send2ue"):
         operation.fail(error)
         raise
     return operation
+
+
+def validate_export_jobs(operation, jobs, path_mode):
+    if not operation.deferred or path_mode != "send_to_disk" or not jobs:
+        raise RuntimeError("Deferred Batch handoff requires native disk export jobs")
+    export_module = (__package__ or "send2ue") + ".core.export"
+    for function, *_ in jobs:
+        if (getattr(function, "__module__", "") != export_module
+                or getattr(function, "__name__", "") not in
+                {"export_mesh", "export_animation", "export_hair"}):
+            raise RuntimeError("Deferred Batch handoff cannot run native Unreal import jobs")
 
 
 def require_asset_scopes(asset_data, properties=None, namespace=None):
