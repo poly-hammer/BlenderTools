@@ -621,6 +621,33 @@ class PublishHarness:
 
 
 class PublicationTests(unittest.TestCase):
+    def test_full_collection_digest_can_differ_for_preserved_artist_configuration(self):
+        h = PublishHarness(); h.add_solver(); h.add_capsule_collision()
+        original = h.snapshot(h.assets[h.target]); dump = h.dump
+        def with_fingerprint(path):
+            result = json.loads(dump(path))
+            result['collections'][0]['non_uv_collection_md5'] = (
+                'artist-config-and-paint' if path == h.target else 'bare-binding')
+            return json.dumps(result)
+        h.unreal.CodexClothToolsLibrary.dump_cloth_collection_colors = with_fingerprint
+        h.publish()
+        self.assertEqual(h.assets[h.target].binding, h.new_binding)
+        self.assertEqual(h.assets[h.target].config_properties, original['config_properties'])
+        self.assertEqual(h.assets[h.target].connections, original['connections'])
+
+    def test_digest_compatibility_still_rejects_changed_binding_and_restores_previous_state(self):
+        h = PublishHarness(); h.add_solver(); h.bad_target_config = True
+        original = h.snapshot(h.assets[h.target]); dump = h.dump
+        def with_fingerprint(path):
+            result = json.loads(dump(path))
+            result['collections'][0]['non_uv_collection_md5'] = 'full-state'
+            return json.dumps(result)
+        h.unreal.CodexClothToolsLibrary.dump_cloth_collection_colors = with_fingerprint
+        with self.assertRaisesRegex(RuntimeError, 'differs from its verified collection'):
+            h.publish()
+        self.assertEqual(h.snapshot(h.assets[h.target]), original)
+        self.assertEqual(h.saved[h.target], original)
+
     def test_reexport_saves_capsule_collision_and_artist_solver_across_revisions(self):
         h = PublishHarness(); h.add_solver(); h.add_capsule_collision()
         before = h.snapshot(h.assets[h.target])

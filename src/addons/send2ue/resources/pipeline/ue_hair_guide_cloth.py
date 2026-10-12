@@ -781,8 +781,18 @@ def _publish(unreal, source_asset, binding_path, target, owner, content, packet=
             for key in ('weight_maps', 'sim_float_attributes'):
                 if key in compared:
                     compared[key] = [item for item in compared[key] if item['name'] not in added_names]
-            if compared != before["collections"][0]:
-                raise RuntimeError("Published cloth differs from its verified collection")
+            expected_collection = json.loads(json.dumps(before["collections"][0]))
+            # This whole-collection fingerprint also includes artist-owned solver,
+            # collider and transferred paint attributes. The explicit audit below
+            # still checks geometry, UV/color payloads and every proxy embedding;
+            # a bare binding cannot have the same full fingerprint as that graph.
+            compared.pop('non_uv_collection_md5', None)
+            expected_collection.pop('non_uv_collection_md5', None)
+            if compared != expected_collection:
+                changed_fields = sorted(key for key in set(compared) | set(expected_collection)
+                                        if compared.get(key) != expected_collection.get(key))
+                raise RuntimeError("Published cloth differs from its verified collection: " +
+                                   ", ".join(changed_fields))
             unreal.EditorAssetLibrary.set_metadata_tag(final, CONTENT, content)
             unreal.EditorAssetLibrary.set_metadata_tag(final, binding_key, binding_path)
             if not unreal.EditorAssetLibrary.save_loaded_asset(final):
