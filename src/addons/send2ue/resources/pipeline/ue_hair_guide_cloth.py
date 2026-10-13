@@ -512,7 +512,8 @@ def _rooted_ribbon_parameters(native, indices, source_ids):
     return indices, [value/lengths[-1] for value in lengths], centers, lengths[-1]
 
 
-def _ribbon_paint_correspondence(old, new, previous, indices, old_ids, new_ids):
+def _ribbon_paint_correspondence(old, new, previous, indices, old_ids, new_ids,
+                                 preserve_source_rails=False):
     """Explicit same-parent resampling; each rail retains its own painted values."""
     previous, old_t, old_center, old_length = _rooted_ribbon_parameters(old, previous, old_ids)
     indices, new_t, new_center, new_length = _rooted_ribbon_parameters(new, indices, new_ids)
@@ -520,14 +521,20 @@ def _ribbon_paint_correspondence(old, new, previous, indices, old_ids, new_ids):
     # Root is the shared attachment; require the same ribbon rail orientation.
     if math.dist(old_center[0],new_center[0]) > .0001:
         raise ValueError('Authored paint ribbon attachment changed')
+    if preserve_source_rails and math.dist(old_center[-1],new_center[-1]) > .0001:
+        raise ValueError('Authored paint source-rail endpoint changed')
     for native, group in ((old,previous),(new,indices)):
         if any(math.dist(native['sim_positions'][a],native['sim_positions'][b]) <= 1e-7
                for a,b in zip(group[::2],group[1::2])):
             raise ValueError('Authored paint ribbon has a collapsed cross section')
     old_rail = [old['sim_positions'][previous[1]][j]-old['sim_positions'][previous[0]][j] for j in range(3)]
     new_rail = [new['sim_positions'][indices[1]][j]-new['sim_positions'][indices[0]][j] for j in range(3)]
-    if sum(a*b for a,b in zip(old_rail,new_rail)) <= 0:
+    if not preserve_source_rails and sum(a*b for a,b in zip(old_rail,new_rail)) <= 0:
         raise ValueError('Authored paint ribbon rail orientation changed')
+    # A separately authorized source-spline key can retain the generator's
+    # ordered rail coordinates when resampling rotates its ribbon frame.
+    # Root and tip must still match; never average or guess the authored paint
+    # from spatial proximity to another rail/guide.
     # Sampling occurs in source centerline coordinates, with no mesh-space
     # nearest-point or cross-guide search. Endpoints remain authored exactly.
     correspondence = {}
@@ -551,7 +558,10 @@ def _weight_map_updates(full_graph, old, new, packet, ownership):
     paint_correspondence = None
     key_nodes = [n for n in full_graph['nodes'] if n['type'] == 'FChaosClothAssetWeightMapNode'
                  and n['props'].get('OutputName') == '(StringValue="CodexParentForceKey")']
-    if packet and ownership and len(key_nodes) == 1:
+    authored_nodes = [n for n in full_graph['nodes']
+                      if n['type'] == 'FChaosClothAssetWeightMapNode'
+                      and n['props'].get('OutputName') != '(StringValue="CodexParentForceKey")']
+    if packet and ownership and len(key_nodes) == 1 and authored_nodes:
         previous_keys = [float(v) for v in key_nodes[0]['props']['VertexWeights'].strip('()').split(',') if v]
         current_keys, rows = _guide_identity_rows(packet, ownership)
         # UE ExportText serializes float properties with six decimal places.
@@ -584,11 +594,16 @@ def _weight_map_updates(full_graph, old, new, packet, ownership):
                 mapping = [None] * new_count
                 transfer = packet.get('weight_map_transfer', {})
                 allowed = set()
+                source_rails = set()
                 if transfer:
                     if transfer.get('version') != 1 or transfer.get('policy') != 'rooted_ribbon_arclength':
                         raise ValueError('Unsupported explicit authored paint transfer')
                     allowed = {json.dumps(key,ensure_ascii=False,separators=(',',':'))
                                for key in transfer.get('guide_keys',[])}
+                    source_rails = {json.dumps(key,ensure_ascii=False,separators=(',',':'))
+                                    for key in transfer.get('rotated_source_rail_guide_keys',[])}
+                    if not source_rails <= allowed:
+                        raise ValueError('Source rail transfer needs an explicitly allowed guide key')
                 correspondences = {}
                 row_by_weight = {row['weight']: row for row in rows.values()}
                 for parent, indices in current_groups.items():
@@ -601,7 +616,8 @@ def _weight_map_updates(full_graph, old, new, packet, ownership):
                         if not previous or row.get('key') not in allowed or part is None:
                             break
                         correspondences.update(_ribbon_paint_correspondence(
-                            old_native,new_native,previous,indices,old_ids,new_ids))
+                            old_native,new_native,previous,indices,old_ids,new_ids,
+                            preserve_source_rails=row.get('key') in source_rails))
                         continue
                     previous.sort(key=lambda index: old_ids[index])
                     indices.sort(key=lambda index: new_ids[index])

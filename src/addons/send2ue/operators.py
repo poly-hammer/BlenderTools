@@ -158,7 +158,7 @@ class Send2Ue(bpy.types.Operator):
                     raise error
 
                 self.report({'ERROR'}, str(error))
-                return {'FINISHED'}
+                return {'CANCELLED'}
 
             self.max_step = self.execution_queue.qsize()
 
@@ -170,7 +170,7 @@ class Send2Ue(bpy.types.Operator):
             return {'RUNNING_MODAL'}
         else:
             self._fail_coordinated('Unreal connection was unavailable; native Send2UE did not complete')
-            return {'FINISHED'}
+            return {'CANCELLED'}
 
     def execute(self, context):
         try:
@@ -210,6 +210,7 @@ class Send2Ue(bpy.types.Operator):
                 raise
         else:
             self._fail_coordinated('Unreal connection was unavailable; native Send2UE did not complete')
+            return {'CANCELLED'}
         return {'FINISHED'}
 
     def _begin_coordinated(self, context):

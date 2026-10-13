@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 
 import bpy
-from send2ue.core import hair_guide_cloth
+from send2ue.core import hair_guide_cloth, cloth_receipt
 from send2ue.core.extension import ExtensionBase
 from send2ue.dependencies.unreal import run_commands
 
@@ -67,6 +67,7 @@ class HairGuideClothExtension(ExtensionBase):
             hair_guide_cloth.record_export(asset_data)
         except Exception as error:
             hair_guide_cloth.diagnostic(asset_data.get('asset_path', ''), str(error))
+            raise RuntimeError('Hair Guide Cloth export failed: ' + str(error)) from error
 
     def post_import(self, asset_data, properties):
         if not self.enabled:
@@ -86,9 +87,12 @@ class HairGuideClothExtension(ExtensionBase):
             ])
             if response:
                 print('[send2ue][hair_guide_cloth] ' + str(response))
+            cloth_receipt.validate_import_response(response, record)
         except Exception as error:
-            # An optional cloth build must not abort an otherwise valid FBX import.
+            # Imported meshes and the previous cloth remain recoverable, but a
+            # requested cloth update must not finish as a successful operation.
             hair_guide_cloth.diagnostic(asset_data.get('asset_path', ''), str(error))
+            raise RuntimeError('Hair Guide Cloth import failed: ' + str(error)) from error
 
     def post_operation(self, properties):
         # Keep compact diagnostics available to users after owned mesh cleanup.

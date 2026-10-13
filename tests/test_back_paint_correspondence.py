@@ -95,6 +95,40 @@ class BackRibbonIndependentReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'rail orientation changed'):
             self.resample(old, new)
 
+    def test_explicit_source_rails_preserve_asymmetric_paint_after_frame_rotation(self):
+        old, new = strip([0., .5, 1.]), strip([0., .2, .7, 1.])
+        # Rotate the new width axis around the same source centerline by 96deg.
+        import math
+        angle = math.radians(96.)
+        for pair in range(len(new['sim_positions'])//2):
+            for rail,offset in enumerate((-.5,.5)):
+                new['sim_positions'][2*pair+rail][0] = .5+offset*math.cos(angle)
+                new['sim_positions'][2*pair+rail][2] = offset*math.sin(angle)
+        with self.assertRaisesRegex(ValueError, 'rail orientation changed'):
+            self.resample(old,new)
+        corr = M._ribbon_paint_correspondence(old,new,list(range(6)),list(range(8)),
+                                             list(range(6)),list(range(8)),
+                                             preserve_source_rails=True)
+        paint=[.1,.2,.3,.4,.8,.9]
+        actual=[paint[a]*(1-t)+paint[b]*t for a,b,t in (corr[i] for i in range(8))]
+        self.assertEqual(actual[:2],paint[:2])
+        self.assertEqual(actual[-2:],paint[-2:])
+        self.assertAlmostEqual(actual[3]-actual[2],.1)
+
+    def test_source_rail_permission_does_not_allow_a_different_tip(self):
+        old,new=strip([0.,.5,1.]),strip([0.,1.1])
+        with self.assertRaisesRegex(ValueError, 'endpoint changed'):
+            M._ribbon_paint_correspondence(old,new,list(range(6)),list(range(4)),
+                                         list(range(6)),list(range(4)),preserve_source_rails=True)
+
+    def test_generated_parent_keys_do_not_require_authored_paint_resampling(self):
+        fixture=list(self.weight_case(self.policy()))
+        fixture[0]['nodes']=fixture[0]['nodes'][:1]
+        fixture[1]['built_mapping']['kinematic_sim_indices']=[0,1,4,5]
+        fixture[2]['built_mapping']['kinematic_sim_indices']=[2,3]
+        actual=self.updates(fixture)
+        self.assertEqual(actual['CodexParentForceKey'][2],[.125]*4)
+
     def test_foreign_guide_triangle_is_rejected(self):
         old, new = strip([0., .5, 1.]), strip([0., .2, .7, 1.])
         new['sim_positions'].append([20., 20., 20.])
