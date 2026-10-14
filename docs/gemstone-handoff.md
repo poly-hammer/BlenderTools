@@ -15,3 +15,5 @@ subsequent exports retain existing artist parameters and the nonempty layer.
 This separates the staff inset and ornament gemstone controls.
 
 Run `python -m unittest discover -s tests -p test_gemstone_handoff.py`.
+
+Hidden Export collections and required armatures are temporarily activated for declared source units, then their collection, visibility, selection-lock and membership state is restored. This prevents a skeletal ornament from importing only its first mesh under a dummy root. The cane source also retains its authored Gemstone face assignments through its evaluated UV modifier; a terminal Set Material node must not overwrite that boundary.

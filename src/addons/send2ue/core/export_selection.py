@@ -9,6 +9,35 @@ import bpy
 
 _state = None
 _rules = None
+_collection_state = None
+
+
+def _activate_export_collection(collection):
+    """Reveal the explicit activation collection, not preview collections."""
+    global _collection_state
+    root = getattr(bpy.context.view_layer, 'layer_collection', None)
+    paths = []
+    def visit(layer, ancestors):
+        path = ancestors + [layer]
+        if layer.collection == collection:
+            paths.append(path)
+        for child in layer.children:
+            visit(child, path)
+    if root is not None:
+        visit(root, [])
+    layers = []
+    for path in paths:
+        for layer in path:
+            if layer not in layers:
+                layers.append(layer)
+    _collection_state = [(layer, layer.exclude, layer.hide_viewport,
+                          layer.collection.hide_viewport, layer.collection.hide_render)
+                         for layer in layers]
+    for layer in layers:
+        layer.exclude = False
+        layer.hide_viewport = False
+        layer.collection.hide_viewport = False
+        layer.collection.hide_render = False
 
 
 def includes(obj):
@@ -57,21 +86,39 @@ def prepare():
     for name, objects in declared.items():
         if any(owner(o) != name for o in objects):
             raise ValueError('Explicit export source has a different Empty owner: ' + name)
-    affected = set(collection.objects) | set().union(*declared.values()) if declared else set(collection.objects)
-    _state = [(o, collection in o.users_collection, o.hide_get(), o.hide_viewport, o.hide_render) for o in affected]
+    # The source mesh can be visible while its shared armature is hidden for
+    # preview. The native exporter discovers rigs from visible Export objects;
+    # omitting it creates a dummy skeleton and can drop sibling chain meshes.
+    # Activate only rig dependencies of explicitly declared source meshes.
+    dependencies = set()
+    for objects in declared.values():
+        for obj in objects:
+            for modifier in getattr(obj, 'modifiers', ()):
+                rig = getattr(modifier, 'object', None)
+                if modifier.type == 'ARMATURE' and rig is not None:
+                    dependencies.add(rig)
+            parent = obj.parent
+            while parent is not None:
+                if parent.type == 'ARMATURE':
+                    dependencies.add(parent)
+                parent = parent.parent
+    affected = (set(collection.objects) | set().union(*declared.values()) | dependencies) if declared else set(collection.objects)
+    _state = [(o, collection in o.users_collection, o.hide_get(), o.hide_viewport, o.hide_render, o.hide_select) for o in affected]
     _rules = units, selected, declared
     try:
+        _activate_export_collection(collection)
         for obj in affected:
             name = owner(obj)
             if name and (name not in selected or (name in declared and obj != units[name] and obj not in declared[name])):
                 if collection in obj.users_collection:
                     collection.objects.unlink(obj)
-        for objects in declared.values():
+        for objects in [*declared.values(), dependencies]:
             for obj in objects:
                 if collection not in obj.users_collection:
                     collection.objects.link(obj)
                 obj.hide_viewport = False
                 obj.hide_render = False
+                obj.hide_select = False
                 obj.hide_set(False)
         bpy.context.view_layer.update()
     except BaseException:
@@ -80,14 +127,21 @@ def prepare():
 
 
 def cleanup():
-    global _state, _rules
+    global _state, _rules, _collection_state
     state, _state = _state, None
     _rules = None
     collection = bpy.data.collections.get('Export')
-    for obj, linked, hidden, viewport, render in state or []:
+    for obj, linked, hidden, viewport, render, selectable in state or []:
         if linked and collection not in obj.users_collection:
             collection.objects.link(obj)
         elif not linked and collection in obj.users_collection:
             collection.objects.unlink(obj)
         obj.hide_viewport, obj.hide_render = viewport, render
+        obj.hide_select = selectable
         obj.hide_set(hidden)
+    collection_state, _collection_state = _collection_state, None
+    for layer, excluded, hidden, viewport, render in reversed(collection_state or []):
+        layer.hide_viewport = hidden
+        layer.collection.hide_viewport = viewport
+        layer.collection.hide_render = render
+        layer.exclude = excluded
