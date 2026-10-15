@@ -221,6 +221,15 @@ def _speedtree_handoff_api():
 # ─── 설정 ────────────────────────────────────────────────────────────────────
 DEFAULT_MASTER_PRESET = "prop"
 MASTER_PRESETS = {
+    "gemstone": {
+        "master": "/Game/Materials/Gemstone/M_Gemstone_Layered_Substrate",
+        "mi_folder": "/Game/Materials/Gemstone/MI",
+        "assignment": "material_layer_instance",
+        "layer_parent": "/Game/Materials/Gemstone/Layers/ML_Gemstone_Crystal",
+        "layer_instance_folder": "/Game/Materials/Gemstone/MYI",
+        "layer_texture_remap": {},
+        "virtual_textures": False,
+    },
     "prop": {
         "master": "/Game/Material/AssetSurface/Master/M_AssetSurface_Master",
         "mi_folder": "/Game/Material/AssetSurface/MI/Surface",
@@ -1994,7 +2003,10 @@ def _master_preset(data: dict, entry: dict = None, mesh_path: str = "") -> dict:
         or entry.get("master_preset")
     )
     if not key:
-        if tree_part or _is_tree_asset_path(mesh_path):
+        material_name = re.sub(r"[^0-9A-Za-z_]+", "_", str(entry.get("name") or "")).lower()
+        if re.search(r"(?:^|_)gemstone(?:_|$)", material_name):
+            key = "gemstone"
+        elif tree_part or _is_tree_asset_path(mesh_path):
             key = "tree"
         else:
             key = (
@@ -2010,6 +2022,11 @@ def _master_preset(data: dict, entry: dict = None, mesh_path: str = "") -> dict:
         key = DEFAULT_MASTER_PRESET
         preset = MASTER_PRESETS[key]
     result = dict(preset)
+    if key == "gemstone":
+        contract = _pipeline_contract().get("unreal_handoff_sidecar", {}).get("gemstone_material_layer", {})
+        for target, source in (("master", "master"), ("mi_folder", "mi_folder"), ("layer_parent", "parent"), ("layer_instance_folder", "instance_folder")):
+            if contract.get(source):
+                result[target] = str(contract[source])
     if key == "tree":
         result.update(_tree_preset_contract_overlay())
     scope = data.get("codex_test_asset_scope")
