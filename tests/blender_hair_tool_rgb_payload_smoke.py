@@ -1,6 +1,7 @@
 from pathlib import Path
 import math
 import sys
+import tempfile
 
 import bpy
 
@@ -237,5 +238,51 @@ assert contract["chaos_weight_channel"] == "G"
 assert contract["pixel_depth_offset_attribute"] == "HairPixelDepthOffset"
 assert contract["pixel_depth_offset_channel"] == "R"
 assert contract["pixel_depth_offset_fallback"] == 1.0
+assert contract["system_color_absent_raw_b"] == -1.0
+
+# Joining an absent-color part with valid black must keep their distinction.
+# Alpha=0 is still a real RGB attribute, and all Factor values must survive.
+mesh.attributes.remove(mesh.attributes[hair_tool_export.SYSTEM_COLOR_PRESENT_ATTRIBUTE])
+black_color = mesh.attributes.new(name='SystemColor', type='FLOAT_COLOR', domain='POINT')
+for item in black_color.data:
+    item.color = (0.0, 0.0, 0.0, 0.0)
+absent_mesh = mesh.copy()
+absent_mesh.attributes.remove(absent_mesh.attributes['SystemColor'])
+parts = []
+for source_mesh in (mesh, absent_mesh):
+    hair_tool_export._stamp_system_color_presence(source_mesh)
+    part = bpy.data.objects.new('HTUE_PRESENCE_JOIN', source_mesh)
+    bpy.context.scene.collection.objects.link(part)
+    parts.append(part)
+joined = hair_tool_export._join_objects(parts)
+hair_tool_export._pack_rfaos(joined.data)
+present_count = absent_count = 0
+for loop_index in range(len(joined.data.loops)):
+    marker = joined.data.attributes[hair_tool_export.SYSTEM_COLOR_PRESENT_ATTRIBUTE].data[loop_index].value
+    uv3 = joined.data.uv_layers[3].data[loop_index].uv
+    close(uv3[1], 1.0 if marker > 0.5 else 2.0)
+    factor = hair_tool_export._attribute_component(joined.data, joined.data.attributes['Factor'], loop_index)
+    close(joined.data.uv_layers[2].data[loop_index].uv[1], 1.0 - factor)
+    if marker > 0.5:
+        present_count += 1
+    else:
+        absent_count += 1
+assert present_count == absent_count == 3
+
+# The out-of-range sentinel must survive real FBX serialization as V=2.
+bpy.ops.object.select_all(action='DESELECT')
+joined.select_set(True)
+bpy.context.view_layer.objects.active = joined
+expected_v = sorted(item.uv[1] for item in joined.data.uv_layers[3].data)
+with tempfile.TemporaryDirectory(prefix='htue_presence_fbx_') as temporary_directory:
+    fbx_path = str(Path(temporary_directory) / 'presence.fbx')
+    assert bpy.ops.export_scene.fbx(filepath=fbx_path, use_selection=True, bake_anim=False) == {'FINISHED'}
+    bpy.data.objects.remove(joined, do_unlink=True)
+    assert bpy.ops.import_scene.fbx(filepath=fbx_path) == {'FINISHED'}
+    imported = next(obj for obj in bpy.context.selected_objects if obj.type == 'MESH')
+    actual_v = sorted(item.uv[1] for item in imported.data.uv_layers[3].data)
+    assert len(actual_v) == len(expected_v)
+    for actual, expected in zip(actual_v, expected_v):
+        close(actual, expected)
 
 print("SEND2UE_HAIR_TOOL_RGB_PAYLOAD_SMOKE_OK")

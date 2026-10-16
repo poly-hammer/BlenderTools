@@ -17,6 +17,7 @@ SOURCE_NAME_PROPERTY = '_send2ue_hair_tool_source_name'
 TEMP_PROPERTY = '_send2ue_hair_tool_temp'
 RFAOS_NAME = 'RFAOS'
 SYSTEM_COLOR_UV_RG = 'HairTool_SystemColor_RG'
+SYSTEM_COLOR_PRESENT_ATTRIBUTE = '_htue_system_color_present'
 RFAOS_NANITE_UV_RG = 'HairTool_RFAOS_RG'
 RFAOS_NANITE_UV_BA = 'HairTool_AO_SystemB'
 SYSTEM_COLOR_UV_INDEX = 1
@@ -333,6 +334,8 @@ def _ao_statistics(mesh):
 
 def _pack_rfaos(mesh):
     """Pack the material PDO mask and cloth Weight into vertex color."""
+    if mesh.attributes.get(SYSTEM_COLOR_PRESENT_ATTRIBUTE) is None:
+        _stamp_system_color_presence(mesh)
     random_attribute = mesh.attributes.get('Random')
     factor_attribute = mesh.attributes.get('Factor')
     system_color_attribute = mesh.attributes.get('SystemColor')
@@ -550,12 +553,26 @@ def _pack_unorm8_pair(first, second):
     return ((first_byte * 256) + second_byte) / 65535.0
 
 
+def _stamp_system_color_presence(mesh):
+    """Preserve attribute existence on export-only geometry before joining."""
+    if mesh.attributes.get(SYSTEM_COLOR_PRESENT_ATTRIBUTE) is not None:
+        # Keep a per-component stamp made by Profile before its geometry join.
+        # SystemColor alpha is deliberately irrelevant to color availability.
+        return
+    presence = mesh.attributes.new(
+        name=SYSTEM_COLOR_PRESENT_ATTRIBUTE, type='FLOAT', domain='CORNER',
+    )
+    value = float(mesh.attributes.get('SystemColor') is not None)
+    presence.data.foreach_set('value', [value] * len(mesh.loops))
+
+
 def _pack_rfaos_nanite_uvs(mesh, packed_values):
     """Write the v3 Nanite-safe scalar and SystemColor RGB payload.
 
     UV1 stores linear SystemColor RG.
     UV2 stores tagged packed Random+Depth in U and Factor in V.
-    UV3 stores tagged AO in U and linear SystemColor B in V.
+    UV3 stores tagged AO in U and linear SystemColor B in V. Absent colors
+    use raw B=-1 (Blender V=2); valid black with alpha=0 stays present.
     The FBX skeletal importer applies ``V = 1 - V``, so Unreal receives the
     original G, Factor, and B values in the V components.
     """
@@ -575,8 +592,15 @@ def _pack_rfaos_nanite_uvs(mesh, packed_values):
         RFAOS_NANITE_UV_START_INDEX + 1,
     )
 
+    presence = mesh.attributes.get(SYSTEM_COLOR_PRESENT_ATTRIBUTE)
+    has_system_color = mesh.attributes.get('SystemColor') is not None
+    loop_to_polygon = _loop_to_polygon_indices(mesh)
     for index, packed in enumerate(packed_values):
         random_value, factor, ao, depth, system_r, system_g, system_b = packed
+        present = _attribute_component(
+            mesh, presence, index, loop_to_polygon=loop_to_polygon,
+            default=float(has_system_color),
+        ) > 0.5
         system_rg_layer.data[index].uv = (
             system_r,
             1.0 - system_g,
@@ -587,7 +611,7 @@ def _pack_rfaos_nanite_uvs(mesh, packed_values):
         )
         ba_layer.data[index].uv = (
             RFAOS_NANITE_UV_TAG + ao,
-            1.0 - system_b,
+            1.0 - system_b if present else 2.0,
         )
 
 
@@ -926,6 +950,7 @@ def get_rfaos_payload_contract(mesh_object=None):
         'uv_rg_u_packing': 'UNORM8_PAIR_RANDOM_DEPTH',
         'system_color_encoding': 'LINEAR_RGB_UV1_RG_UV3_V',
         'system_color_alpha_used': False,
+        'system_color_absent_raw_b': -1.0,
         'requires_full_precision_uvs': True,
         'depth_attribute': 'Depth',
         'depth_fallback': 0.0,
@@ -1351,6 +1376,11 @@ def prepare():
                 continue
 
             shapes_baked = _bake_group_shape_keys(shape_source_parts)
+
+            # Stamp disposable parts before joining, which zero-fills missing
+            # SystemColor and otherwise loses the distinction from authored black.
+            for part in parts:
+                _stamp_system_color_presence(part.data)
 
             # Only actually generated card meshes are joined. AO evaluation
             # order is the explicit per-asset mode stored on the export Empty.
