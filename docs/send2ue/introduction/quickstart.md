@@ -31,6 +31,8 @@ already enabled.
 
 ![6](./images/6.png)
 
+If you are using Unreal Engine 5 (specifically UE 5.5 and higher), also ensure that the **"Interchange Framework"** (and **"Interchange Editor"**) plugins under `Built-In > Importers` are enabled. These plugins provide the Interchange pipeline and the `Interchange.FeatureFlags.Import.FBX` console variable required by the legacy importer validation check.
+
 If you are also working with groom assets and would like to export alembic files from blender as unreal groom assets,
 make sure to also have the plugins "Alembic Groom Importer" and "Groom" enabled.
 
@@ -49,11 +51,24 @@ Search for "python" and then enable `remote execution` and set the Multicast bin
 
 !!! note
 
-    For Unreal 5.5 and higher, the default FBX Importer should be set to use the Legacy FBX Importer. This can be done by changing the project's `DefaultEngine.ini` file to contain.
+    For Unreal 5.5 and higher, the default FBX Importer should be set to use the Legacy FBX Importer. This can be done by changing the project's `Config/DefaultEngine.ini` file to contain:
     ```ini
     [ConsoleVariables]
     Interchange.FeatureFlags.Import.FBX=False
     ```
+    Alternatively, you can run this command directly in the Unreal Editor Output Log command bar:
+    ```text
+    Interchange.FeatureFlags.Import.FBX False
+    ```
+
+!!! tip "Troubleshooting: Interchange Feature Flag Error"
+
+    If Send to Unreal fails validation during export with the error:
+    > *The Legacy FBX Importer must be used instead of Scene Interchange. Please run this command in the Unreal Editor: Interchange.FeatureFlags.Import.FBX False. Otherwise, persist this in the project's DefaultEngine.ini file.*
+
+    1. Verify under `Edit > Plugins` that **"Interchange Framework"** and **"Interchange Editor"** are both enabled and the editor was restarted. If these plugins are disabled or missing, the `Interchange.FeatureFlags.Import.FBX` console variable will not exist in the engine registry and the command will not take effect.
+    2. Confirm that `Interchange.FeatureFlags.Import.FBX=False` is placed under the `[ConsoleVariables]` section in `Config/DefaultEngine.ini`.
+    3. If you are exporting assets solely to disk rather than sending to an active Unreal session, select `Pipeline > Export > Settings Dialog` and switch `Path Mode` to `Send to Disk` to skip Unreal remote validation.
 
 
 ![8](./images/8.png)
